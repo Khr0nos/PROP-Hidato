@@ -11,11 +11,20 @@ public class User {
     public User();
 
     //Public constructor with parameters. User created has username=usr and password=pwd
-    public User(String usr, String pwd);
-
+    public User(String usr, String pwd) {
+        username = usr;
+        password = pwd;
+    }
     //Returns the username of a User
-    public string getUsername();
-
+    public string getUsername() {
+        return username;
+    }
     //Returns the password of a User
-    public string getPassword();
+    public string getPassword() {
+        return  password;
+    }
+    //Sets the value of password
+    public void setPassword(String pwd) {
+        password = pwd;
+    }
 }
