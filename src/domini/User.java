@@ -30,7 +30,7 @@ public class User {
     // Construeix un usuari amb username=usr i password=pwd
     public User(String usr, String pwd)
     {
-        username = usr;
+        username = usr; //fer servir clone?
         password = pwd;
     }
     
