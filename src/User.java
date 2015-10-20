@@ -1,30 +1,61 @@
 import java.lang.String;
 
+//////////////////////////////
+//
+// User
+//
+// Representacio d'un usuari de la aplicacio
+// Nomes considera usuaris amb nom identificatiu i password
+//
+//////////////////////////////
+
 public class User {
     //PRIVATE ATTRIBUTES
-    private String username;
-    private String password;
+    protected String username;
+    protected String password;
 
     //PUBLIC METHODS
 
-    //Public constructor
-    public User();
+    // Constructor per defecte
+    // Construeix un usuari buit
+    public User()
+    {
+    	username = null;
+    	password = null;
+    }
 
-    //Public constructor with parameters. User created has username=usr and password=pwd
-    public User(String usr, String pwd) {
+    // Constructor amb parametres
+    // Construeix un usuari amb username=usr i password=pwd
+    public User(String usr, String pwd)
+    {
         username = usr;
         password = pwd;
     }
-    //Returns the username of a User
-    public string getUsername() {
+    
+    // Retorna el nom de l'usuari i null si l'usuari es buit
+    public final String getUsername()
+    {
         return username;
     }
-    //Returns the password of a User
-    public string getPassword() {
+    
+    // Retorna la password de l'usuari i null si l'usuari es buit
+    public final String getPassword()
+    {
         return  password;
     }
-    //Sets the value of password
-    public void setPassword(String pwd) {
+    
+    // Canvia la password de l'usuari per pwd
+    public final void setPassword(String pwd)
+    {
         password = pwd;
+    }
+    
+    // Retorna cert si pwd es igual a la password de l'usuari
+    // Retorna fals en cas contrari
+    // Retorna fals si l'usuari es buit
+    public final boolean testPassword(String pwd)
+    {
+    	if (username == null) return false;
+    	return password == pwd;
     }
 }
