@@ -58,6 +58,6 @@ public class User {
     public final boolean testPassword(String pwd)
     {
     	if (username == null) return false;
-    	return password == pwd;
+    	return password.equals(pwd);
     }
 }
