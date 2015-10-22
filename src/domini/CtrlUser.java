@@ -57,6 +57,5 @@ public class CtrlUser
 	
 	// Esborra l'Usuari us de l'agregat
 	// Retorna false si hi ha hagut cap error i printa un missatge explicatiu
-	public boolean esborraUsuari(User us) { return false; }
 	public boolean esborraUsuari(String nom) { return false; }
 }
