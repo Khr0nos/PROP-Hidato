@@ -43,6 +43,8 @@ import java.nio.file.Paths;
 
 public class CtrlPersistencia
 {
+	private static String separator = ";";
+
     // Carrega les dades de l'arxiu a path
     // Si no es troba l'arxiu tira una excepcio
     public static ArrayList<ArrayList<String>> loadTable(String path) throws IOException
@@ -61,7 +63,7 @@ public class CtrlPersistencia
 
 			// Llegir linia a linia on cada cella queda separada per sep
 		    while ((l = reader.readLine()) != null){
-		        String[] fila_aux = l.split(" ");
+		        String[] fila_aux = l.split(separator);
 		        fila = new ArrayList<String>();
 		        
 		        for (String cella : fila_aux)
@@ -84,7 +86,7 @@ public class CtrlPersistencia
     // Guarda les dades a table a l'arxiu a path
     // Si no es troba l'arxiu a path se'n crea un de nou
     // Si es troba l'arxiu a path se sobrescriura
-     public static void storeTable(String path, ArrayList<ArrayList<String>> taula) throws IOException
+    public static void storeTable(String path, ArrayList<ArrayList<String>> taula) throws IOException
     {
         // Generar path a partir del parametre d'entrada
         path = Paths.get(path).toAbsolutePath().toString();
@@ -100,9 +102,16 @@ public class CtrlPersistencia
 		    for (int i = 0; i < fila.size(); ++i)
 		    {
 		        writer.write(fila.get(i));
-		        writer.write("\r\n");
+		        writer.write(separator);
 		    }
+		    writer.write("\r\n");
 	    }
         writer.close();
+    }
+    
+    // Canvia el separador per s
+    public static void setSeparator(String s)
+    {
+    	separator = s;
     }
 }
