@@ -1,7 +1,9 @@
 package domini;
 
-import java.util.ArrayList;
 import persistencia.CtrlPersistencia;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 //////////////////////////////
 //
@@ -43,7 +45,11 @@ public class CtrlUser
 		if (dirty)
 		{
 			CtrlPersistencia bd = new CtrlPersistencia();
-			bd.storeTable(codifica(), "users");
+			try {
+				bd.storeTable("users", codifica());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	

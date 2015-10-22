@@ -1,19 +1,8 @@
 package persistencia;
 
-import java.sql.Time;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Set;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.file.Path;
+import java.io.*;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 //////////////////////////////
 //

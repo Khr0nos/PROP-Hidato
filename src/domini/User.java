@@ -1,7 +1,5 @@
 package domini;
 
-import java.lang.String;
-
 //////////////////////////////
 //
 // User
