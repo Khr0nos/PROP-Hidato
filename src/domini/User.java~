@@ -63,7 +63,7 @@ public class User {
     // Retorna fals en cas contrari
     public final boolean tePassword()
     {
-    	if (password != null) return true;
-    	else return false;
+    	if (password == null) return false;
+    	else return true;
     }
 }
