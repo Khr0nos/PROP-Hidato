@@ -44,9 +44,9 @@ public class CtrlUser
 	{
 		if (dirty)
 		{
-			CtrlPersistencia bd = new CtrlPersistencia();
+			/* CtrlPersistencia bd = new CtrlPersistencia(); */
 			try {
-				bd.storeTable("users", codifica());
+				CtrlPersistencia.storeTable("users", codifica());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
