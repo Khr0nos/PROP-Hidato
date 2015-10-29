@@ -54,7 +54,7 @@ public class CtrlPersistencia
 		    while ((l = reader.readLine()) != null){
 		        String[] fila_aux = l.split(separator);
 		        fila = new ArrayList<String>();
-		        
+
 		        for (String cella : fila_aux)
 		        {
 		        	fila.add(cella);
@@ -63,8 +63,6 @@ public class CtrlPersistencia
 		        resultat.add(fila);
 		    }
 		    reader.close();
-	    } catch (FileNotFoundException e) {
-	    	e.printStackTrace();
 	    } catch (IOException e) {
 	    	e.printStackTrace();
 	    }

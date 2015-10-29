@@ -5,7 +5,7 @@ package domini;
 // User
 //
 // Representacio d'un usuari de la aplicacio
-// Nomes considera usuaris amb nom identificatiu i password
+// Nomes considera usuaris amb nom identificatiu (únic) i password
 //
 //////////////////////////////
 
@@ -53,17 +53,14 @@ public class User {
     // Retorna cert si pwd es igual a la password de l'usuari
     // Retorna fals en cas contrari
     // Retorna fals si l'usuari es buit
-    public final boolean testPassword(String pwd)
-    {
-    	if (username == null) return false;
-    	return password.equals(pwd);
+    public final boolean testPassword(String pwd) {
+        return username != null && password.equals(pwd);
     }
 
     // Retorna cert si l'usuari te password diferent a null 
     // Retorna fals en cas contrari
     public final boolean tePassword()
     {
-    	if (password != null) return true;
-    	else return false;
+        return password != null;
     }
 }
