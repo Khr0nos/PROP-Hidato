@@ -45,7 +45,18 @@ public class CtrlUser
 	// Codifica els usuaris en el format que es guardaran a la BD
 	protected static ArrayList<ArrayList<String>> codifica()
     {
-        return null;
+        ArrayList<ArrayList<String>> users = new ArrayList<ArrayList<String>>();
+        try {
+            for (User us : usuaris) {
+                ArrayList<String> fila = new ArrayList<String>();
+                fila.add(us.getUsername());
+                fila.add(us.getPassword());
+                users.add(fila);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return users;
     }
 
 	// Constructor per defecte
