@@ -22,7 +22,7 @@ import java.util.Objects;
 
 public class CtrlUser
 {
-	private static boolean dirty; // true si s'ha modificat la llista d'usuari
+	private static boolean dirty;             // true si s'ha modificat la llista d'usuari
 	protected static ArrayList<User> usuaris; // ordenats per nom
 	
 	// Carrega els usuaris de la BD
@@ -88,12 +88,14 @@ public class CtrlUser
     }
 	
 	// Afegeix l'Usuari us a l'agregat
-	// Retorna fals si hi ha hagut cap error i llença excepció
+	// Retorna fals si hi ha hagut cap error i llença excepció o bé si l'usuari ja hi és i no es pot afegir
 	public static boolean afegeixUsuari(User us) throws Exception
     {
         boolean ret = false;
         try {
-            ret = usuaris.add(us);
+            if (!usuaris.contains(us)) {
+                ret = usuaris.add(us);
+            }
             dirty = ret;
         } catch (Exception e) {
             e.printStackTrace();
