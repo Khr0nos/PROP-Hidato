@@ -30,12 +30,9 @@ public class CtrlUser
 	protected static void carrega() throws Exception
     {
         try {
-            ArrayList<ArrayList<String>> users = CtrlPersistencia.loadTable("users");  //cal definir el path!
-            for (ArrayList<String> fila : users)
-            {
-                String nom = fila.get(0);
-                String pwd = fila.get(1);
-                usuaris.add(new User(nom, pwd));
+            ArrayList<ArrayList<String>> users = CtrlPersistencia.loadTable("users.txt");  //cal definir el path!
+            for (ArrayList<String> fila : users) {
+                usuaris.add(new User(fila.get(0), fila.get(1)));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,6 +61,7 @@ public class CtrlUser
 	public CtrlUser() throws Exception {
 		dirty = false;
 		try {
+            usuaris = new ArrayList<User>();
             carrega();
         } catch (Exception e) {
             e.printStackTrace();
@@ -81,12 +79,17 @@ public class CtrlUser
         if (dirty)
 		{
 			try {
-				CtrlPersistencia.storeTable("users", codifica());  //cal definir el path!
+				CtrlPersistencia.storeTable("users.txt", codifica());  //cal definir el path!
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
 	}
+
+    // Retorna la taula d'usuaris
+    public static ArrayList<User> getTaula() {
+        return usuaris;
+    }
 	
 	// Retorna l'Usuari amb username igual a nom
 	// Retorna null si no el troba
@@ -102,16 +105,15 @@ public class CtrlUser
 	// Retorna fals si hi ha hagut cap error i llença excepció o bé si l'usuari ja hi és i no es pot afegir
 	public static boolean afegeixUsuari(User us) throws Exception
     {
-        boolean ret = false;
         try {
-            if (!usuaris.contains(us)) {
-                ret = usuaris.add(us);
+            for (User aux : usuaris) {
+                if (Objects.equals(aux.getUsername(), us.getUsername())) return false;
             }
-            dirty = ret;
+            dirty = usuaris.add(us);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return ret;
+        return dirty;
     }
 	
 	// Esborra l'Usuari amb username nom de l'agregat
