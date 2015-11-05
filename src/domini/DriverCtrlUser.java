@@ -6,14 +6,13 @@ import java.util.ArrayList;
 
 public class DriverCtrlUser {
     public static void main(String[] args) {
+        new CtrlUser();
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
             System.out.println("Introdueix 1 per obtenir un usuari de la taula");
             System.out.println("Introdueix 2 per afegir un usuari a la taula");
             System.out.println("Introdueix 3 per esborrar un usuari de la taula");
-
-            new CtrlUser();
 
             String in = br.readLine();
             
@@ -64,5 +63,6 @@ public class DriverCtrlUser {
         }
 
         System.out.println("Fi de la taula");
+        CtrlUser.end();
     }
 }
