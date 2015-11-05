@@ -1,5 +1,7 @@
-import java.util.*;
-import java.io.*;
+package domini;
+
+import java.util.LinkedList;
+import java.util.Queue;
 
 //////////////////////////////
 //

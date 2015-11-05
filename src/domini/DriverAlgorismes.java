@@ -1,5 +1,5 @@
-import java.util.*;
-import java.io.*;
+package domini;
+import java.util.Scanner;
 
 public class DriverAlgorismes {
 
