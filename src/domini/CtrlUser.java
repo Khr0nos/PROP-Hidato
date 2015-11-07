@@ -30,7 +30,7 @@ public class CtrlUser
 	protected static void carrega()
     {
         try {
-            ArrayList<ArrayList<String>> users = CtrlPersistencia.loadTable("users.txt");  //cal definir el path!
+            ArrayList<ArrayList<String>> users = CtrlPersistencia.loadTable("users.txt");
             for (ArrayList<String> fila : users) {
                 usuaris.add(new User(fila.get(0), fila.get(1)));
             }
@@ -69,11 +69,11 @@ public class CtrlUser
     }
 
 	// Si s'han modificat les dades carregades des de la BD, desar els canvis
-    // Aquest mètode s'ha de cridar un cop no s'utilitzi més el controlador CtrlUser
+    // Aquest mètode s'ha de cridar quan es vulgin guardar els canvis a la BD
 	public static void end() {
         if (dirty) {
             try {
-                CtrlPersistencia.storeTable("users.txt", codifica());  //cal definir el path!
+                CtrlPersistencia.storeTable("users.txt", codifica());
             } catch (IOException e) {
                 e.printStackTrace();
             }
