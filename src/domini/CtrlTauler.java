@@ -1,7 +1,8 @@
 package domini;
 
 import persistencia.CtrlPersistencia;
-import java.io.*;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class CtrlTauler {

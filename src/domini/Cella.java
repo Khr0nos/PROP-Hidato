@@ -1,6 +1,8 @@
 package domini;
 
-import excepcions.sudoku.*;
+import excepcions.sudoku.ExcepcionCasillaVaciaNoFijable;
+import excepcions.sudoku.ExcepcionCasillaYaTienePosicion;
+import excepcions.sudoku.ExcepcionNumeroFijo;
 
 public class Cella {
 	public Cella() {
