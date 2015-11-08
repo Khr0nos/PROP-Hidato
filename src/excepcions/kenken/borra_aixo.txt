@@ -1,0 +1,2 @@
+Borra això quan afegeixis alguna excepció, aquest arxiu
+només serveix perquè intelliJ crei els directoris al github
