@@ -27,15 +27,12 @@ public class CtrlUser
 	
 	// Carrega els usuaris de la BD
 	// si hi ha hagut error al carregar els usuaris llença una excepcio
-	protected static void carrega() throws Exception
+	protected static void carrega()
     {
         try {
-            ArrayList<ArrayList<String>> users = CtrlPersistencia.loadTable("users");  //cal definir el path!
-            for (ArrayList<String> fila : users)
-            {
-                String nom = fila.get(0);
-                String pwd = fila.get(1);
-                usuaris.add(new User(nom, pwd));
+            ArrayList<ArrayList<String>> users = CtrlPersistencia.loadTable("users.txt");
+            for (ArrayList<String> fila : users) {
+                usuaris.add(new User(fila.get(0), fila.get(1)));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -61,32 +58,32 @@ public class CtrlUser
 
 	// Constructor per defecte
 	// Inicialitza l'agregacio
-	public CtrlUser() throws Exception {
+	public CtrlUser() {
 		dirty = false;
 		try {
+            usuaris = new ArrayList<User>();
             carrega();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-	// Si en el moment de desalocar la instancia s'han modificat les dades carregades des de la BD, desar els canvis 	
-	public void finalize()
-	{
-        try {
-            super.finalize();
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
+	// Si s'han modificat les dades carregades des de la BD, desar els canvis
+    // Aquest mètode s'ha de cridar quan es vulgin guardar els canvis a la BD
+	public static void end() {
+        if (dirty) {
+            try {
+                CtrlPersistencia.storeTable("users.txt", codifica());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        if (dirty)
-		{
-			try {
-				CtrlPersistencia.storeTable("users", codifica());  //cal definir el path!
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
 	}
+
+    // Retorna la taula d'usuaris
+    public static ArrayList<User> getTaula() {
+        return usuaris;
+    }
 	
 	// Retorna l'Usuari amb username igual a nom
 	// Retorna null si no el troba
@@ -100,33 +97,32 @@ public class CtrlUser
 	
 	// Afegeix l'Usuari us a l'agregat
 	// Retorna fals si hi ha hagut cap error i llença excepció o bé si l'usuari ja hi és i no es pot afegir
-	public static boolean afegeixUsuari(User us) throws Exception
+	public static boolean afegeixUsuari(User us)
     {
-        boolean ret = false;
         try {
-            if (!usuaris.contains(us)) {
-                ret = usuaris.add(us);
+            for (User aux : usuaris) {
+                if (Objects.equals(aux.getUsername(), us.getUsername())) {
+                    return false;
+                }
             }
-            dirty = ret;
+            dirty = usuaris.add(us);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return ret;
+        return dirty;
     }
 	
 	// Esborra l'Usuari amb username nom de l'agregat
 	// Retorna false si hi ha hagut cap error i llença excepció
-	public static boolean esborraUsuari(String nom) throws Exception
+	public static boolean esborraUsuari(String nom)
     {
-        boolean ret = false;
         try {
             for (User usuari : usuaris) {
-                if (Objects.equals(usuari.getUsername(), nom)) ret = usuaris.remove(usuari);
+                if (Objects.equals(usuari.getUsername(), nom)) dirty = usuaris.remove(usuari);
             }
-            dirty = ret;
-        } catch (Exception e) {
+        } catch (NullPointerException | UnsupportedOperationException e) {
             e.printStackTrace();
         }
-        return ret;
+        return dirty;
     }
 }

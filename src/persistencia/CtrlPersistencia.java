@@ -19,6 +19,7 @@ import java.util.ArrayList;
 // Cada linia de l'arxiu ha de correspondre a una linia de la taula
 // Cada dada de la linia queda separada amb un espai " "
 // S'aconsella que el primer registre tingui un nom identifictiu per cada columna
+// En el cas de la taula d'usuaris el nom ja es identificatiu
 //
 // Exemple:
 //
@@ -86,11 +87,10 @@ public class CtrlPersistencia
         
         for (ArrayList<String> fila : taula)
         {
-		    for (int i = 0; i < fila.size(); ++i)
-		    {
-		        writer.write(fila.get(i));
-		        writer.write(separator);
-		    }
+            for (String valor : fila) {
+                writer.write(valor);
+                writer.write(separator);
+            }
 		    writer.write("\r\n");
 	    }
         writer.close();
