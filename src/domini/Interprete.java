@@ -18,7 +18,7 @@ public class Interprete {
             String in = "";
 
             in = br.readLine();
-            ArrayList<ArrayList<cells>> tablero;
+            ArrayList<ArrayList<Cella>> tablero;
             ArrayList<ArrayList<String>> t_aux = CtrlPersistencia.loadTable(in);
 
 
