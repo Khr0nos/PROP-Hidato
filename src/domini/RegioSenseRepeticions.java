@@ -1,7 +1,7 @@
 package domini;
  
 import java.util.*;
-import excepciones.*;
+import excepcions.sudoku.*;
  
 public class RegioSenseRepeticions extends Regio {
     RegioSenseRepeticions(int tamano) {

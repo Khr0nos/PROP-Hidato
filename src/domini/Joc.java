@@ -1,5 +1,4 @@
 package domini;
-//import java.util.*;
 
 public abstract class Joc {
 	private tipoDificultad dificultad;
