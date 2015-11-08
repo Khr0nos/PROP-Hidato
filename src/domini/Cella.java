@@ -1,6 +1,6 @@
-package capaDomini;
+package domini;
 
-import excepciones.*;
+import excepcions.sudoku.*;
 
 public class Cella {
 	public Cella() {
@@ -17,7 +17,7 @@ public class Cella {
 		bloqueada = false;
 	}
 	
-	// si la celda está vacía, devuelve -1
+	// si la celda estï¿½ vacï¿½a, devuelve -1
 	public int getNumero() {
 		return numero;
 	}
