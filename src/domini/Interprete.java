@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class Interprete {
 
-    public void main(String[] args) {
+    /*public void main(String[] args) {
 
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -27,5 +27,5 @@ public class Interprete {
             e.printStackTrace();
         }
 
-    }
+    }*/
 }

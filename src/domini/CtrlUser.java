@@ -24,13 +24,14 @@ public class CtrlUser
 {
 	private static boolean dirty;             // true si s'ha modificat la llista d'usuari
 	protected static ArrayList<User> usuaris; // ordenats per nom
+    private static String path = "src/domini/JocsProva/users.txt";
 	
 	// Carrega els usuaris de la BD
 	// si hi ha hagut error al carregar els usuaris llença una excepcio
 	protected static void carrega()
     {
         try {
-            ArrayList<ArrayList<String>> users = CtrlPersistencia.loadTable("users.txt");
+            ArrayList<ArrayList<String>> users = CtrlPersistencia.loadTable(path);
             for (ArrayList<String> fila : users) {
                 usuaris.add(new User(fila.get(0), fila.get(1)));
             }
@@ -73,7 +74,7 @@ public class CtrlUser
 	public static void end() {
         if (dirty) {
             try {
-                CtrlPersistencia.storeTable("users.txt", codifica());
+                CtrlPersistencia.storeTable(path, codifica());
             } catch (IOException e) {
                 e.printStackTrace();
             }
