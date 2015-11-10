@@ -32,6 +32,7 @@ public class DriverCtrlTauler {
                         } else {
                             fila += Integer.toString(t.getNumero(j, i));
                         }
+                        fila += " ";
                     }
                     System.out.println(fila);
                 }

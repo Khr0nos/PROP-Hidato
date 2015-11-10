@@ -15,16 +15,15 @@ public class CtrlTauler {
 
         try {
             t = CtrlPersistencia.loadTable(taulers + id + ".txt");
-
+            //FALLA ALGO AQUI
             ArrayList<String> header = t.get(0);
-            String ancho = header.get(0);
-            String alto = header.get(1);
-            result = new Tauler(Integer.parseInt(ancho), Integer.parseInt(alto));
+            int ancho = Integer.parseInt(header.get(0));
+            int alto = Integer.parseInt(header.get(1));
+            result = new Tauler(ancho,alto);
 
-            for (int i = 2; i <= t.size(); ++i) {
-                for (int j = 0; j < t.get(1).size(); ++j) {
-                    //System.out.println(t.get(i).get(j));
-                    int val = Integer.parseInt(t.get(i-1).get(j));
+            for (int i = 1; i < alto; ++i) {
+                for (int j = 0; j < ancho; ++j) {
+                    int val = Integer.parseInt(t.get(i).get(j));
                     if (val != -1) result.setNumero(j,i-1,val);
                     else result.getCella(j,i-1).bloquear();
                 }
@@ -53,11 +52,14 @@ public class CtrlTauler {
             for (int j = 0; j < ancho; ++j)
             {
                 Cella c = t.getCella(i, j);
-                //if (!c.estaVacia())
-                //{
+                if (!c.estaVacia())
+                {
                     String valor = Integer.toString(c.getNumero());
                     fila.add(valor);
-                //}
+                }
+                else {
+                    fila.add("-1");
+                }
             }
             result.add(fila);
         }
