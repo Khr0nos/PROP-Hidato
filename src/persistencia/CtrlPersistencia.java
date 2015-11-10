@@ -33,7 +33,7 @@ import java.util.ArrayList;
 
 public class CtrlPersistencia
 {
-	private static String separator = ";";
+	private static String separator = " ";
 
     // Carrega les dades de l'arxiu a path
     // Si no es troba l'arxiu tira una excepcio

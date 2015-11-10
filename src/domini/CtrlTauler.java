@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class CtrlTauler {
-    static private String taulers = "taulers";
+    static private String taulers = "src/domini/JocsProva/";
 
     static public Tauler carregaTauler(String id)
     {
@@ -21,15 +21,13 @@ public class CtrlTauler {
             String alto = header.get(1);
             result = new Tauler(Integer.parseInt(ancho), Integer.parseInt(alto));
 
-            int filas = t.size();
-            for (int i = 1; i < filas; ++i) {
-                ArrayList<String> cella = t.get(i);
-
-                int x = Integer.parseInt(t.get(i).get(0));
-                int y = Integer.parseInt(t.get(i).get(1));
-                int valor = Integer.parseInt(t.get(i).get(2));
-
-                result.setNumero(x, y, valor);
+            for (int i = 2; i <= t.size(); ++i) {
+                for (int j = 0; j < t.get(1).size(); ++j) {
+                    //System.out.println(t.get(i).get(j));
+                    int val = Integer.parseInt(t.get(i-1).get(j));
+                    if (val != -1) result.setNumero(j,i-1,val);
+                    else result.getCella(j,i-1).bloquear();
+                }
             }
         } catch (IOException e) {
             System.out.println("No s'ha pogut carregar tauler");
@@ -51,24 +49,19 @@ public class CtrlTauler {
 
         for (int i = 0; i < alto; ++i)
         {
+            ArrayList<String> fila = new ArrayList<String>();
             for (int j = 0; j < ancho; ++j)
             {
                 Cella c = t.getCella(i, j);
-                if (!c.estaVacia())
-                {
-                    String x = Integer.toString(c.getX());
-                    String y = Integer.toString(c.getY());
+                //if (!c.estaVacia())
+                //{
                     String valor = Integer.toString(c.getNumero());
-
-                    ArrayList<String> celda = new ArrayList<String>();
-                    celda.add(x);
-                    celda.add(y);
-                    celda.add(valor);
-                    result.add(celda);
-                }
+                    fila.add(valor);
+                //}
             }
+            result.add(fila);
         }
-
+        //FALTA COMPROVAR SI EL TAULELL ES CORRECTE O NO
         try
         {
             CtrlPersistencia.storeTable(taulers + id + ".txt", result);
