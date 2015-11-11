@@ -33,11 +33,13 @@ public class DriverCtrlTauler {
                 int n = sc.nextInt();
                 System.out.println("Introdueix alçada:");
                 int m = sc.nextInt();
-                Tauler tauler = new Tauler(n,m);
+                TaulerHidato tauler = new TaulerHidato(n,m);
                 System.out.println("Introdueix Taulell:");
-                for(int i = 0; i < n; ++i) {
-                    for(int j = 0; j < m; ++j) {
-                        tauler.setNumero(j,i,sc.nextInt());
+                for(int i = 0; i < m; ++i) {
+                    for(int j = 0; j < n; ++j) {
+                        int val = sc.nextInt();
+                        if(val != -1) tauler.setNumero(i,j,val);
+                        else tauler.setBlock(i,j);
                     }
                 }
                 CtrlTauler.guardaTauler(tauler,id);

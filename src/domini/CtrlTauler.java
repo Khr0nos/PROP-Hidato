@@ -21,7 +21,11 @@ public class CtrlTauler {
             for (int i = 1; i < t.size(); ++i) {
                 for (int j = 0; j < t.get(1).size(); ++j) {
                     int val = Integer.parseInt(t.get(i).get(j));
-                    if (val != -1) result.setNumero(i-1,j,val);
+                    if (val > 0) {
+                        result.setNumero(i - 1, j, val);
+                        result.setFixed(i-1,j);
+                    }
+                    else if (val == 0) result.setNumero(i-1,j,val);
                     else result.getCella(i-1,j).bloquear();
                 }
             }
@@ -33,7 +37,7 @@ public class CtrlTauler {
 
     }
 
-    static public void guardaTauler(Tauler t, String id)
+    static public void guardaTauler(TaulerHidato t, String id)
     {
         ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
 
@@ -49,7 +53,7 @@ public class CtrlTauler {
             ArrayList<String> fila = new ArrayList<String>();
             for (int j = 0; j < ancho; ++j)
             {
-                if (!t.getCella(i,j).estaVacia())
+                if (!t.estaBloqueada(i,j))
                 {
                     String valor = Integer.toString(t.getNumero(i,j));
                     fila.add(valor);
