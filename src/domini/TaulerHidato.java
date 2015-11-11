@@ -1,10 +1,11 @@
 package domini;
 
-/**
- * Created by josep on 11/11/15.
- */
+import excepcions.sudoku.*;
+
+import java.util.Vector;
+
 public class TaulerHidato extends Tauler {
-    private Cella[][] tauler;
+    /*private Cella[][] tauler;
     private int width;
     private int height;
 
@@ -27,16 +28,26 @@ public class TaulerHidato extends Tauler {
         return tauler[y][x].getNumero();
     }
     public boolean isEmpty(int x, int y) {
-        return (tauler[y][x].estaVacia());
+        return (tauler[y][x].getNumero() == 0);
     }
     public boolean isBlocked(int x, int y) {
         return (tauler[y][x].estaBloqueada());
     }
     public void setNumber(int x, int y, int val) {
-        tauler[y][x].setNumero(val);
+        if (val == -1) tauler[y][x].bloquear();
+        else tauler[y][x].setNumero(val);
     }
     public void setBlocked(int x, int y) {
         tauler[y][x].bloquear();
+    }*/
+
+
+    public TaulerHidato(int m, int n) {
+        super(m,n);
     }
 
+    public void setNumero(int x, int y, int val) {
+
+
+    }
 }

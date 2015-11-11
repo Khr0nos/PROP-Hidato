@@ -10,24 +10,21 @@ public class CtrlTauler {
 
     static public Tauler carregaTauler(String id)
     {
-        ArrayList<ArrayList<String>> t = new ArrayList<ArrayList<String>>();
         Tauler result = null;
 
         try {
-            t = CtrlPersistencia.loadTable(path + id + ".txt");
+            ArrayList<ArrayList<String>> t = CtrlPersistencia.loadTable(path + id + ".txt");
 
             ArrayList<String> header = t.get(0);
             int ancho = Integer.parseInt(header.get(0));
             int alto = Integer.parseInt(header.get(1));
-            result = new Tauler(ancho,alto);
+            result = new Tauler(ancho, alto);
 
             for (int i = 1; i < t.size(); ++i) {
                 for (int j = 0; j < t.get(1).size(); ++j) {
                     int val = Integer.parseInt(t.get(i).get(j));
-                    //if (val != -1) result.setNumber(j,i-1,val);
-                    //else result.setBlocked(j,i-1);
-                    if (val != -1) result.getCella(j,i-1).setNumero(val);
-                    else result.estaBloqueada(j,i-1);
+                    if (val > -1) result.setNumero(i-1,j,val);
+                    else result.getCella(i-1,j).bloquear();
                 }
             }
         } catch (IOException e) {

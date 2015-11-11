@@ -25,16 +25,15 @@ public class DriverCtrlTauler {
                 int alto = t.getAlto();
                 int ancho = t.getAncho();
                 for (int i = 0; i < alto; ++i) {
-                    String fila = "";
                     for (int j = 0; j < ancho; ++j) {
-                        if (t.estaVacia(j, i)) {
-                            fila += '.';
+                        if (t.estaBloqueada(i,j)) {
+                            System.out.print(".");
                         } else {
-                            fila += Integer.toString(t.getNumero(j, i));
+                            System.out.print(Integer.toString(t.getNumero(j, i)));
                         }
-                        fila += " ";
+                        System.out.print(" ");
                     }
-                    System.out.println(fila);
+                    System.out.println();
                 }
                 System.out.println("Fi tauler");
             }
@@ -46,7 +45,7 @@ public class DriverCtrlTauler {
                 int n = sc.nextInt();
                 System.out.println("Introdueix alçada:");
                 int m = sc.nextInt();
-                Tauler tauler = new TaulerHidato(n,m);
+                Tauler tauler = new Tauler(n,m);
                 System.out.println("Introdueix Taulell:");
                 for(int i = 0; i < n; ++i) {
                     for(int j = 0; j < m; ++j) {
