@@ -49,9 +49,9 @@ public class CtrlTauler {
             ArrayList<String> fila = new ArrayList<String>();
             for (int j = 0; j < ancho; ++j)
             {
-                if (!t.getCella(j,i).estaVacia())
+                if (!t.getCella(i,j).estaVacia())
                 {
-                    String valor = Integer.toString(t.getNumero(j,i));
+                    String valor = Integer.toString(t.getNumero(i,j));
                     fila.add(valor);
                 }
                 else {
