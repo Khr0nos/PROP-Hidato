@@ -46,7 +46,7 @@ public class DriverCtrlTauler {
                 int n = sc.nextInt();
                 System.out.println("Introdueix alçada:");
                 int m = sc.nextInt();
-                Tauler tauler = new Tauler(n,m);
+                Tauler tauler = new TaulerHidato(n,m);
                 System.out.println("Introdueix Taulell:");
                 for(int i = 0; i < n; ++i) {
                     for(int j = 0; j < m; ++j) {

@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class CtrlTauler {
-    static private String taulers = "src/domini/JocsProva/";
+    static private String path = "src/domini/JocsProva/";
 
     static public Tauler carregaTauler(String id)
     {
@@ -14,24 +14,25 @@ public class CtrlTauler {
         Tauler result = null;
 
         try {
-            t = CtrlPersistencia.loadTable(taulers + id + ".txt");
-            //FALLA ALGO AQUI
+            t = CtrlPersistencia.loadTable(path + id + ".txt");
+
             ArrayList<String> header = t.get(0);
             int ancho = Integer.parseInt(header.get(0));
             int alto = Integer.parseInt(header.get(1));
             result = new Tauler(ancho,alto);
 
-            for (int i = 1; i < alto; ++i) {
-                for (int j = 0; j < ancho; ++j) {
+            for (int i = 1; i < t.size(); ++i) {
+                for (int j = 0; j < t.get(1).size(); ++j) {
                     int val = Integer.parseInt(t.get(i).get(j));
-                    if (val != -1) result.setNumero(j,i-1,val);
-                    else result.getCella(j,i-1).bloquear();
+                    //if (val != -1) result.setNumber(j,i-1,val);
+                    //else result.setBlocked(j,i-1);
+                    if (val != -1) result.getCella(j,i-1).setNumero(val);
+                    else result.estaBloqueada(j,i-1);
                 }
             }
         } catch (IOException e) {
             System.out.println("No s'ha pogut carregar tauler");
         }
-
         return result;
     }
 
@@ -51,10 +52,9 @@ public class CtrlTauler {
             ArrayList<String> fila = new ArrayList<String>();
             for (int j = 0; j < ancho; ++j)
             {
-                Cella c = t.getCella(i, j);
-                if (!c.estaVacia())
+                if (!t.getCella(j,i).estaVacia())
                 {
-                    String valor = Integer.toString(c.getNumero());
+                    String valor = Integer.toString(t.getNumero(j,i));
                     fila.add(valor);
                 }
                 else {
@@ -66,7 +66,7 @@ public class CtrlTauler {
         //FALTA COMPROVAR SI EL TAULELL ES CORRECTE O NO
         try
         {
-            CtrlPersistencia.storeTable(taulers + id + ".txt", result);
+            CtrlPersistencia.storeTable(path + id + ".txt", result);
         } catch (IOException e) {
             System.out.println("No s'ha pogut guardar tauler");
         }
