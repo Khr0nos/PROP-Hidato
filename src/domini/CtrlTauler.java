@@ -22,7 +22,7 @@ public class CtrlTauler {
                 for (int j = 0; j < t.get(1).size(); ++j) {
                     int val = Integer.parseInt(t.get(i).get(j));
                     if (val > 0) {
-                        result.setNumero(i - 1, j, val);
+                        result.setNumero(i-1,j, val);
                         result.setFixed(i-1,j);
                     }
                     else if (val == 0) result.setNumero(i-1,j,val);
