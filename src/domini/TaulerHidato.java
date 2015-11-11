@@ -5,49 +5,66 @@ import excepcions.sudoku.*;
 import java.util.Vector;
 
 public class TaulerHidato extends Tauler {
-    /*private Cella[][] tauler;
+    private Cella[][] tauler;
     private int width;
     private int height;
 
     public TaulerHidato(int w, int h) {
-        tauler = new Cella[h][w];
-        width = w;
-        height = h;
+        this.width = w;
+        this.height = h;
+        this.tauler = new Cella[h][w];
+        for(int i = 0; i < w; ++i) {
+            for(int j = 0; j < h; ++j) {
+               this.tauler[j][i] = new Cella(i,j);
+            }
+        }
     }
 
-    public Cella getCella(int x, int y) {
-        return tauler[y][x];
+    public Cella getCella(int i, int j) {
+        return this.tauler[i][j];
     }
-    public int getWidth() {
-        return width;
+    public int getAncho() {
+        return this.width;
     }
-    public int getHeight() {
-        return height;
+    public int getAlto() {
+        return this.height;
     }
-    public int getNum(int x, int y) {
-        return tauler[y][x].getNumero();
+    public int getNumero(int i, int j) {
+        return this.tauler[i][j].getNumero();
     }
-    public boolean isEmpty(int x, int y) {
-        return (tauler[y][x].getNumero() == 0);
+    public boolean estaVacia(int i, int j) {
+        return (this.tauler[i][j].getNumero() == 0);
     }
-    public boolean isBlocked(int x, int y) {
-        return (tauler[y][x].estaBloqueada());
+    public boolean estaBloqueada(int i, int j) {
+        return (this.tauler[i][j].estaBloqueada());
     }
-    public void setNumber(int x, int y, int val) {
-        if (val == -1) tauler[y][x].bloquear();
-        else tauler[y][x].setNumero(val);
+    public void setNumero(int i, int j, int val) {
+        if (val == -1) tauler[i][j].bloquear();
+        else this.tauler[i][j].setNumero(val);
     }
-    public void setBlocked(int x, int y) {
-        tauler[y][x].bloquear();
-    }*/
-
-
-    public TaulerHidato(int m, int n) {
+    public void setBlock(int i, int j) {
+        this.tauler[i][j].bloquear();
+    }
+    public void setFixed(int i, int j) {
+        this.tauler[i][j].fijar();
+    }
+    public void print() {
+        for(int i = 0; i < this.height; ++i) {
+            String s = "";
+            for(int j = 0; j < this.width; ++j) {
+                if(this.tauler[i][j].estaVacia()) s += "0 ";
+                if(this.tauler[i][j].estaBloqueada()) s += "-1 ";
+                else s += this.tauler[i][j].getNumero() + " ";
+            }
+            System.out.println(s);
+        }
+    }
+    /*public TaulerHidato(int m, int n) {
         super(m,n);
     }
 
     public void setNumero(int x, int y, int val) {
 
 
-    }
+    }*/
 }

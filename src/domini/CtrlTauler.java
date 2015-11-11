@@ -8,9 +8,8 @@ import java.util.ArrayList;
 public class CtrlTauler {
     static private String path = "src/domini/JocsProva/";
 
-    static public Tauler carregaTauler(String id)
+    static public TaulerHidato carregaTauler(String id)
     {
-        Tauler result = null;
 
         try {
             ArrayList<ArrayList<String>> t = CtrlPersistencia.loadTable(path + id + ".txt");
@@ -18,19 +17,20 @@ public class CtrlTauler {
             ArrayList<String> header = t.get(0);
             int ancho = Integer.parseInt(header.get(0));
             int alto = Integer.parseInt(header.get(1));
-            result = new Tauler(ancho, alto);
-
+            TaulerHidato result = new TaulerHidato(ancho, alto);
             for (int i = 1; i < t.size(); ++i) {
                 for (int j = 0; j < t.get(1).size(); ++j) {
                     int val = Integer.parseInt(t.get(i).get(j));
-                    if (val > -1) result.setNumero(i-1,j,val);
+                    if (val != -1) result.setNumero(i-1,j,val);
                     else result.getCella(i-1,j).bloquear();
                 }
             }
+            return result;
         } catch (IOException e) {
             System.out.println("No s'ha pogut carregar tauler");
+            return null;
         }
-        return result;
+
     }
 
     static public void guardaTauler(Tauler t, String id)

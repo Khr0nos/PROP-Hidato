@@ -18,23 +18,11 @@ public class DriverCtrlTauler {
                 System.out.println("S'ha llegit: " + id);
 
                 System.out.println("Carregant tauler ...");
-                Tauler t = CtrlTauler.carregaTauler(id);
+                TaulerHidato t = CtrlTauler.carregaTauler(id);
                 System.out.println("Tauler carregat");
 
                 System.out.println("visualitzacio del tauler:");
-                int alto = t.getAlto();
-                int ancho = t.getAncho();
-                for (int i = 0; i < alto; ++i) {
-                    for (int j = 0; j < ancho; ++j) {
-                        if (t.estaBloqueada(i,j)) {
-                            System.out.print(".");
-                        } else {
-                            System.out.print(Integer.toString(t.getNumero(j, i)));
-                        }
-                        System.out.print(" ");
-                    }
-                    System.out.println();
-                }
+                t.print();
                 System.out.println("Fi tauler");
             }
             else {
