@@ -1,7 +1,8 @@
 package domini;
 
-import java.util.*;
 import excepcions.sudoku.*;
+
+import java.util.Vector;
 
 public class Tauler {
 

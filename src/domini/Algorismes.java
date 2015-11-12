@@ -1,7 +1,9 @@
 package domini;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Random;
 
 //////////////////////////////
 //
@@ -26,6 +28,7 @@ public class Algorismes {
   private static int n;
   private static int m;
   private static boolean trobat;
+
     
   private static int max(int a, int b){
     if (a > b) return a;
@@ -78,13 +81,13 @@ public class Algorismes {
   
   private static void backtracking(){
       if (falten == 0){
-      trobat = true;
-      solucio = new int[n][m];
-	for (int i = 0; i < n; ++i){
-	  for (int j = 0; j < m; ++j){
-	    solucio[i][j] = tauler[i][j];
-	  }
-	}
+        trobat = true;
+        solucio = new int[n][m];
+	    for (int i = 0; i < n; ++i){
+	      for (int j = 0; j < m; ++j){
+	        solucio[i][j] = tauler[i][j];
+	      }
+	    }
       }
       else {
 	int mi = 0;
@@ -112,7 +115,7 @@ public class Algorismes {
 	  if (!utilitzat[k]){
 	    utilitzat[k] = true;
 	    tauler[mi][mj] = k+1;
-	    
+
 	    for (int a = 0; a < n; ++a){
 	      for (int b = 0; b < m; ++b){
 		if (b != m-1) System.out.print(tauler[a][b] + " ");
@@ -120,7 +123,7 @@ public class Algorismes {
 	      }
 	    }
 	    System.out.println();
-	    
+
 	    if (comprova(mi,mj)) backtracking();
 	    tauler[mi][mj] = 0;
 	    utilitzat[k] = false;
@@ -138,7 +141,9 @@ public class Algorismes {
 	}
     }
   }
-  public Algorismes(){
+  public Algorismes(int n, int m){
+    tauler = new int[n][m];
+    solucio = new int[n][m];
   }
 
   public Algorismes(int t[][]){
@@ -167,11 +172,76 @@ public class Algorismes {
     for (int i = 0; i < ultima; ++i)utilitzat[i] = false;
     for (int i = 0; i < n; ++i){
       for (int j = 0; j < m; ++j){
-	if (tauler[i][j] > 0) utilitzat[tauler[i][j] -1] = true;
+        if (tauler[i][j] > 0) utilitzat[tauler[i][j] -1] = true;
       }
     }
     backtracking();
     escriure_solucio();
-  }	
+  }
 
+  public static void genera_hidato(int n, int m) throws Exception {
+    solucio = new int[n][m];
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < m; j++) {
+        solucio[i][j] = 0;
+      }
+    }
+
+    int N = n*m;
+    Random rng = new Random();
+    int i = rng.nextInt(N)/n;
+    int j = rng.nextInt(N)/m;
+    solucio[i][j] = 1;
+
+
+    int fi = rng.nextInt(N) + ((N * 2) / 3);
+    ArrayList<cella> nums = new ArrayList<cella>(fi);
+    nums.add(new cella(i,j,1));
+    for (int k = 2; k < fi; k++) {
+      get_vei_rnd(i, j);
+      solucio[i][j] = k;
+    }
+  }
+
+  private static void get_vei_rnd(int i, int j) {
+    int pos = new Random().nextInt(8);
+    switch (pos) {
+      case 0:
+
+        break;
+      case 1:
+
+        break;
+      case 2:
+
+        break;
+      case 3:
+
+        break;
+      case 4:
+
+        break;
+      case 5:
+
+        break;
+      case 6:
+
+        break;
+      default:
+
+        break;
+    }
+  }
+
+  private static class cella {
+    int x;
+    int y;
+    int valor;
+
+    public cella(int x, int y, int val) {
+      this.x = x;
+      this.y = y;
+      valor = val;
+    }
+  }
 }

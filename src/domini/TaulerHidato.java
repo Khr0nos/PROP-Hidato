@@ -1,9 +1,5 @@
 package domini;
 
-import excepcions.sudoku.*;
-
-import java.util.Vector;
-
 public class TaulerHidato extends Tauler {
     private Cella[][] tauler;
     private int width;
@@ -68,12 +64,4 @@ public class TaulerHidato extends Tauler {
             System.out.println(s);
         }
     }
-    /*public TaulerHidato(int m, int n) {
-        super(m,n);
-    }
-
-    public void setNumero(int x, int y, int val) {
-
-
-    }*/
 }
