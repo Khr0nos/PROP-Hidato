@@ -57,8 +57,8 @@ public class TaulerHidato extends Tauler {
         for(int i = 0; i < this.height; ++i) {
             String s = "";
             for(int j = 0; j < this.width; ++j) {
-                if(this.tauler[i][j].estaVacia()) s += "0 ";
                 if(this.tauler[i][j].estaBloqueada()) s += "-1 ";
+                else if(this.tauler[i][j].estaVacia()) s += "0 ";
                 else s += this.tauler[i][j].getNumero() + " ";
             }
             System.out.println(s);
