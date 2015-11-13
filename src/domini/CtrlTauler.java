@@ -19,10 +19,11 @@ import java.util.ArrayList;
 // seguit d'una matriu d'enters on cada numero representa la casella[i][j] del
 // taulell. Si la casella es un -1, aquella casella no existira a efectes practics
 // (es buida), si la casella es un 0, aquella casella es buida (es poden posar numeros)
-// i si la casella te un altre numero es una casella fixa (el numero no es pot canviar)
+// i si la casella te un altre numero es una casella fixa (el numero no es pot canviar).
+// Entre numeros i al final de cada linia hi ha d'haver un espai.
 //
 // Exemple:
-// 3 3
+//  3 3
 // -1 0 2
 //  5 0 3
 //  6 0 -1
