@@ -5,12 +5,35 @@ import persistencia.CtrlPersistencia;
 import java.io.IOException;
 import java.util.ArrayList;
 
+//////////////////////////////
+//
+// CtrlTauler
+//
+// Agregacio de Taulers
+// Permet gestionar taulers
+//
+// Es considera que l'identificador de tauler es unic (si no es unic es
+// sobreescriura el tauler nou a sobre de l'antic)
+// El format per guardar un taulell es el seguent, un parell d'enterns
+// n i m que indiquen l'amplada i l'alçada del taulell en aquest ordre,
+// seguit d'una matriu d'enters on cada numero representa la casella[i][j] del
+// taulell. Si la casella es un -1, aquella casella no existira a efectes practics
+// (es buida), si la casella es un 0, aquella casella es buida (es poden posar numeros)
+// i si la casella te un altre numero es una casella fixa (el numero no es pot canviar)
+//
+// Exemple:
+// 3 3
+// -1 0 2
+//  5 0 3
+//  6 0 -1
+//
+//////////////////////////////
+
 public class CtrlTauler {
     static private String path = "src/domini/JocsProva/";
 
     static public TaulerHidato carregaTauler(String id)
     {
-
         try {
             ArrayList<ArrayList<String>> t = CtrlPersistencia.loadTable(path + id + ".txt");
 
@@ -34,7 +57,6 @@ public class CtrlTauler {
             System.out.println("No s'ha pogut carregar tauler");
             return null;
         }
-
     }
 
     static public void guardaTauler(TaulerHidato t, String id)
