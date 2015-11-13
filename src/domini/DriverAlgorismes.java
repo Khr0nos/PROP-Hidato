@@ -28,7 +28,6 @@ public class DriverAlgorismes {
       llegir_tauler();
       Algorismes a = new Algorismes(t);
       a.buscar_solucio();
-      Algorismes.genera_hidato(6,6,tipoDificultad.facil);
     }
     catch(Exception e){
        e.printStackTrace();

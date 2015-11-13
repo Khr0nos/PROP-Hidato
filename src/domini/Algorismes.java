@@ -1,9 +1,7 @@
 package domini;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Random;
 
 //////////////////////////////
 //
@@ -142,15 +140,14 @@ public class Algorismes {
 	}
     }
   }
-  public Algorismes(int n, int m){
-    tauler = new int[n][m];
-    solucio = new int[n][m];
-    id = new Random().nextInt();
+  public Algorismes(){
+    id = 1;
   }
 
   public Algorismes(int t[][]){
     n = t.length;
     m = t[0].length;
+    id = 1;
    
     tauler = new int[n][m];
     
@@ -181,59 +178,4 @@ public class Algorismes {
     escriure_solucio();
   }
 
-  public static void genera_hidato(int n, int m, tipoDificultad lvl) throws Exception {
-    Random rng = new Random();
-    id = rng.nextInt()%100;
-
-    int N = n*m;
-    Graf G = new Graf(n,m);
-
-    // Generació de solució d'Hidato
-    int k;
-    do {
-      int aux = rng.nextInt(N);
-      G.setValor(aux,1);
-      ArrayList<Cella> adj;
-      adj = G.getAdjVer(G.getVertex(aux));
-      k = 2;
-      while (k <= N && adj.size() > 0) {
-        for (int i = adj.size() - 1; i >= 0; i--) {
-          Cella c = adj.get(i);
-          if (c.getNumero() != 0) adj.remove(c);
-        }
-        if (adj.size() > 0) {
-          aux = rng.nextInt(adj.size());
-          Cella step = G.getVertex(adj.get(aux));
-          step.setNumero(k);
-          adj = G.getAdjVer(step);
-          ++k;
-        }
-      }
-      if (k <= N/3) G.clear();
-    } while (k <= N/3);                     //N/3 com a factor d'ocupació mínima
-    int j = 1;
-    for (Cella c: G.getVertexs()) {
-      System.out.print(c.getNumero() + " ");
-      if (j%m == 0) System.out.println();
-      ++j;
-    }
-    System.out.println();
-
-    /*TaulerHidato t = new TaulerHidato(n,m);
-    copia(G, t);
-    CtrlTauler.guardaTauler(t,"solucio" + id);*/
-
-    //Generació de tauler inicial
-
-  }
-
-  private static void copia(Graf G, TaulerHidato t) {
-    /*for(int i = 0; i < solucio.length; ++i) {
-      for(int j = 0; j < solucio[i].length; ++j) {
-        int val = solucio[i][j];
-        if(val != -1) t.setNumero(i,j,val);
-        else t.setBlock(i,j);
-      }
-    }*/
-  }
 }

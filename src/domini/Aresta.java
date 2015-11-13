@@ -3,10 +3,10 @@ package domini;
 import java.util.ArrayList;
 
 /*Classe auxilar per a graf d'un tauler*/
-public class Tupla {
+public class Aresta {
     private ArrayList<Cella> T;
 
-    public Tupla(Cella x, Cella y) {
+    public Aresta(Cella x, Cella y) {
       T = new ArrayList<Cella>();
       T.add(x);
       T.add(y);

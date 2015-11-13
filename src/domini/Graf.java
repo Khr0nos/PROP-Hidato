@@ -4,16 +4,16 @@ import java.util.ArrayList;
 
 public class Graf {
     private ArrayList<Cella> vertexs;
-    private ArrayList<Tupla> arestes;
+    private ArrayList<Aresta> arestes;
 
     public Graf() {
         vertexs = new ArrayList<Cella>();
-        arestes = new ArrayList<Tupla>();
+        arestes = new ArrayList<Aresta>();
     }
 
     public Graf(int x, int y) {
         vertexs = new ArrayList<Cella>();
-        arestes = new ArrayList<Tupla>();
+        arestes = new ArrayList<Aresta>();
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < y; j++) {
                 Cella aux = new Cella(i,j);
@@ -23,22 +23,22 @@ public class Graf {
         }
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < y; j++) {
-                Tupla aux;
+                Aresta aux;
                 int index = j+i*y;
                 if (j+1 < y) {  // aresta horitzontal
-                    aux = new Tupla(vertexs.get(index), vertexs.get(index+1));
+                    aux = new Aresta(vertexs.get(index), vertexs.get(index+1));
                     arestes.add(aux);
                 }
                 if (j+1 < y && i+1 < x) { // aresta 1a diagonal
-                    aux = new Tupla(vertexs.get(index), vertexs.get(index+y+1));
+                    aux = new Aresta(vertexs.get(index), vertexs.get(index+y+1));
                     arestes.add(aux);
                 }
                 if (i+1 < x) { // aresta vertical
-                    aux = new Tupla(vertexs.get(index), vertexs.get(index+y));
+                    aux = new Aresta(vertexs.get(index), vertexs.get(index+y));
                     arestes.add(aux);
                 }
                 if (i+1 < x && j-1 >= 0) { // aresta 2a diagonal
-                    aux = new Tupla(vertexs.get(index), vertexs.get(index+y-1));
+                    aux = new Aresta(vertexs.get(index), vertexs.get(index+y-1));
                     arestes.add(aux);
                 }
             }
@@ -49,7 +49,7 @@ public class Graf {
         ArrayList<Cella> ret = new ArrayList<Cella>();
         for (int i = 0; i < arestes.size(); i++) {
             if (arestes.get(i).contains(c)) {
-                Tupla aux = arestes.get(i);
+                Aresta aux = arestes.get(i);
                 if (aux.indexOf(c) == 0) ret.add(aux.get(1));
                 else ret.add(aux.get(0));
             }

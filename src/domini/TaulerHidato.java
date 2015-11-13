@@ -1,6 +1,6 @@
 package domini;
 
-public class TaulerHidato extends Tauler {
+public class TaulerHidato extends Tauler {   //seria millor i menys problematic fer aquesta classe propia no heredada
     private Cella[][] tauler;
     private int width;
     private int height;
@@ -18,6 +18,10 @@ public class TaulerHidato extends Tauler {
 
     public Cella getCella(int i, int j) {
         return this.tauler[i][j];
+    }
+
+    public void setCella(int i, int j, Cella c) {
+        this.tauler[i][j] = c;
     }
 
     public int getAncho() {
