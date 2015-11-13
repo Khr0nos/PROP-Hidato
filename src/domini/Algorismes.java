@@ -99,9 +99,9 @@ public class Algorismes {
 	    if (tauler[i][j] == 0){
 	      int b = 0;
 	      for (int k = max(0,i-1); k <= min(n-1,i+1); ++k){
-		for (int l = max(0,j-1); l <= min(m-1,j+1); ++l){
-		  if (tauler[i][j] == 0) ++b;
-		}
+		      for (int l = max(0,j-1); l <= min(m-1,j+1); ++l){
+		        if (tauler[i][j] == 0) ++b;
+		      }
 	      }
 	      if (b < minb){
 	      minb = b;
@@ -183,160 +183,57 @@ public class Algorismes {
 
   public static void genera_hidato(int n, int m, tipoDificultad lvl) throws Exception {
     Random rng = new Random();
-    id = rng.nextInt();
-    tauler = new int[n][m];
-    solucio = new int[n][m];
-    for (int i = 0; i < n; i++) {
-      for (int j = 0; j < m; j++) {
-        solucio[i][j] = 0;
-      }
-    }
+    id = rng.nextInt()%100;
 
     int N = n*m;
-    int i = rng.nextInt(N)/n;
-    int j = rng.nextInt(N)/m;
-    solucio[i][j] = 1;
+    Graf G = new Graf(n,m);
 
-    ArrayList<cella> nums = new ArrayList<cella>();
-    nums.add(new cella(i,j,1));
-    int pos = new Random().nextInt(8);
-    int k = 2; boolean end = false;
-    while (!end && k <= N) {
-      while (!checkbounds(pos,i,j,n,m)) pos = rng.nextInt(8);
-      if (pos == 0 && espai_lliure(i-1, j-1, n, m)) {
-        --i;
-        --j;
-        solucio[i][j] = k;
-      } else if (pos == 1 && espai_lliure(i-1, j, n, m)) {
-        --i;
-        solucio[i][j] = k;
-      } else if (pos == 2 && espai_lliure(i-1, j+1, n, m)) {
-        --i;
-        ++j;
-        solucio[i][j] = k;
-      } else if (pos == 3 && espai_lliure(i, j-1, n, m)) {
-        --j;
-        solucio[i][j] = k;
-      } else if (pos == 4 && espai_lliure(i, j+1, n, m)) {
-        ++j;
-        solucio[i][j] = k;
-      } else if (pos == 5 && espai_lliure(i+1, j-1, n, m)) {
-        ++i;
-        --j;
-        solucio[i][j] = k;
-      } else if (pos == 6 && espai_lliure(i+1, j, n, m)) {
-        ++i;
-        solucio[i][j] = k;
-      } else if (pos == 7 && espai_lliure(i+1, j+1, n, m)){
-        ++i;
-        ++j;
-        solucio[i][j] = k;
-      } else end = true;
-      if (!end) {
-        nums.add(new cella(i, j, k));
-        k++;
-      }
-    }
-
-    int blocked = 0;
-    if (N-nums.size() > 0) blocked = rng.nextInt(N-nums.size());
-    i = 0;
-    while (i < n && blocked > 0) {
-      j = 0;
-      while (j < m && blocked > 0) {
-        if (solucio[i][j] == 0){
-          solucio[i][j] = -1;
-          --blocked;
+    // Generació de solució d'Hidato
+    int k;
+    do {
+      int aux = rng.nextInt(N);
+      G.setValor(aux,1);
+      ArrayList<Cella> adj;
+      adj = G.getAdjVer(G.getVertex(aux));
+      k = 2;
+      while (k <= N && adj.size() > 0) {
+        for (int i = adj.size() - 1; i >= 0; i--) {
+          Cella c = adj.get(i);
+          if (c.getNumero() != 0) adj.remove(c);
         }
-        j++;
+        if (adj.size() > 0) {
+          aux = rng.nextInt(adj.size());
+          Cella step = G.getVertex(adj.get(aux));
+          step.setNumero(k);
+          adj = G.getAdjVer(step);
+          ++k;
+        }
       }
-      i++;
+      if (k <= N/3) G.clear();
+    } while (k <= N/3);                     //N/3 com a factor d'ocupació mínima
+    int j = 1;
+    for (Cella c: G.getVertexs()) {
+      System.out.print(c.getNumero() + " ");
+      if (j%m == 0) System.out.println();
+      ++j;
     }
-    TaulerHidato t = new TaulerHidato(n,m);
-    copia(solucio, t);
-    CtrlTauler.guardaTauler(t,"solucio" + id);
+    System.out.println();
+
+    /*TaulerHidato t = new TaulerHidato(n,m);
+    copia(G, t);
+    CtrlTauler.guardaTauler(t,"solucio" + id);*/
+
+    //Generació de tauler inicial
 
   }
 
-  private static boolean espai_lliure(int i, int j, int n, int m) {
-    for (int k = i-1; k < i+1; k++) {
-      for (int l = j-1; l < j+1; l++) {
-        if (k >= 0 && k < n && l >= 0 && l < m) {
-          if (solucio[k][l] == 0) return true;
-        }
-      }
-    }
-    return false;
-  }
-
-  /*private static int num_adj_lliures(int i, int j, int n, int m) {
-    int ret = 0;
-    for (int k = i-1; k < i+1; k++) {
-      for (int l = j-1; l < j+1; l++) {
-        if (k >= 0 && k < n && l >= 0 && l < m) {
-          if (solucio[k][l] == 0) ++ret;
-        }
-      }
-    }
-    return ret;
-  }*/
-
-  private static void copia(int[][] solucio, TaulerHidato t) {
-    for(int i = 0; i < solucio.length; ++i) {
+  private static void copia(Graf G, TaulerHidato t) {
+    /*for(int i = 0; i < solucio.length; ++i) {
       for(int j = 0; j < solucio[i].length; ++j) {
         int val = solucio[i][j];
         if(val != -1) t.setNumero(i,j,val);
         else t.setBlock(i,j);
       }
-    }
-  }
-
-  private static boolean checkbounds(int pos, int i, int j, int n, int m) {
-    if (pos == 0) {
-      if ((i - 1 < 0 || j - 1 < 0)) return false;
-      if (solucio[i-1][j-1] != 0) return false;
-    }
-    if (pos == 1) {
-      if (i - 1 < 0) return false;
-      if (solucio[i-1][j] != 0) return false;
-    }
-    if (pos == 2) {
-      if (i - 1 < 0 || j + 1 == m) return false;
-      if (solucio[i-1][j+1] != 0) return false;
-    }
-    if (pos == 3) {
-      if (j - 1 < 0) return false;
-      if (solucio[i][j-1] != 0) return false;
-    }
-    if (pos == 4) {
-      if (j + 1 == m) return false;
-      if (solucio[i][j+1] != 0) return false;
-    }
-    if (pos == 5) {
-      if (i + 1 == n || j - 1 < 0) return false;
-      if (solucio[i+1][j-1] != 0) return false;
-    }
-    if (pos == 6) {
-      if (i + 1 == n) return false;
-      if (solucio[i+1][j] != 0) return false;
-    }
-    if (pos == 7) {
-      if (i + 1 == n || j + 1 == m) return false;
-      if (solucio[i+1][j+1] != 0) return false;
-    }
-    return true;
-  }
-
-
-  private static class cella {
-    int x;
-    int y;
-    int valor;
-
-    public cella(int x, int y, int val) {
-      this.x = x;
-      this.y = y;
-      valor = val;
-    }
+    }*/
   }
 }

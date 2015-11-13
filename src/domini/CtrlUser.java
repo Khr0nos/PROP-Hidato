@@ -118,10 +118,11 @@ public class CtrlUser
 	public static boolean esborraUsuari(String nom)
     {
         try {
-            for (User usuari : usuaris) {
+            for (int i = usuaris.size() - 1; i >= 0; i--) {
+                User usuari = usuaris.get(i);
                 if (Objects.equals(usuari.getUsername(), nom)) dirty = usuaris.remove(usuari);
             }
-        } catch (NullPointerException | UnsupportedOperationException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return dirty;
