@@ -11,7 +11,7 @@ public class DriverFabricaHidato {
     int c = n.nextInt();
     while (f != 0 && c != 0) {
       try {
-        FabricaHidato.genera_hidato(f, c, tipoDificultad.facil);
+        FabricaHidato.genera_hidato(c, f, tipoDificultad.facil);
       } catch (Exception e) {
         e.printStackTrace();
       }

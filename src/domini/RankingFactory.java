@@ -1,6 +1,6 @@
 package domini;
 
-import persistencia.*;
+import persistencia.CtrlPersistencia;
 
 public class RankingFactory {
 	

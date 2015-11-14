@@ -1,7 +1,8 @@
 package domini;
 
-import java.io.*;
-import persistencia.*
+import persistencia.CtrlPersistencia;
+
+import java.io.IOException;
 
 public class CTRLRanking {
 		

@@ -13,7 +13,7 @@ public class JocHidato {
   public JocHidato(int n, int m, tipoDificultad dif, String idJoc) {
     dificultad = dif;
     id = idJoc;
-    tauler = new TaulerHidato(n,m);
+    tauler = new TaulerHidato(m,n);
   }
 
   public JocHidato(String idJoc, TaulerHidato t) {

@@ -29,7 +29,7 @@ public class DriverTaulerHidato {
           System.out.println("Entra files i columnes");
           f = n.nextInt();
           c = n.nextInt();
-          t = new TaulerHidato(f,c);
+          t = new TaulerHidato(c,f);
         }
         else if (op == 2) {
           System.out.println("Entra fila, columna de la cel·la");

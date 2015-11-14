@@ -17,7 +17,7 @@ public class FabricaHidato {
     id = 0;
   }
 
-  public static void genera_hidato(int n, int m, tipoDificultad lvl) throws Exception {
+  public static void genera_hidato(int m, int n, tipoDificultad lvl) throws Exception {
     Random rng = new Random();
 
     int N = n*m;
@@ -62,7 +62,7 @@ public class FabricaHidato {
       if (c.getNumero() == 0) c.setNumero(-1);
     }
 
-    TaulerHidato t = new TaulerHidato(n,m);
+    TaulerHidato t = new TaulerHidato(m,n);
     copia(G, t);
     CtrlTauler.guardaTauler(t,"solucio" + id);
 

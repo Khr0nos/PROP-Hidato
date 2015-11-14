@@ -26,7 +26,7 @@ public class DriverJocHidato {
           int f = n.nextInt();
           int c = n.nextInt();
           String id = n.nextLine();
-          TaulerHidato t = new TaulerHidato(f,c);
+          TaulerHidato t = new TaulerHidato(c,f);
           joc = new JocHidato(id,t);
         }
         else if (op == 3) {
@@ -67,7 +67,7 @@ public class DriverJocHidato {
               d = tipoDificultad.dificil;
               break;
           }
-          TaulerHidato t = new TaulerHidato(f,c);
+          TaulerHidato t = new TaulerHidato(c,f);
           joc = new JocHidato(id,t,d);
         }
         else if (op == 5) {

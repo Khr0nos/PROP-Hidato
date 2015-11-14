@@ -1,6 +1,8 @@
 package domini;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class RankingPerTipus extends Ranking{
 	private int nEntrades; //Nombre d'entrades
