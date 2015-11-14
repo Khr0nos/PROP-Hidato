@@ -1,36 +1,26 @@
 package domini;
 import java.util.Scanner;
-
 public class DriverAlgorismes {
+    public static void main(String[] args) {
+        try {
+            System.out.println("Introdueix el identificador del tauler:");
+            Scanner sc = new Scanner(System.in);
+            String id = sc.nextLine();
 
- private static int t[][];
+            System.out.println("S'ha llegit: " + id);
+            System.out.println("Carregant tauler ...");
+            TaulerHidato t = CtrlTauler.carregaTauler(id);
+            System.out.println("Tauler carregat");
 
- private static void llegir_tauler(){
-    try{
-      Scanner consola = new Scanner(System.in);
-      int n = consola.nextInt();
-      int m = consola.nextInt();
-      t = new int[n][m];
-      for (int i = 0; i < n; ++i){
-	for (int j = 0; j < m; ++j){
-	  t[i][j] = consola.nextInt();
-	}
-      }
+            boolean b = Algorismes.hasSol(t);
+            if (!b) System.out.println("El tauler no te solucio");
+            else {
+                System.out.println("La solucio del tauler es:");
+                TaulerHidato sol = Algorismes.solve(t);
+                sol.printTauler();
+            }
+        } catch (Exception e) {
+                e.printStackTrace();
+        }
     }
-    catch(Exception e){
-      e.printStackTrace();
-    }
-  }
- 
-  
-  public static void main(String[] args){
-    try{
-      llegir_tauler();
-      Algorismes a = new Algorismes(t);
-      a.buscar_solucio();
-    }
-    catch(Exception e){
-       e.printStackTrace();
-    }
-  }
 }

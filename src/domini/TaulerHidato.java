@@ -44,6 +44,8 @@ public class TaulerHidato {
         return (this.tauler[i][j].estaBloqueada());
     }
 
+    public  boolean estaFija(int i, int j) { return (this.tauler[i][j].estaFija()); }
+
     public void setNumero(int i, int j, int val) {
         if (val == -1) tauler[i][j].bloquear();
         else this.tauler[i][j].setNumero(val);
