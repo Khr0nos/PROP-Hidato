@@ -6,11 +6,11 @@ public class TaulerHidato {
     private int height;
 
     public TaulerHidato(int n, int m) {
-        this.width = m;
-        this.height = n;
-        this.tauler = new Cella[n][m];
-        for(int i = 0; i < n; ++i) {
-            for(int j = 0; j < m; ++j) {
+        this.width = n;
+        this.height = m;
+        this.tauler = new Cella[m][n];
+        for(int i = 0; i < m; ++i) {
+            for(int j = 0; j < n; ++j) {
                this.tauler[i][j] = new Cella(i,j);
             }
         }

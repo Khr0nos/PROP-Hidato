@@ -50,7 +50,7 @@ public class CtrlTauler {
                         result.setFixed(i-1,j);
                     }
                     else if (val == 0) result.setNumero(i-1,j,val);
-                    else result.getCella(i-1,j).bloquear();
+                    else result.setBlock(i-1,j);
                 }
             }
             return result;
