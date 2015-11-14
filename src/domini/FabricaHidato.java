@@ -50,13 +50,13 @@ public class FabricaHidato {
     } while (k <= N/3);                     // N/3 com a factor d'ocupació mínima
     cami.remove(cami.size()-1);             // per a no posar a 0 últim element del Hidato al tauler inicial
 
-    int j = 1;
+    /*int j = 1;
     for (Cella c: G.getVertexs()) {           // per a mostrar per sortida estandard la solucio
       System.out.print(c.getNumero() + " ");
       if (j%m == 0) System.out.println();
       ++j;
     }
-    System.out.println();
+    System.out.println();*/
 
     for (Cella c: G.getVertexs()) {
       if (c.getNumero() == 0) c.setNumero(-1);

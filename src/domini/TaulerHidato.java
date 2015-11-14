@@ -1,17 +1,17 @@
 package domini;
 
-public class TaulerHidato extends Tauler {   //seria millor i menys problematic fer aquesta classe propia no heredada
+public class TaulerHidato {
     private Cella[][] tauler;
     private int width;
     private int height;
 
-    public TaulerHidato(int w, int h) {
-        this.width = w;
-        this.height = h;
-        this.tauler = new Cella[h][w];
-        for(int i = 0; i < w; ++i) {
-            for(int j = 0; j < h; ++j) {
-               this.tauler[j][i] = new Cella(i,j);
+    public TaulerHidato(int n, int m) {
+        this.width = m;
+        this.height = n;
+        this.tauler = new Cella[n][m];
+        for(int i = 0; i < n; ++i) {
+            for(int j = 0; j < m; ++j) {
+               this.tauler[i][j] = new Cella(i,j);
             }
         }
     }
@@ -57,7 +57,7 @@ public class TaulerHidato extends Tauler {   //seria millor i menys problematic 
         this.tauler[i][j].fijar();
     }
 
-    public void print() {
+    public void printTauler() {
         for(int i = 0; i < this.height; ++i) {
             String s = "";
             for(int j = 0; j < this.width; ++j) {

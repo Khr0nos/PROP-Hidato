@@ -23,7 +23,7 @@ public class DriverCtrlTauler {
                 System.out.println("Tauler carregat");
 
                 System.out.println("visualitzacio del tauler:");
-                t.print();
+                t.printTauler();
                 System.out.println("Fi tauler");
             }
             else {

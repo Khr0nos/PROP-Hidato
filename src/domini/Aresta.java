@@ -2,7 +2,7 @@ package domini;
 
 import java.util.ArrayList;
 
-/*Classe auxilar per a graf d'un tauler*/
+/*Classe auxilar per a graf de cel·les d'un tauler*/
 public class Aresta {
     private ArrayList<Cella> T;
 
