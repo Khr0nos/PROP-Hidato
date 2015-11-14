@@ -1,4 +1,6 @@
-package domini;
+package domini.JocHidato;
+
+import domini.TaulerHidato.TaulerHidato;
 
 import java.util.Scanner;
 

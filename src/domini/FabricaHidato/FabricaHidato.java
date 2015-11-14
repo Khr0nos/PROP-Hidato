@@ -1,4 +1,9 @@
-package domini;
+package domini.FabricaHidato;
+
+import domini.JocHidato.tipoDificultad;
+import domini.TaulerHidato.Cella;
+import domini.TaulerHidato.CtrlTauler;
+import domini.TaulerHidato.TaulerHidato;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -64,7 +69,7 @@ public class FabricaHidato {
 
     TaulerHidato t = new TaulerHidato(m,n);
     copia(G, t);
-    CtrlTauler.guardaTauler(t,"solucio" + id);
+    CtrlTauler.guardaTauler(t, "solucio" + id);
 
     //Generació de tauler inicial
     int n_del;

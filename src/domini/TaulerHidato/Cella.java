@@ -1,4 +1,4 @@
-package domini;
+package domini.TaulerHidato;
 
 import excepcions.sudoku.ExcepcionCasillaVaciaNoFijable;
 import excepcions.sudoku.ExcepcionCasillaYaTienePosicion;

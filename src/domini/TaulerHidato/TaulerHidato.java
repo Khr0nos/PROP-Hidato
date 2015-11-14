@@ -1,4 +1,4 @@
-package domini;
+package domini.TaulerHidato;
 
 public class TaulerHidato {
     private Cella[][] tauler;

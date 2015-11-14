@@ -1,4 +1,6 @@
-package domini;
+package domini.FabricaHidato;
+
+import domini.TaulerHidato.Cella;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package domini;
+package domini.Ranking;
 
 abstract public class Dificultat {
 	private static final String[] d = {"facil","medio","dificil"};

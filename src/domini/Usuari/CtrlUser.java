@@ -1,4 +1,4 @@
-package domini;
+package domini.Usuari;
 
 import persistencia.CtrlPersistencia;
 

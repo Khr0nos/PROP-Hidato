@@ -1,4 +1,6 @@
-package domini;
+package domini.JocHidato;
+
+import domini.TaulerHidato.TaulerHidato;
 
 public class JocHidato {
   private tipoDificultad dificultad;

@@ -1,4 +1,6 @@
-package domini;
+package domini.TaulerHidato;
+
+import domini.Algorismes.Algorismes;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

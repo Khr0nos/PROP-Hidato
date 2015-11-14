@@ -1,4 +1,4 @@
-package domini;
+package domini.Usuari;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

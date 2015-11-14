@@ -1,5 +1,6 @@
-package domini;
+package domini.Ranking;
 
+import domini.Usuari.CtrlUser;
 import persistencia.CtrlPersistencia;
 
 public class RankingFactory {

@@ -1,4 +1,7 @@
-package domini;
+package domini.Algorismes;
+import domini.TaulerHidato.CtrlTauler;
+import domini.TaulerHidato.TaulerHidato;
+
 import java.util.Scanner;
 public class DriverAlgorismes {
     public static void main(String[] args) {

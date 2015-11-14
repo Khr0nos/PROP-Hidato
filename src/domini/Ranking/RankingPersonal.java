@@ -1,4 +1,4 @@
-package domini;
+package domini.Ranking;
 
 import java.util.ArrayList;
 import java.util.HashMap;

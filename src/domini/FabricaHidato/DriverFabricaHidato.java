@@ -1,4 +1,6 @@
-package domini;
+package domini.FabricaHidato;
+
+import domini.JocHidato.tipoDificultad;
 
 import java.util.Scanner;
 

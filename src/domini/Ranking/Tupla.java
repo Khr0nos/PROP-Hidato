@@ -1,4 +1,4 @@
-package domini;
+package domini.Ranking;
 
 public class Tupla { //Tupla d'Usuari + Temps per a RankingPerTipus
 	private String user;

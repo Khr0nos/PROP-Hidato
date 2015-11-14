@@ -1,4 +1,7 @@
-package domini;
+package domini.Algorismes;
+
+import domini.TaulerHidato.Cella;
+import domini.TaulerHidato.TaulerHidato;
 
 import java.util.ArrayList;
 import java.util.Collections;
