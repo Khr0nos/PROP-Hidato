@@ -43,6 +43,7 @@ public class DriverCtrlTauler {
                         else tauler.setBlock(i,j);
                     }
                 }
+
                 CtrlTauler.guardaTauler(tauler,id);
             }
         } catch (Exception e) {
