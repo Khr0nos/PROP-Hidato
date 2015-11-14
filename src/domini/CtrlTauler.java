@@ -87,7 +87,6 @@ public class CtrlTauler {
             }
             result.add(fila);
         }
-        //FALTA COMPROVAR SI EL TAULELL ES CORRECTE O NO
         try
         {
             CtrlPersistencia.storeTable(path + id + ".txt", result);

@@ -39,12 +39,19 @@ public class DriverCtrlTauler {
                 for(int i = 0; i < m; ++i) {
                     for(int j = 0; j < n; ++j) {
                         int val = sc.nextInt();
-                        if(val != -1) tauler.setNumero(i,j,val);
-                        else tauler.setBlock(i,j);
+                        tauler.setNumero(i,j,val);
                     }
                 }
-
-                CtrlTauler.guardaTauler(tauler,id);
+                boolean b = Algorismes.hasSol(tauler);
+                if (b) {
+                    System.out.println("El tauler te solucio, vols guardar el taulell? (yes/no)");
+                    Scanner scan = new Scanner(System.in);
+                    String s = scan.nextLine();
+                    if (s.equals("yes")) CtrlTauler.guardaTauler(tauler,id);
+                }
+                else {
+                    System.out.println("El tauler NO te solucio, no es pot guardar el taulell");
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
