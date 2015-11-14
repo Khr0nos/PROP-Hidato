@@ -10,19 +10,19 @@ import java.util.Random;
 
 public class FabricaHidato {
   private static Graf G;
-  private static int id;
+  private static int num;
 
   public FabricaHidato() {
     G = new Graf();
-    id = 0;
+    num = 0;
   }
 
   public FabricaHidato(int x, int y) {
     G = new Graf(x,y);
-    id = 0;
+    num = 0;
   }
 
-  public static void genera_hidato(int m, int n, tipoDificultad lvl) throws Exception {
+  public static void genera_hidato(int m, int n, tipoDificultad lvl, String id) throws Exception {
     Random rng = new Random();
 
     int N = n*m;
@@ -69,7 +69,7 @@ public class FabricaHidato {
 
     TaulerHidato t = new TaulerHidato(m,n);
     copia(G, t);
-    CtrlTauler.guardaTauler(t, "solucio" + id);
+    CtrlTauler.guardaTauler(t,"solucio" + id + Integer.toString(num));
 
     //Generació de tauler inicial
     int n_del;
@@ -86,9 +86,9 @@ public class FabricaHidato {
     }
 
     copia(G, t);
-    CtrlTauler.guardaTauler(t,"tauler" + id);
+    CtrlTauler.guardaTauler(t,id + Integer.toString(num));
 
-    ++id;  // identificador per a la solució i tauler inicial seguents
+    ++num;  // identificador per a la solució i tauler inicial seguents
   }
 
   private static void copia(Graf G, TaulerHidato t) {
