@@ -14,6 +14,7 @@ import java.io.*;
 public class Partida {
     User user;
     JocHidato joc;
+    Time time;
 
     TaulerHidato original;
     TaulerHidato modificat;
@@ -27,12 +28,15 @@ public class Partida {
     {
         user = null;
         joc = null;
+        time = null;
     }
 
     public Partida(User u, JocHidato j)
     {
         user = u;
         joc = j;
+        time = new Time();
+        time.start();
 
         original = joc.getTauler();
         modificat = original.clone();
@@ -45,6 +49,11 @@ public class Partida {
         c.setNumero(valor);
 
         solucionat = (modificat == solucio);
+
+        if (solucionat)
+        {
+            time.stop();
+        }
     }
 
     public boolean completat()
@@ -70,7 +79,8 @@ public class Partida {
             ArrayList<String> info = new ArrayList<String>();
             info.add("original." + path);
             info.add("modificat." + path);
-//            temps i errors
+            info.add(String.valueOf(time.getTimeSeconds()));
+//            errors
         } catch (IOException e) {
             
         }
@@ -89,13 +99,14 @@ public class Partida {
             ArrayList<String> info = partida.get(1);
             String tauler_original = info.get(0);
             String tauler_modificat = info.get(1);
-//            String temps = info.get(2);
+            String temps = info.get(2);
 //            String errors = info.get(3);
 
             user = CtrlUser.getUsuari(nom_user);
             original = CtrlTauler.carregaTauler(tauler_original);
             joc = new JocHidato(id_joc, original);
             modificat = CtrlTauler.carregaTauler(tauler_modificat);
+            time = new Time(Double.parseDouble(temps));
         } catch (IOException e) {
             
         }
