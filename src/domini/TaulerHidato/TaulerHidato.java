@@ -1,6 +1,6 @@
 package domini.TaulerHidato;
 
-public class TaulerHidato {
+public class TaulerHidato implements Cloneable {
     private Cella[][] tauler;
     private int width;
     private int height;
@@ -14,6 +14,26 @@ public class TaulerHidato {
                this.tauler[i][j] = new Cella(i,j);
             }
         }
+    }
+
+    public TaulerHidato clone() {
+      TaulerHidato cloned = null;
+      try {
+        cloned = (TaulerHidato) super.clone();
+        cloned.setAncho(width);
+        cloned.setAlto(height);
+        for (int i = 0; i < height; i++) {
+          for (int j = 0; j < width; j++) {
+            cloned.setNumero(i,j,tauler[i][j].getNumero());
+            cloned.getCella(i,j).setXeY(i,j);
+            if (tauler[i][j].estaBloqueada()) cloned.setBlock(i,j);
+            if (tauler[i][j].estaFija()) cloned.setFixed(i,j);
+          }
+        }
+      } catch (CloneNotSupportedException e) {
+        e.printStackTrace();
+      }
+      return cloned;
     }
 
     public Cella getCella(int i, int j) {
@@ -69,5 +89,13 @@ public class TaulerHidato {
             }
             System.out.println(s);
         }
+    }
+
+    public void setAncho(int ancho) {
+      this.width = ancho;
+    }
+
+    public void setAlto(int alto) {
+      this.height = alto;
     }
 }

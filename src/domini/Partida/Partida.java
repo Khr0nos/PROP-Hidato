@@ -1,26 +1,27 @@
 package domini.Partida;
 
+import domini.Algorismes.Algorismes;
 import domini.JocHidato.JocHidato;
-import domini.TaulerHidato.TaulerHidato;
-import domini.TaulerHidato.CtrlTauler;
 import domini.TaulerHidato.Cella;
+import domini.TaulerHidato.CtrlTauler;
+import domini.TaulerHidato.TaulerHidato;
 import domini.Usuari.CtrlUser;
 import domini.Usuari.User;
-import domini.Algorismes.Algorismes;
-import java.util.ArrayList;
 import persistencia.CtrlPersistencia;
-import java.io.*;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class Partida {
-    User user;
-    JocHidato joc;
-    Time time;
+    private User user;
+    private JocHidato joc;
+    private Time time;
 
-    TaulerHidato original;
-    TaulerHidato modificat;
-    TaulerHidato solucio = null;
+    private TaulerHidato original;
+    private TaulerHidato modificat;
+    private TaulerHidato solucio = null;
 
-    boolean solucionat = false;
+    private boolean solucionat = false;
 
     private String partides = ".partida.txt";
 
@@ -81,7 +82,7 @@ public class Partida {
             info.add("modificat." + path);
             info.add(String.valueOf(time.getTimeSeconds()));
 //            errors
-        } catch (IOException e) {
+        } catch (Exception e) {
             
         }
     }
