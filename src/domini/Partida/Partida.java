@@ -1,8 +1,15 @@
 package domini.Partida;
 
 import domini.JocHidato.JocHidato;
+import domini.TaulerHidato.TaulerHidato;
+import domini.TaulerHidato.CtrlTauler;
+import domini.TaulerHidato.Cella;
+import domini.Usuari.CtrlUser;
 import domini.Usuari.User;
+import domini.Algorismes.Algorismes;
+import java.util.ArrayList;
 import persistencia.CtrlPersistencia;
+import java.io.*;
 
 public class Partida {
     User user;
@@ -29,7 +36,7 @@ public class Partida {
 
         original = joc.getTauler();
         modificat = original.clone();
-        solucio = ALgorismes.solve(original);
+        solucio = Algorismes.solve(original);
     }
 
     public void nouValor(int x, int y, int valor)
