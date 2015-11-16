@@ -31,7 +31,7 @@ import java.util.ArrayList;
 //////////////////////////////
 
 public class CtrlTauler {
-    static private String path = "src/domini/JocsProva/";
+    static private String path = "src/JocsProva/";
 
     static public TaulerHidato carregaTauler(String id)
     {

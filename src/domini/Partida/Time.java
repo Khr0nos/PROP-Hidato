@@ -1,7 +1,5 @@
 package domini.Partida;
 
-import java.lang.System;
-
 public class Time {
     private long total = 0;
     private long begin, end;
