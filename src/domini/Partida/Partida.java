@@ -23,7 +23,7 @@ public class Partida {
 
     private boolean solucionat = false;
 
-    private String partides = ".partida.txt";
+    private String partides = ".partida";
 
     public Partida()
     {
