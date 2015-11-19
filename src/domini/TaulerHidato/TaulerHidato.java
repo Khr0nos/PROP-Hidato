@@ -20,7 +20,7 @@ public class TaulerHidato implements Cloneable {
       TaulerHidato cloned = null;
       try {
         cloned = (TaulerHidato) super.clone();
-        cloned.setAncho(width);
+        /*cloned.setAncho(width);
         cloned.setAlto(height);
         for (int i = 0; i < height; i++) {
           for (int j = 0; j < width; j++) {
@@ -31,7 +31,7 @@ public class TaulerHidato implements Cloneable {
               cloned.getCella(i, j).setXeY(i, j);
             }
           }
-        }
+        }*/
       } catch (CloneNotSupportedException e) {
         e.printStackTrace();
       }
