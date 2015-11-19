@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class DriverAlgorismes {
     public static void main(String[] args) {
         try {
-            System.out.println("Introdueix el identificador del tauler:");
+            System.out.println("Introdueix l'identificador de tauler existent als jocs de proves (nom de fitxer que no posi solucio):");
             Scanner sc = new Scanner(System.in);
             String id = sc.nextLine();
 

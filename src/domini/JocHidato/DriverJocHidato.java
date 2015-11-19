@@ -9,7 +9,7 @@ public class DriverJocHidato {
     Scanner n = new Scanner(System.in);
     System.out.println("Per acabar introdueix 0");
     System.out.println("Introdueix opció:");
-    System.out.println("Opció 1: Crea Joc per defecte");
+    System.out.println("Opció 1: Crea Joc buit");
     System.out.println("Opció 2: Crea Joc amb id i tauler");
     System.out.println("Opció 3: Crea Joc amb id i dificultat");
     System.out.println("Opció 4: Crea Joc amb id, tauler i dificultat");
@@ -32,7 +32,7 @@ public class DriverJocHidato {
           joc = new JocHidato(id,t);
         }
         else if (op == 3) {
-          System.out.println("Entra files, columnes, dificultat i id del joc");
+          System.out.println("Entra files, columnes, dificultat (facil, medio o dificil) i id del joc");
           int f = n.nextInt();
           int c = n.nextInt();
           String id = n.nextLine();
@@ -52,7 +52,7 @@ public class DriverJocHidato {
           joc = new JocHidato(f,c,d,id);
         }
         else if (op == 4) {
-          System.out.println("Entra files, columnes, dificultat i id del joc");
+          System.out.println("Entra files, columnes, dificultat (facil, medio o dificil) i id del joc");
           int f = n.nextInt();
           int c = n.nextInt();
           String dif = n.next();
@@ -73,13 +73,21 @@ public class DriverJocHidato {
           joc = new JocHidato(id,t,d);
         }
         else if (op == 5) {
-          System.out.println(joc.getId());
+          if (joc.getId() != null) {
+            System.out.println(joc.getId());
+          } else {
+            System.out.println("Joc sense id");
+          }
         }
         else if (op == 6) {
-          System.out.println(joc.getDificultad());
+          if (joc.getDificultad() != null) {
+            System.out.println(joc.getDificultad());
+          } else {
+            System.out.println("Joc sense dificultat definida");
+          }
         }
         else if (op == 7) {
-          System.out.println("Entra dificultat nova del joc");
+          System.out.println("Entra dificultat nova del joc (facil, medio o dificil)");
           String dif = n.next();
           tipoDificultad d;
           switch (dif) {
@@ -96,7 +104,11 @@ public class DriverJocHidato {
           joc.setDificultad(d);
         } else {
           TaulerHidato t = joc.getTauler();
-          t.printTauler();
+          if (t != null) {
+            t.printTauler();
+          } else {
+            System.out.println("Tauler buit");
+          }
         }
       } catch (Exception e) {
         e.printStackTrace();

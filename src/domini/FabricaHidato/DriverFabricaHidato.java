@@ -7,8 +7,10 @@ import java.util.Scanner;
 public class DriverFabricaHidato {
   public static void main(String args[]) {
     Scanner n = new Scanner(System.in);
-    System.out.println("Per acabar de generar Hidatos introdueix 0");
-    System.out.println("Introdueix nombre de files, columnes, dificultat i id del tauler:");
+    System.out.println("Per acabar de generar Hidatos introdueix 0 0");
+    System.out.println("Tot Hidato generat es guardat en fitxer amb nom = id + numero i la seva solucio amb nom = solucio + id + numero");
+    System.out.println("Tots els parametres demanats son obligatoris");
+    System.out.println("Introdueix nombre de files, columnes, dificultat (facil, medio o dificil) i id del tauler:");
     int f = n.nextInt();
     int c = n.nextInt();
     String lvl = n.next();
@@ -31,7 +33,8 @@ public class DriverFabricaHidato {
       } catch (Exception e) {
         e.printStackTrace();
       }
-      System.out.println("Hidato generat, intodueix nou nombre de files, columnes i id (0 0 si vols acabar)");
+      System.out.println("Introdueix 0 0 si vols acabar");
+      System.out.println("Hidato generat, intodueix nou nombre de files, columnes, dificultat (facil, medio o dificil) i id");
       f = n.nextInt();
       c = n.nextInt();
       if (f != 0 && c != 0) {

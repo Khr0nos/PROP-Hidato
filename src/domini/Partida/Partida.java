@@ -64,7 +64,6 @@ public class Partida {
 
     public void guardar()
     {
-        if (user == null) return;
 
         String path = user.getUsername() + partides;
         try {
@@ -111,5 +110,9 @@ public class Partida {
         } catch (IOException e) {
             
         }
+    }
+
+    public User getUser() {
+        return user;
     }
 }
