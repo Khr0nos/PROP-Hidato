@@ -43,12 +43,16 @@ public class DriverPartida {
           TaulerHidato t = CtrlTauler.carregaTauler(s);
           JocHidato j = new JocHidato(m,t);
           p = new Partida(u,j);
+          System.out.println("Tauler:");
+          t.printTauler();
         } else if (op == 3) {
           System.out.println("Entra fila, columna i valor nou");
           int f = sc.nextInt();
           int c = sc.nextInt();
           int val = sc.nextInt();
           p.nouValor(f,c,val);
+          System.out.println("Tauler:");
+          p.printTauler();
         } else if (op == 4) {
           if (p.getUser() != null) {
             p.guardar();

@@ -112,6 +112,10 @@ public class Partida {
         }
     }
 
+    public void printTauler() {
+        joc.getTauler().printTauler();
+    }
+
     public User getUser() {
         return user;
     }
