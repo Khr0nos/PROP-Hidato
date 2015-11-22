@@ -20,16 +20,18 @@ public class TaulerHidato implements Cloneable {
       TaulerHidato cloned = null;
       try {
         cloned = (TaulerHidato) super.clone();
-        cloned.setAncho(width);
+        /*cloned.setAncho(width);
         cloned.setAlto(height);
         for (int i = 0; i < height; i++) {
           for (int j = 0; j < width; j++) {
-            cloned.setNumero(i,j,tauler[i][j].getNumero());
-            cloned.getCella(i,j).setXeY(i,j);
             if (tauler[i][j].estaBloqueada()) cloned.setBlock(i,j);
             if (tauler[i][j].estaFija()) cloned.setFixed(i,j);
+            else {
+              cloned.setNumero(i, j, tauler[i][j].getNumero());
+              cloned.getCella(i, j).setXeY(i, j);
+            }
           }
-        }
+        }*/
       } catch (CloneNotSupportedException e) {
         e.printStackTrace();
       }
