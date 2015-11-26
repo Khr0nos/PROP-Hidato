@@ -32,11 +32,14 @@ public class DriverCtrlTauler {
                 System.out.println("Introdueix el identificador del tauler:");
                 Scanner sc = new Scanner(System.in);
                 String id = sc.nextLine();
+                System.out.println("Introdueix autor:");
+                String x = sc.nextLine();
                 System.out.println("Introdueix amplada:");
                 int n = sc.nextInt();
                 System.out.println("Introdueix alçada:");
                 int m = sc.nextInt();
                 TaulerHidato tauler = new TaulerHidato(n,m);
+                tauler.setAutor(x);
                 System.out.println("Introdueix Taulell:");
                 for(int i = 0; i < m; ++i) {
                     for(int j = 0; j < n; ++j) {

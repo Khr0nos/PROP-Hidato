@@ -41,6 +41,7 @@ public class CtrlTauler {
             ArrayList<String> header = t.get(0);
             int ancho = Integer.parseInt(header.get(0));
             int alto = Integer.parseInt(header.get(1));
+            String s = header.get(2);
             TaulerHidato result = new TaulerHidato(ancho, alto);
             for (int i = 1; i < t.size(); ++i) {
                 for (int j = 0; j < t.get(1).size(); ++j) {
@@ -53,6 +54,7 @@ public class CtrlTauler {
                     else result.setBlock(i-1,j);
                 }
             }
+            result.setAutor(s);
             return result;
         } catch (IOException e) {
             System.out.println("No s'ha pogut carregar tauler");
@@ -69,6 +71,7 @@ public class CtrlTauler {
         ArrayList<String> header = new ArrayList<String>();
         header.add(Integer.toString(ancho));
         header.add(Integer.toString(alto));
+        header.add(t.getAutor());
         result.add(header);
 
         for (int i = 0; i < alto; ++i)

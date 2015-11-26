@@ -4,10 +4,12 @@ public class TaulerHidato implements Cloneable {
     private Cella[][] tauler;
     private int width;
     private int height;
+    private String autor;
 
     public TaulerHidato(int n, int m) {
         this.width = n;
         this.height = m;
+        this.autor = "maquina";
         this.tauler = new Cella[m][n];
         for(int i = 0; i < m; ++i) {
             for(int j = 0; j < n; ++j) {
@@ -92,6 +94,10 @@ public class TaulerHidato implements Cloneable {
             System.out.println(s);
         }
     }
+
+    public String getAutor() { return autor; }
+
+    public void setAutor(String s) { autor = s; }
 
     public void setAncho(int ancho) {
       this.width = ancho;
