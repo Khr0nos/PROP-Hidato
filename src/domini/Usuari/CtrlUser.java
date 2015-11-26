@@ -85,7 +85,15 @@ public class CtrlUser
     public static ArrayList<User> getTaula() {
         return usuaris;
     }
-	
+
+    // Consulta la contrasenya de l'usuari amb username "nom"
+    public static boolean comprovaPwd(String nom, String pwd) {
+      boolean ret = false;
+      for (User usuari : usuaris) {
+        if (Objects.equals(usuari.getUsername(), nom)) ret = usuari.testPassword(pwd);
+      }
+      return ret;
+    }
 	// Retorna l'Usuari amb username igual a nom
 	// Retorna null si no el troba
 	public static User getUsuari(String nom)
