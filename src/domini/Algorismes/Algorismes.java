@@ -44,7 +44,7 @@ public class Algorismes {
             for (int j = max(y-1,0); j <= min(y+1,m-1); ++j){
                 if (resolver(i,j,num+1,next)) return true;
             }
-        }
+}
         if (!tauler.estaFija(x,y)) tauler.setNumero(x,y,back);
         return false;
     }
