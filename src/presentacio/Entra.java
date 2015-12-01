@@ -19,7 +19,7 @@ public class Entra extends JFrame{
         entraButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Loggin l = new Loggin();
+                Loging l = new Loging();
                 setVisible(false);
             }
         });

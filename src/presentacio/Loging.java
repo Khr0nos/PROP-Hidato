@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by MAX on 01/12/2015.
  */
-public class Loggin extends JFrame {
+public class Loging extends JFrame {
     private JPasswordField passwordField1;
     private JTextField textField1;
     private JButton loggInButton;
@@ -18,7 +18,7 @@ public class Loggin extends JFrame {
     private String pwd;
     private boolean loggin;
 
-    public Loggin(){
+    public Loging(){
         setContentPane(Loggin);
         pack();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
