@@ -30,7 +30,7 @@ public class DriverCtrlUser {
                     break;
                 case "2":
                     System.out.println("Introdueix el nou usuari a afegir [nom password]:");
-                    try {
+                    /*try {
                         in = br.readLine();
                         String[] user = in.split(" ");
                         User aux = new User(user[0], user[1]);
@@ -39,7 +39,7 @@ public class DriverCtrlUser {
                         System.out.println();
                     } catch (Exception e) {
                         e.printStackTrace();
-                    }
+                    }*/
                     break;
                 case "3":
                     System.out.println("Introdueix nom de l'usuari a esborrar:");

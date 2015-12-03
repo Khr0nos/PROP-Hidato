@@ -25,7 +25,7 @@ public class CtrlVistes {
 
   }
 
-  public void run() {
-    //cridat al Main
-  }
+ /* public void run() {
+    //cridat al Mainaux
+  }*/
 }

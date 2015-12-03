@@ -106,10 +106,11 @@ public class CtrlUser
 	
 	// Afegeix l'Usuari us a l'agregat
 	// Retorna fals si hi ha hagut cap error i llença excepció o bé si l'usuari ja hi és i no es pot afegir
-	public static boolean afegeixUsuari(User us)
+	public static boolean afegeixUsuari(String nom, String pwd)
     {
         try {
-            for (User aux : usuaris) {
+          User us = new User(nom,pwd);
+             for (User aux : usuaris) {
                 if (Objects.equals(aux.getUsername(), us.getUsername())) {
                     return false;
                 }
@@ -118,6 +119,7 @@ public class CtrlUser
         } catch (Exception e) {
             e.printStackTrace();
         }
+        end();
         return dirty;
     }
 	
@@ -133,6 +135,7 @@ public class CtrlUser
         } catch (Exception e) {
             e.printStackTrace();
         }
+        end();
         return dirty;
     }
 }
