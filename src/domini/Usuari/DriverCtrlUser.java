@@ -63,6 +63,6 @@ public class DriverCtrlUser {
         }
 
         System.out.println("Fi de la taula");
-        CtrlUser.end();
+        //CtrlUser.end();
     }
 }
