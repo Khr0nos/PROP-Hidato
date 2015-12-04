@@ -17,6 +17,7 @@ public class Entra extends JFrame {
     pack();
     setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     setVisible(true);
+    setLocationRelativeTo(null);
     entraButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {

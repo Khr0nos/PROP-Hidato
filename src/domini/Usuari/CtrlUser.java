@@ -70,7 +70,6 @@ public class CtrlUser
     }
 
 	// Si s'han modificat les dades carregades des de la BD, desar els canvis
-    // Aquest mètode s'ha de cridar quan es vulgin guardar els canvis a la BD
 	private static void end() {
         if (dirty) {
             try {

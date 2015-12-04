@@ -27,12 +27,13 @@ public class Loging extends JFrame {
     pack();
     setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     setVisible(true);
+    setLocationRelativeTo(null);
     loggInButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         usr = textField1.getText();
         pwd = passwordField1.getText();
-        System.out.println(usr + " " + pwd);
+        //System.out.println(usr + " " + pwd);
         if (CtrlUser.comprovaPwd(usr, pwd)) {
           MenuPrincipal mp = new MenuPrincipal();
           loggin = true;

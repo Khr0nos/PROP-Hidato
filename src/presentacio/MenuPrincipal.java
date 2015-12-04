@@ -20,6 +20,7 @@ public class MenuPrincipal extends JFrame {
     pack();
     setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     setVisible(true);
+    setLocationRelativeTo(null);
     exitButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
