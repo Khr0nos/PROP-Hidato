@@ -39,7 +39,7 @@ public class Loging extends JFrame {
           loggin = true;
           setVisible(false);
         } else {
-          passwordField1.setForeground(Color.red);
+          JOptionPane.showMessageDialog(passwordField1, "Username i/o password incorrecte!");
         }
       }
     });
@@ -48,13 +48,13 @@ public class Loging extends JFrame {
       public void actionPerformed(ActionEvent e) {
         usr = textField1.getText();
         pwd = passwordField1.getText();
-        System.out.println(usr + " " + pwd);
+        //System.out.println(usr + " " + pwd);
         if (CtrlUser.afegeixUsuari(usr, pwd)) {
           MenuPrincipal mp = new MenuPrincipal();
           loggin = false;
           setVisible(false);
         } else {
-          textField1.setForeground(Color.red);
+          JOptionPane.showMessageDialog(textField1, "Username ja existent!");
         }
       }
     });
@@ -89,6 +89,7 @@ public class Loging extends JFrame {
   private void $$$setupUI$$$() {
     Loggin = new JPanel();
     Loggin.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(4, 3, new Insets(0, 0, 0, 0), -1, -1));
+    Loggin.setPreferredSize(new Dimension(400, 150));
     final JLabel label1 = new JLabel();
     label1.setText("USER");
     Loggin.add(label1, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(36, 16), null, 0, false));
