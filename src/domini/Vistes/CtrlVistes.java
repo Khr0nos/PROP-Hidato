@@ -7,6 +7,8 @@ import domini.Ranking.CTRLRanking;
 import domini.TaulerHidato.CtrlTauler;
 import domini.Usuari.CtrlUser;
 
+//no s'utilitza de moment
+
 public class CtrlVistes {
   private static CtrlPartida CP;
   private static CtrlTauler CT;
