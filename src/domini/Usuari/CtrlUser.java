@@ -137,4 +137,21 @@ public class CtrlUser
         end();
         return dirty;
     }
+
+  public static boolean modificaUsuari(String nom_actual, String nou_nom, String nou_pwd) {
+      try {
+          for (int i = usuaris.size() - 1; i >= 0; i--) {
+              User usuari = usuaris.get(i);
+              if (Objects.equals(usuari.getUsername(), nom_actual)) {
+                  User aux = new User(nou_nom,nou_pwd);
+                  dirty = usuaris.remove(usuari);
+                  if (dirty) dirty = usuaris.add(aux);
+              }
+          }
+      } catch (Exception e) {
+          e.printStackTrace();
+      }
+      end();
+      return dirty;
+  }
 }
