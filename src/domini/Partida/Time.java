@@ -1,8 +1,8 @@
 package domini.Partida;
 
 public class Time {
-    private long total = 0;
-    private long begin, end;
+    private long total;
+    private long begin;
 
     public Time() {}
 
@@ -13,28 +13,26 @@ public class Time {
 
     public void start()
     {
-        begin = System.currentTimeMillis();
-        end = begin;
+        begin = System.nanoTime();
     }
 
     public void stop()
     {
-        end = System.currentTimeMillis();
-        total += end - begin;
+        total = System.nanoTime() - begin;
     }
 
     public void reset()
     {
         total = 0;
+        begin = System.nanoTime();
     }
 
-    public double getTime()
-    {
+    public double getTotal() {
         return total;
     }
 
     public double getTimeSeconds()
     {
-        return total/1000.0;
+        return (System.nanoTime()-begin)/1000000000.0;
     }
 }
