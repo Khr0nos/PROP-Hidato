@@ -39,7 +39,7 @@ public class MenuPrincipal extends JFrame {
     rankingButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        Ranking r = new Ranking(actual,usr);
+        Ranking r = new Ranking(actual, usr);
         setVisible(false);
       }
     });

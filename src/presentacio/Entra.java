@@ -44,6 +44,7 @@ public class Entra extends JFrame {
   private void $$$setupUI$$$() {
     panel1 = new JPanel();
     panel1.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(4, 5, new Insets(0, 0, 0, 0), -1, -1));
+    panel1.setBackground(new Color(-1513240));
     panel1.setEnabled(true);
     panel1.setFocusable(true);
     panel1.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 22));
