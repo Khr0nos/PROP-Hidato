@@ -27,12 +27,12 @@
           <text value="Enrere"/>
         </properties>
       </component>
-      <component id="ad475" class="javax.swing.JButton" binding="rakingPersonalButton" default-binding="true">
+      <component id="ad475" class="javax.swing.JButton" binding="rankingPersonalButton">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Raking Personal"/>
+          <text value="Ranking Personal"/>
         </properties>
       </component>
       <component id="929c" class="javax.swing.JButton" binding="rankingPerTipusButton" default-binding="true">

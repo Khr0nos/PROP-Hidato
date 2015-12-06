@@ -25,7 +25,6 @@ public class RankingGen extends JFrame {
         setVisible(true);
         setLocationRelativeTo(null);
         RankingGeneral rg = new RankingGeneral();
-        rg.inicialitza();
         int n = rg.getnUsuaris();
         String s = Integer.toString(n);
         Usuaris.setText(s);
