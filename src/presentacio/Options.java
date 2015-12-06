@@ -44,7 +44,7 @@ public class Options extends JFrame {
         int n = JOptionPane.showOptionDialog(actual,
                 "ATENCIÓ!\n" + "Estas apunt d'esborrar el teu usuari.\n" +
                         "Els teus taulers continuaran existint per altres usuaris.\n" +
-                        "Les teves partides guardades s'esborraran." +
+                        "Les teves partides guardades s'esborraran.\n" +
                         "Estas segur que vols continuar?", "Esborra Usuari",JOptionPane.YES_NO_OPTION,
                          JOptionPane.QUESTION_MESSAGE, null, opcions, opcions[0]);
         if (n == JOptionPane.YES_OPTION) {
