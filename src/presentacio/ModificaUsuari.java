@@ -78,7 +78,7 @@ public class ModificaUsuari extends JFrame {
   private void $$$setupUI$$$() {
     GestioUsuari = new JPanel();
     GestioUsuari.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(6, 6, new Insets(0, 0, 0, 0), -1, -1));
-    GestioUsuari.setPreferredSize(new Dimension(350, 170));
+    GestioUsuari.setPreferredSize(new Dimension(375, 170));
     final com.intellij.uiDesigner.core.Spacer spacer1 = new com.intellij.uiDesigner.core.Spacer();
     GestioUsuari.add(spacer1, new com.intellij.uiDesigner.core.GridConstraints(1, 5, 4, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, 1, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
     final com.intellij.uiDesigner.core.Spacer spacer2 = new com.intellij.uiDesigner.core.Spacer();
