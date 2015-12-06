@@ -45,19 +45,19 @@ public class RankingPer extends JFrame {
                         m = rp.getBestTime("facil");
                         s = Double.toString(m);
                         Temps.setText(s);
-                    } else Temps.setText(" ");
+                    } else Temps.setText("0.0");
                 } else if (i == 2) {
                     if (rp.getBestTime("medio") != null) {
                         m = rp.getBestTime("medio");
                         s = Double.toString(m);
                         Temps.setText(s);
-                    } else Temps.setText(" ");
+                    } else Temps.setText("0.0");
                 } else if (i == 3) {
                     if (rp.getBestTime("dificil") != null) {
                         m = rp.getBestTime("dificil");
                         s = Double.toString(m);
                         Temps.setText(s);
-                    } else Temps.setText(" ");
+                    } else Temps.setText("0.0");
                 }
             }
         });
