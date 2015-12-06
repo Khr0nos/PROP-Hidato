@@ -35,7 +35,7 @@ public class Loging extends JFrame {
         usr = textField1.getText();
         pwd = String.valueOf(passwordField1.getPassword());
         if (!Objects.equals(usr, "") && !Objects.equals(pwd, "") && CtrlUser.comprovaPwd(usr, pwd)) {
-          MenuPrincipal mp = new MenuPrincipal(usr);
+          MenuPrincipal mp = new MenuPrincipal(usr, pwd);
           //loggin = true;
           setVisible(false);
         } else if (Objects.equals(usr, "")) {
@@ -53,7 +53,7 @@ public class Loging extends JFrame {
         usr = textField1.getText();
         pwd = String.valueOf(passwordField1.getPassword());
         if (!Objects.equals(usr, "") && !Objects.equals(pwd, "") && CtrlUser.afegeixUsuari(usr, pwd)) {
-          MenuPrincipal mp = new MenuPrincipal(usr);
+          MenuPrincipal mp = new MenuPrincipal(usr, pwd);
           //loggin = false;
           setVisible(false);
         } else if (Objects.equals(usr, "")) {

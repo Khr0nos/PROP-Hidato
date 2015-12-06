@@ -16,7 +16,7 @@ public class MenuPrincipal extends JFrame {
   private JPanel MP;
   private MenuPrincipal actual;
 
-  public MenuPrincipal(String usr) {
+  public MenuPrincipal(String usr, String pwd) {
     setContentPane(MP);
     pack();
     setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -32,7 +32,7 @@ public class MenuPrincipal extends JFrame {
     optionsButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        Options op = new Options(usr, actual);
+        Options op = new Options(usr, pwd, actual);
         setVisible(false);
       }
     });

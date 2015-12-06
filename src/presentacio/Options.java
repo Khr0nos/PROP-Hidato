@@ -9,12 +9,12 @@ import java.awt.event.ActionListener;
  */
 public class Options extends JFrame {
   private JButton Taulers;
-  private JButton Usuaris;
+  private JButton ModificaUsuari;
   private JPanel Options;
   private JButton Back;
   private Options actual;
 
-  public Options(String usr, MenuPrincipal ant) {
+  public Options(String usr, String pwd, MenuPrincipal ant) {
     setContentPane(Options);
     pack();
     setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -27,10 +27,10 @@ public class Options extends JFrame {
         // passar a una finestra on crear, modificar o esborrar taulers
       }
     });
-    Usuaris.addActionListener(new ActionListener() {
+    ModificaUsuari.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        GestioUsuaris GU = new GestioUsuaris(actual);
+        ModificaUsuari GU = new ModificaUsuari(actual, usr, pwd);
         setVisible(false);
       }
     });
