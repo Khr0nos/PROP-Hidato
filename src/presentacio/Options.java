@@ -1,5 +1,7 @@
 package presentacio;
 
+import domini.Usuari.CtrlUser;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,9 +11,10 @@ import java.awt.event.ActionListener;
  */
 public class Options extends JFrame {
   private JButton Taulers;
-  private JButton ModificaUsuari;
+  private JButton CanviaContrassenyaButton;
   private JPanel Options;
-  private JButton Back;
+  private JButton esborraUsuariButton;
+  private JButton Enrere;
   private Options actual;
 
   public Options(String usr, String pwd, MenuPrincipal ant) {
@@ -27,14 +30,33 @@ public class Options extends JFrame {
         // passar a una finestra on crear, modificar o esborrar taulers
       }
     });
-    ModificaUsuari.addActionListener(new ActionListener() {
+    CanviaContrassenyaButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         ModificaUsuari GU = new ModificaUsuari(actual, usr, pwd);
         setVisible(false);
       }
     });
-    Back.addActionListener(new ActionListener() {
+    esborraUsuariButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        Object[] opcions = {"Si", "No"};
+        int n = JOptionPane.showOptionDialog(actual,
+                "ATENCIÓ!\n" + "Estas apunt d'esborrar el teu usuari.\n" +
+                        "Els teus taulers continuaran existint per altres usuaris.\n" +
+                        "Les teves partides guardades s'esborraran." +
+                        "Estas segur que vols continuar?", "Esborra Usuari",JOptionPane.YES_NO_OPTION,
+                         JOptionPane.QUESTION_MESSAGE, null, opcions, opcions[0]);
+        if (n == JOptionPane.YES_OPTION) {
+          CtrlUser.esborraUsuari(usr);
+          //FALTA ESBORRAR PARTIDES
+          setVisible(false);
+          dispose();
+          Loging l = new Loging();
+        }
+      }
+    });
+    Enrere.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         setVisible(false);
