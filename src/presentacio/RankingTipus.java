@@ -81,13 +81,6 @@ public class RankingTipus extends JFrame {
         ant.setVisible(true);
       }
     });
-    enrereButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        setVisible(false);
-        ant.setVisible(true);
-      }
-    });
   }
 
   {
