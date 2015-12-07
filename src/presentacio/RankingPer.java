@@ -29,8 +29,10 @@ public class RankingPer extends JFrame {
     String s = Integer.toString(n);
     nPartides.setText(s);
     double m = CtrlDomini.getPistes();
-    s = Double.toString(m);
-    nPistes.setText(s);
+    if (!Double.isNaN(m)) {
+      s = Double.toString(m);
+      nPistes.setText(s);
+    } else nPistes.setText("0.0");
     Temps.setText(" ");
     TriaDiff.addActionListener(new ActionListener() {
       @Override
