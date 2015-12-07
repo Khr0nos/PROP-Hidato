@@ -40,15 +40,15 @@ public class RankingTipus extends JFrame {
         else if (j == 3) dif = "dificil";
 
         CtrlDomini.inicialitzaRankingTipus(dif, rows);
-        String[] colNames = {"Rank","Usuari","ID Tauler","Millor Temps"};
+        String[] colNames = {"Rank", "Usuari", "ID Tauler", "Millor Temps"};
         int x = CtrlDomini.getNEntrades();
         model.setColumnCount(4);
         model.setRowCount(x);
         model.setColumnIdentifiers(colNames);
         for (int i = 0; i < x; ++i) {
-          model.setValueAt(i+1,i,0);
+          model.setValueAt(i + 1, i, 0);
           model.setValueAt(CtrlDomini.getEntradaUsuari(i), i, 1);
-          model.setValueAt(CtrlDomini.getIDtauler(i),i,2);
+          model.setValueAt(CtrlDomini.getIDtauler(i), i, 2);
           model.setValueAt(CtrlDomini.getEntradaTemps(i), i, 3);
         }
         table.setModel(model);
@@ -115,6 +115,7 @@ public class RankingTipus extends JFrame {
     RT.add(spacer2, new com.intellij.uiDesigner.core.GridConstraints(4, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
     dificultat = new JComboBox();
     final DefaultComboBoxModel defaultComboBoxModel1 = new DefaultComboBoxModel();
+    defaultComboBoxModel1.addElement("Tria una dificultat...");
     defaultComboBoxModel1.addElement("Fàcil");
     defaultComboBoxModel1.addElement("Mitjà");
     defaultComboBoxModel1.addElement("Difícil");
