@@ -28,7 +28,8 @@ public class Options extends JFrame {
     Taulers.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        // passar a una finestra on crear, modificar o esborrar taulers
+        GestioTaulers GT = new GestioTaulers(actual);
+        setVisible(false);
       }
     });
     CanviaContrassenyaButton.addActionListener(new ActionListener() {
