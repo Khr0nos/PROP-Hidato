@@ -121,7 +121,7 @@ public class RankingPer extends JFrame {
     final DefaultComboBoxModel defaultComboBoxModel1 = new DefaultComboBoxModel();
     defaultComboBoxModel1.addElement("Tria una dificultat...");
     defaultComboBoxModel1.addElement("Fàcil");
-    defaultComboBoxModel1.addElement("Mig");
+    defaultComboBoxModel1.addElement("Mitjà");
     defaultComboBoxModel1.addElement("Difícil");
     TriaDiff.setModel(defaultComboBoxModel1);
     RP.add(TriaDiff, new com.intellij.uiDesigner.core.GridConstraints(2, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
