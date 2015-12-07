@@ -35,19 +35,21 @@ public class RankingTipus extends JFrame {
       @Override
       public void actionPerformed(ActionEvent e) {
         int j = dificultat.getSelectedIndex();
-        if (j == 0) dif = "facil";
-        else if (j == 1) dif = "medio";
-        else if (j == 2) dif = "dificil";
+        if (j == 1) dif = "facil";
+        else if (j == 2) dif = "medio";
+        else if (j == 3) dif = "dificil";
 
         CtrlDomini.inicialitzaRankingTipus(dif, rows);
-        String[] colNames = {"Usuari", "Temps"};
+        String[] colNames = {"Rank","Usuari","ID Tauler","Millor Temps"};
         int x = CtrlDomini.getNEntrades();
-        model.setColumnCount(2);
+        model.setColumnCount(4);
         model.setRowCount(x);
         model.setColumnIdentifiers(colNames);
         for (int i = 0; i < x; ++i) {
-          model.setValueAt(CtrlDomini.getEntradaUsuari(i), i, 0);
-          model.setValueAt(CtrlDomini.getEntradaTemps(i), i, 1);
+          model.setValueAt(i+1,i,0);
+          model.setValueAt(CtrlDomini.getEntradaUsuari(i), i, 1);
+          model.setValueAt(CtrlDomini.getIDtauler(i),i,2);
+          model.setValueAt(CtrlDomini.getEntradaTemps(i), i, 3);
         }
         table.setModel(model);
       }

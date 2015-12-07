@@ -68,4 +68,8 @@ public class CtrlDomini {
     ArrayList<Tupla> a = RT.getTempsJugador();
     return a.get(i).getUser();
   }
+  public static String getIDtauler(int i) {
+    ArrayList<Tupla> a = RT.getTempsJugador();
+    return a.get(i).getId();
+  }
 }

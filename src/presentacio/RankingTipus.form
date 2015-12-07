@@ -55,6 +55,7 @@
         </constraints>
         <properties>
           <model>
+            <item value="Tria una dificultat..."/>
             <item value="Fàcil"/>
             <item value="Mitjà"/>
             <item value="Difícil"/>
