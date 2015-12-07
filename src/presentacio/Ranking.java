@@ -9,8 +9,8 @@ import java.awt.event.ActionListener;
  * Created by MAX on 06/12/2015.
  */
 public class Ranking extends JFrame {
-  private JButton rankingGeneralButton;
   private JButton enrereButton;
+  private JButton rankingGeneralButton;
   private JButton rankingPersonalButton;
   private JButton rankingPerTipusButton;
   private JPanel Ranking;
@@ -41,6 +41,13 @@ public class Ranking extends JFrame {
       @Override
       public void actionPerformed(ActionEvent e) {
         RankingPer rp = new RankingPer(actual, usr);
+        setVisible(false);
+      }
+    });
+    rankingPerTipusButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        RankingTipus rt = new RankingTipus(actual);
         setVisible(false);
       }
     });
