@@ -14,6 +14,7 @@ public class MenuPrincipal extends JFrame {
   private JButton optionsButton;
   private JButton exitButton;
   private JPanel MP;
+  private JButton logout;
   private MenuPrincipal actual;
 
   public MenuPrincipal(String usr) {
@@ -41,6 +42,14 @@ public class MenuPrincipal extends JFrame {
       public void actionPerformed(ActionEvent e) {
         Ranking r = new Ranking(actual, usr);
         setVisible(false);
+      }
+    });
+    logout.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        setVisible(false);
+        dispose();
+        new Loging();
       }
     });
   }
