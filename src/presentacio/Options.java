@@ -42,7 +42,7 @@ public class Options extends JFrame {
     esborraUsuariButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        Object[] opcions = {"Si", "No"};
+        String[] opcions = {"Si", "No"};
         int n = JOptionPane.showOptionDialog(actual,
                 "ATENCIÓ!\n" + "Estas apunt d'esborrar el teu usuari.\n" +
                         "Els teus taulers continuaran existint per altres usuaris.\n" +

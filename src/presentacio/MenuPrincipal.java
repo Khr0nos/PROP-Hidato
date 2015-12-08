@@ -47,9 +47,13 @@ public class MenuPrincipal extends JFrame {
     logout.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        setVisible(false);
-        dispose();
-        new Loging();
+        String[] ops = {"Sí", "No"};
+        int op = JOptionPane.showOptionDialog(actual, "Estas segur que vols sortir del joc?", "Tanca sessió", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, ops, ops[0]);
+        if (op == JOptionPane.YES_OPTION) {
+          setVisible(false);
+          dispose();
+          new Loging();
+        }
       }
     });
   }
