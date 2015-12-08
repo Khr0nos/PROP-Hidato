@@ -14,13 +14,15 @@ public class GestioTaulers extends JFrame {
   private JButton modificarTaulerButton;
   private JButton Crear;
   private JPanel Taulers;
+  GestioTaulers actual;
 
-  public GestioTaulers(Options ant) {
+  public GestioTaulers(Options ant, String usr) {
     setContentPane(Taulers);
     pack();
     setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     setVisible(true);
     setLocationRelativeTo(null);
+    actual = this;
 
     Back.addActionListener(new ActionListener() {
       @Override
@@ -32,7 +34,8 @@ public class GestioTaulers extends JFrame {
     Crear.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-
+        Crear c = new Crear(actual,usr);
+        setVisible(false);
       }
     });
     modificarTaulerButton.addActionListener(new ActionListener() {
@@ -77,7 +80,7 @@ public class GestioTaulers extends JFrame {
     modificarTaulerButton.setText("Modificar Tauler");
     Taulers.add(modificarTaulerButton, new com.intellij.uiDesigner.core.GridConstraints(1, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     Crear = new JButton();
-    Crear.setText("Crear Tauler");
+    Crear.setText("CrearMaquina Tauler");
     Taulers.add(Crear, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     final com.intellij.uiDesigner.core.Spacer spacer1 = new com.intellij.uiDesigner.core.Spacer();
     Taulers.add(spacer1, new com.intellij.uiDesigner.core.GridConstraints(3, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));

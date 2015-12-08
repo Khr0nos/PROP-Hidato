@@ -42,7 +42,7 @@ public class CtrlTauler {
             int ancho = Integer.parseInt(header.get(0));
             int alto = Integer.parseInt(header.get(1));
             String s = header.get(2);
-            TaulerHidato result = new TaulerHidato(ancho, alto);
+            TaulerHidato result = new TaulerHidato(alto, ancho);
             for (int i = 1; i < t.size(); ++i) {
                 for (int j = 0; j < t.get(1).size(); ++j) {
                     int val = Integer.parseInt(t.get(i).get(j));

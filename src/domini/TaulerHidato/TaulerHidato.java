@@ -1,5 +1,7 @@
 package domini.TaulerHidato;
 
+import java.util.ArrayList;
+
 public class TaulerHidato implements Cloneable {
     private Cella[][] tauler;
     private int width;
@@ -7,12 +9,12 @@ public class TaulerHidato implements Cloneable {
     private String autor;
 
     public TaulerHidato(int n, int m) {
-        this.width = n;
-        this.height = m;
+        this.height = n;
+        this.width = m;
         this.autor = "maquina";
-        this.tauler = new Cella[m][n];
-        for(int i = 0; i < m; ++i) {
-            for(int j = 0; j < n; ++j) {
+        this.tauler = new Cella[n][m];
+        for(int i = 0; i < n; ++i) {
+            for(int j = 0; j < m; ++j) {
                this.tauler[i][j] = new Cella(i,j);
             }
         }
@@ -38,6 +40,15 @@ public class TaulerHidato implements Cloneable {
         e.printStackTrace();
       }
       return cloned;
+    }
+    public ArrayList<Integer> getTauler(){
+        ArrayList<Integer> r = new ArrayList<>();
+        for (int i = 0; i < height; ++i){
+            for (int j = 0; j < width; ++j ){
+                r.add(i*width+j,getNumero(i,j));
+            }
+        }
+        return r;
     }
 
     public Cella getCella(int i, int j) {

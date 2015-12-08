@@ -29,7 +29,7 @@ public class Options extends JFrame {
     Taulers.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        GestioTaulers GT = new GestioTaulers(actual);
+        GestioTaulers GT = new GestioTaulers(actual,usr);
         setVisible(false);
       }
     });

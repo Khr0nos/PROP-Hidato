@@ -22,7 +22,7 @@ public class FabricaHidato {
     num = 0;
   }
 
-  public static void genera_hidato(int m, int n, tipoDificultad lvl, String id) throws Exception {
+  public static void genera_hidato(int n, int m, tipoDificultad lvl, String id) throws Exception {
     Random rng = new Random();
 
     int N = n*m;
@@ -67,9 +67,9 @@ public class FabricaHidato {
       if (c.getNumero() == 0) c.setNumero(-1);
     }
 
-    TaulerHidato t = new TaulerHidato(m,n);
+    TaulerHidato t = new TaulerHidato(n,m);
     copia(G, t);
-    CtrlTauler.guardaTauler(t,"solucio" + id + Integer.toString(num));
+    CtrlTauler.guardaTauler(t,"solucio" + id);
 
     //Generació de tauler inicial
     int n_del;
@@ -86,7 +86,7 @@ public class FabricaHidato {
     }
 
     copia(G, t);
-    CtrlTauler.guardaTauler(t,id + Integer.toString(num));
+    CtrlTauler.guardaTauler(t,id);
 
     ++num;  // identificador per a la solució i tauler inicial seguents
   }
