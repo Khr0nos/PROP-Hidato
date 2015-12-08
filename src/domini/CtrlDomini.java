@@ -5,8 +5,11 @@ import domini.Ranking.RankingPerTipus;
 import domini.Ranking.RankingPersonal;
 import domini.Ranking.Tupla;
 import domini.Usuari.CtrlUser;
+import persistencia.CtrlPersistencia;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 //Controlador per a comunicar la capa de domini amb la capa de presentació: CtrlDomini <---> Vista de la presentació
 public class CtrlDomini {
@@ -71,5 +74,22 @@ public class CtrlDomini {
   public static String getIDtauler(int i) {
     ArrayList<Tupla> a = RT.getTempsJugador();
     return a.get(i).getId();
+  }
+
+  public static void esborraPartides(String usr) {
+    try {
+      ArrayList<ArrayList<String>> partides = CtrlPersistencia.loadTable("src/JocsProva/Partides.txt");
+      for (int i = partides.size()-1; i >= 0; i--) {
+        ArrayList<String> fila = partides.get(i);
+        if (Objects.equals(fila.get(0), usr)) {
+          partides.remove(fila);
+        }
+      }
+      CtrlPersistencia.storeTable("src/JocsProva/Partides.txt", partides);
+      CtrlPersistencia.deleteFile("src/JocsProva/original." + usr + ".partida");
+      CtrlPersistencia.deleteFile("src/JocsProva/modificat." + usr + ".partida");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 }

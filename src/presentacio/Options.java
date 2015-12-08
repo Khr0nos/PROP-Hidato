@@ -1,5 +1,6 @@
 package presentacio;
 
+import domini.CtrlDomini;
 import domini.Usuari.CtrlUser;
 
 import javax.swing.*;
@@ -51,7 +52,7 @@ public class Options extends JFrame {
                 JOptionPane.QUESTION_MESSAGE, null, opcions, opcions[0]);
         if (n == JOptionPane.YES_OPTION) {
           CtrlUser.esborraUsuari(usr);
-          //FALTA ESBORRAR PARTIDES
+          CtrlDomini.esborraPartides(usr);
           setVisible(false);
           dispose();
           Loging l = new Loging();

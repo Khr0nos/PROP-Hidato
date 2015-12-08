@@ -40,8 +40,9 @@ public class CtrlPartida {
       }
       header.add(td);
       header.add(String.valueOf(p.getTime()));
+      header.add(String.valueOf(p.getPistes()));
       partida.add(header);
-      CtrlPersistencia.storeTable("src/JocsProva/" + path,partida);
+      CtrlPersistencia.storeTable("src/JocsProva/Partides.txt",partida);
 
       CtrlTauler.guardaTauler(p.getOriginal(), "original." + path);
       CtrlTauler.guardaTauler(p.getModificat(), "modificat." + path);
@@ -74,8 +75,9 @@ public class CtrlPartida {
           break;
       }
       Double time = Double.valueOf(header.get(3));
+      int hints = Integer.valueOf(header.get(4));
       JocHidato j = new JocHidato(joc,orig,td);
-      p = new Partida(u,j,mod,time);
+      p = new Partida(u,j,mod,time,hints);
     } catch (IOException e) {
       e.printStackTrace();
     }

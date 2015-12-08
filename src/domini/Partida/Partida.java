@@ -10,6 +10,7 @@ public class Partida {
     private User user;
     private JocHidato joc;
     private Time time;
+    private int pistes;
 
     private TaulerHidato original;
     private TaulerHidato modificat;
@@ -22,12 +23,14 @@ public class Partida {
         user = null;
         joc = null;
         time = null;
+        pistes = 0;
     }
 
     public Partida(User u, JocHidato j)
     {
         user = u;
         joc = j;
+        pistes = 0;
         time = new Time();
         time.start();
 
@@ -37,9 +40,10 @@ public class Partida {
     }
 
     // Constructor usat per ctrlPartida
-    public Partida(User u, JocHidato j, TaulerHidato m, double pre_time) {
+    public Partida(User u, JocHidato j, TaulerHidato m, double pre_time, int hints) {
         user = u;
         joc = j;
+        pistes = hints;
         time = new Time(pre_time);
         time.start();
 
@@ -89,5 +93,13 @@ public class Partida {
 
     public void atura() {
       time.stop();
+    }
+
+    public void addPista() {
+        ++pistes;
+    }
+
+    public int getPistes() {
+        return pistes;
     }
 }

@@ -1,6 +1,8 @@
 package persistencia;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
@@ -94,6 +96,15 @@ public class CtrlPersistencia
 		    writer.write("\r\n");
 	    }
         writer.close();
+    }
+
+    public static void deleteFile(String path) {
+        try {
+            Path aux = Paths.get(path).toAbsolutePath();
+            Files.deleteIfExists(aux);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
     // Canvia el separador per s
