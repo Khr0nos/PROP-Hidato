@@ -1,8 +1,8 @@
 package presentacio;
 
+import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
-import javax.swing.*;
 
 /**
  * Created by Xavi on 09/12/2015.

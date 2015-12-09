@@ -21,8 +21,8 @@ public class CtrlDomini {
   private static RankingGeneral RG;
   private static RankingPersonal RP;
   private static RankingPerTipus RT;
-  private static CtrlTauler CT;
-  private static Algorismes A;
+  //private static CtrlTauler CT;
+  //private static Algorismes A;
 
   public static String getPassword(String usr) {
     new CtrlUser();
@@ -73,7 +73,6 @@ public class CtrlDomini {
     ArrayList<Tupla> a = RT.getTempsJugador();
     return a.get(i).getTemps();
   }
-
   public static String getEntradaUsuari(int i) {
     ArrayList<Tupla> a = RT.getTempsJugador();
     return a.get(i).getUser();
@@ -90,8 +89,8 @@ public class CtrlDomini {
 
   public static void generarHidatoUser(int m, int n, String a, ArrayList<Integer> t, String id){
     TaulerHidato th = new TaulerHidato(m,n,a,t);
-    boolean b = A.hasSol(th);
-    if (b)CT.guardaTauler(th,id);
+    boolean b = Algorismes.hasSol(th);
+    if (b) CtrlTauler.guardaTauler(th,id);
 
   }
 
