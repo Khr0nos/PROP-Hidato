@@ -7,6 +7,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by MAX on 09/12/2015.
@@ -21,10 +22,10 @@ public class CrearUsuari extends JFrame {
     private JButton descartarButton;
     private JButton guardarButton;
     private JButton generarElTaulerButton;
-    String f;
-    String c;
-    String id;
-    DefaultTableModel model;
+    private String f = "0";
+    private String c = "0";
+    private String id;
+    private DefaultTableModel model;
 
     public CrearUsuari(Crear ant, String usr){
         setContentPane(C);
@@ -68,19 +69,20 @@ public class CrearUsuari extends JFrame {
         generarElTaulerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int n = Integer.parseInt(f);
-                int m = Integer.parseInt(c);
-                ArrayList<Integer> t = new ArrayList<Integer>();
+                if (!Objects.equals(f, "0") && !Objects.equals(c, "0")) {
+                    int n = Integer.parseInt(f);
+                    int m = Integer.parseInt(c);
+                    ArrayList<Integer> t = new ArrayList<Integer>();
 
-                for (int i = 0; i < n; ++i){
-                    for(int j = 0; j < m; ++j){
-                        String s = (String)model.getValueAt(i,j);
-                        Integer x = Integer.parseInt(s);
-                        t.add(i*m+j,x);
+                    for (int i = 0; i < n; ++i){
+                        for(int j = 0; j < m; ++j){
+                            int x = Integer.parseInt(model.getValueAt(i,j).toString());
+                            t.add(i*m+j,x);
+                        }
                     }
+                    boolean ret = CtrlDomini.generarHidatoUser(n,m,usr,t,id);
+                    if (!ret) JOptionPane.showMessageDialog(generarElTaulerButton, "Tauler incorrecte", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-                CtrlDomini.generarHidatoUser(n,m,usr,t,id);
-
             }
         });
         descartarButton.addActionListener(new ActionListener() {

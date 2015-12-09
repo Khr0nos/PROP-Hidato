@@ -87,11 +87,16 @@ public class CtrlDomini {
     else FabricaHidato.genera_hidato(m,n,tipoDificultad.facil,id);
   }
 
-  public static void generarHidatoUser(int m, int n, String a, ArrayList<Integer> t, String id){
+  public static boolean generarHidatoUser(int m, int n, String a, ArrayList<Integer> t, String id){
     TaulerHidato th = new TaulerHidato(m,n,a,t);
     boolean b = Algorismes.hasSol(th);
-    if (b) CtrlTauler.guardaTauler(th,id);
-
+    if (b) {
+      CtrlTauler.guardaTauler(th,id);
+      TaulerHidato aux = new TaulerHidato(m,n,a,t);
+      TaulerHidato sol = Algorismes.solve(aux);
+      CtrlTauler.guardaTauler(sol,"solucio_" + id);
+    }
+    return b;
   }
 
   public static ArrayList<Integer> getTaulerHid(String id){
@@ -101,7 +106,7 @@ public class CtrlDomini {
 
   public static void esborraTauler(String id){
     CtrlPersistencia.deleteFile("src/JocsProva/"+ id +".txt");
-    CtrlPersistencia.deleteFile("src/JocsProva/solucio"+ id +".txt");
+    CtrlPersistencia.deleteFile("src/JocsProva/solucio_"+ id +".txt");
   }
 
   public static void esborraPartides(String usr) {
