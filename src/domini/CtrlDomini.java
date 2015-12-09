@@ -20,7 +20,6 @@ public class CtrlDomini {
   private static RankingGeneral RG;
   private static RankingPersonal RP;
   private static RankingPerTipus RT;
-  private static FabricaHidato FH;
   private static CtrlTauler CT;
 
   public static String getPassword(String usr) {
@@ -82,15 +81,14 @@ public class CtrlDomini {
     return a.get(i).getId();
   }
   public static void generarHidato(int m,int n, String diff, String id) throws Exception{
-    if (diff == "facil") FH.genera_hidato(m,n,tipoDificultad.facil,id);
-    else if (diff == "medio") FH.genera_hidato(m,n,tipoDificultad.medio,id);
-    else FH.genera_hidato(m,n,tipoDificultad.facil,id);
+    if (Objects.equals(diff, "facil")) FabricaHidato.genera_hidato(m,n,tipoDificultad.facil,id);
+    else if (Objects.equals(diff, "medio")) FabricaHidato.genera_hidato(m,n,tipoDificultad.medio,id);
+    else FabricaHidato.genera_hidato(m,n,tipoDificultad.facil,id);
   }
 
   public static ArrayList<Integer> getTaulerHid(String id){
-    TaulerHidato t = CT.carregaTauler(id);
-    ArrayList<Integer> r = t.getTauler();
-    return r;
+    TaulerHidato t = CtrlTauler.carregaTauler(id);
+    return t.getTauler();
   }
 
   public static void esborraTauler(String id){
