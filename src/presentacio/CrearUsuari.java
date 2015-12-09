@@ -50,9 +50,7 @@ public class CrearUsuari extends JFrame {
                     } else {
                         int n = Integer.parseInt(f);
                         int m = Integer.parseInt(c);
-                        model = new DefaultTableModel(0, 2);
-                        model.setColumnCount(m);
-                        model.setRowCount(n);
+                        model = new DefaultTableModel(n, m);
                         for (int i = 0; i < n; ++i) {
                             for (int j = 0; j < m; ++j) {
                                 model.setValueAt("", i, j);
@@ -75,11 +73,9 @@ public class CrearUsuari extends JFrame {
                     ArrayList<Integer> t = new ArrayList<Integer>();
 
                     for (int i = 0; i < n; ++i){
-                        for(int j = 0; j < m; ++j){
-                            try {
-                                int x = Integer.parseInt(model.getValueAt(i,j).toString());
+                        for (int j = 0; j < m; ++j){
+                                int x = Integer.parseInt(model.getValueAt(i,j).toString()); //problema amb el model al guardar valors
                                 t.add(i*m+j,x);
-                            } catch (NumberFormatException exc) {}
                         }
                     }
                     boolean ret = CtrlDomini.generarHidatoUser(n,m,usr,t,id);

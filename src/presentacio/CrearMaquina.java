@@ -55,14 +55,12 @@ public class CrearMaquina extends JFrame {
                         int m = Integer.parseInt(c);
                         CtrlDomini.generarHidato(n, m, diff, id);
                         ArrayList<Integer> th = CtrlDomini.getTaulerHid(id);
-                        DefaultTableModel model = new DefaultTableModel() {
+                        DefaultTableModel model = new DefaultTableModel(n,m) {
                             @Override
                             public boolean isCellEditable(int row, int column) {
                                 return false;
                             }
                         };
-                        model.setColumnCount(m);
-                        model.setRowCount(n);
                         for (int i = 0; i < n; ++i) {
                             for (int j = 0; j < m; ++j) {
                                 model.setValueAt(th.get(i * m + j), i, j);

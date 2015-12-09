@@ -94,7 +94,7 @@ public class CtrlDomini {
       CtrlTauler.guardaTauler(th,id);
       TaulerHidato aux = new TaulerHidato(m,n,a,t);
       TaulerHidato sol = Algorismes.solve(aux);
-      CtrlTauler.guardaTauler(sol,"solucio_" + id);
+      CtrlTauler.guardaTauler(sol,"solucio" + id);
     }
     return b;
   }
@@ -106,7 +106,7 @@ public class CtrlDomini {
 
   public static void esborraTauler(String id){
     CtrlPersistencia.deleteFile("src/JocsProva/"+ id +".txt");
-    CtrlPersistencia.deleteFile("src/JocsProva/solucio_"+ id +".txt");
+    CtrlPersistencia.deleteFile("src/JocsProva/solucio"+ id +".txt");
   }
 
   public static void esborraPartides(String usr) {
