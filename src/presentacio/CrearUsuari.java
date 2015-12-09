@@ -76,8 +76,10 @@ public class CrearUsuari extends JFrame {
 
                     for (int i = 0; i < n; ++i){
                         for(int j = 0; j < m; ++j){
-                            int x = Integer.parseInt(model.getValueAt(i,j).toString());
-                            t.add(i*m+j,x);
+                            try {
+                                int x = Integer.parseInt(model.getValueAt(i,j).toString());
+                                t.add(i*m+j,x);
+                            } catch (NumberFormatException exc) {}
                         }
                     }
                     boolean ret = CtrlDomini.generarHidatoUser(n,m,usr,t,id);
