@@ -69,15 +69,14 @@ public class CrearMaquina extends JFrame {
                         model.setRowCount(n);
                         for (int i = 0; i < n; ++i) {
                             for (int j = 0; j < m; ++j) {
-                                if (th.get(i*m+j) != -1) model.setValueAt(th.get(i * m + j), i, j);
+                                model.setValueAt(th.get(i * m + j), i, j);
                             }
                         }
                         Resultat.setModel(model);
                         /*for (int i = 0; i < Integer.parseInt(f); i++) {
                             for (int j = 0; j < Integer.parseInt(c); j++) {
-                                Resultat.prepareRenderer(Resultat.getCellRenderer(i,j), i, j);
-                                Component aux = Resultat.getCellRenderer(i,j).getTableCellRendererComponent(Resultat,"",false,false,i,j);
-                                if (Resultat.getModel().getValueAt(i,j).equals("")) aux.setBackground(Color.BLACK);
+                                //Resultat.prepareRenderer(Resultat.getCellRenderer(i,j), i, j);
+                                Resultat.getCellRenderer(i,j).getTableCellRendererComponent(Resultat,"",false,false,i,j);
                                 if (Resultat.getModel().getValueAt(i,j).equals("0")) Resultat.getModel().setValueAt("", i, j);
                             }
                         }*/
