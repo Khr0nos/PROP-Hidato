@@ -124,23 +124,6 @@
           <grid row="10" column="2" row-span="1" col-span="3" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
       </hspacer>
-      <component id="48ccf" class="javax.swing.JTable" binding="Resultat">
-        <constraints>
-          <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="50"/>
-          </grid>
-        </constraints>
-        <properties>
-          <cellSelectionEnabled value="false"/>
-          <columnSelectionAllowed value="false"/>
-          <selectionBackground color="-16448251"/>
-          <selectionForeground color="-16448251"/>
-          <showHorizontalLines value="true"/>
-          <showVerticalLines value="true"/>
-          <surrendersFocusOnKeystroke value="true"/>
-          <updateSelectionOnSort value="true"/>
-        </properties>
-      </component>
       <component id="611ab" class="javax.swing.JButton" binding="guardarButton" default-binding="true">
         <constraints>
           <grid row="9" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
@@ -182,6 +165,18 @@
           <grid row="11" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
         </constraints>
       </vspacer>
+      <component id="dec14" class="javax.swing.JTable" binding="Resultat">
+        <constraints>
+          <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="50"/>
+          </grid>
+        </constraints>
+        <properties>
+          <autoResizeMode value="2"/>
+          <focusable value="false"/>
+          <rowSelectionAllowed value="false"/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>

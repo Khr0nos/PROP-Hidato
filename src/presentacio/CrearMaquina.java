@@ -3,7 +3,9 @@ package presentacio;
 import domini.CtrlDomini;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,7 +16,6 @@ import java.util.ArrayList;
  * Created by MAX on 08/12/2015.
  */
 public class CrearMaquina extends JFrame {
-
     private JPanel C;
     private JTextField Fils;
     private JTextField Cols;
@@ -22,8 +23,8 @@ public class CrearMaquina extends JFrame {
     private JComboBox TriaDiff;
     private JButton generaElTaulerButton;
     private JButton guardarButton;
-    private JTable Resultat;
     private JButton descartaButton;
+    private JTable Resultat;
     private String id = null;
 
     public CrearMaquina(Crear ant) {
@@ -58,7 +59,12 @@ public class CrearMaquina extends JFrame {
                         int m = Integer.parseInt(c);
                         CtrlDomini.generarHidato(n, m, diff, id);
                         ArrayList<Integer> th = CtrlDomini.getTaulerHid(id);
-                        DefaultTableModel model = new DefaultTableModel(0, 2);
+                        DefaultTableModel model = new DefaultTableModel() {
+                            @Override
+                            public boolean isCellEditable(int row, int column) {
+                                return false;
+                            }
+                        };
                         model.setColumnCount(m);
                         model.setRowCount(n);
                         for (int i = 0; i < n; ++i) {
@@ -72,6 +78,7 @@ public class CrearMaquina extends JFrame {
                                 Resultat.prepareRenderer(Resultat.getCellRenderer(i,j), i, j);
                                 Component aux = Resultat.getCellRenderer(i,j).getTableCellRendererComponent(Resultat,"",false,false,i,j);
                                 if (Resultat.getModel().getValueAt(i,j).equals("")) aux.setBackground(Color.BLACK);
+                                if (Resultat.getModel().getValueAt(i,j).equals("0")) Resultat.getModel().setValueAt("", i, j);
                             }
                         }*/
                     }
@@ -98,5 +105,4 @@ public class CrearMaquina extends JFrame {
             }
         });
     }
-
 }

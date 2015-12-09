@@ -6,4 +6,4 @@ josep 5 dificil 15 1
 xavi 2 medio 8 0 
 max 1 facil 4 0 
 max 2 facil 18 0 
-max 3 facil 3 0
+max 3 facil 3 0 
