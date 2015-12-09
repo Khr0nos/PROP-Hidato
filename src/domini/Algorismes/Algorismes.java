@@ -53,7 +53,7 @@ public class Algorismes {
         n = t.getAlto();
         m = t.getAncho();
 
-        tauler = new TaulerHidato(m,n);
+        tauler = new TaulerHidato(n,m);
 
         List<Integer> list = new ArrayList<Integer>(); //Llista amb el numeros fixes
         //creem una copia del tauler que es passa com a parametre

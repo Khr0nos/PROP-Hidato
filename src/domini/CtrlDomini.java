@@ -1,5 +1,6 @@
 package domini;
 
+import domini.Algorismes.Algorismes;
 import domini.FabricaHidato.FabricaHidato;
 import domini.JocHidato.tipoDificultad;
 import domini.Ranking.RankingGeneral;
@@ -21,6 +22,7 @@ public class CtrlDomini {
   private static RankingPersonal RP;
   private static RankingPerTipus RT;
   private static CtrlTauler CT;
+  private static Algorismes A;
 
   public static String getPassword(String usr) {
     new CtrlUser();
@@ -84,6 +86,13 @@ public class CtrlDomini {
     if (Objects.equals(diff, "facil")) FabricaHidato.genera_hidato(m,n,tipoDificultad.facil,id);
     else if (Objects.equals(diff, "medio")) FabricaHidato.genera_hidato(m,n,tipoDificultad.medio,id);
     else FabricaHidato.genera_hidato(m,n,tipoDificultad.facil,id);
+  }
+
+  public static void generarHidatoUser(int m, int n, String a, ArrayList<Integer> t, String id){
+    TaulerHidato th = new TaulerHidato(m,n,a,t);
+    boolean b = A.hasSol(th);
+    if (b)CT.guardaTauler(th,id);
+
   }
 
   public static ArrayList<Integer> getTaulerHid(String id){

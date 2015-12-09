@@ -30,7 +30,8 @@ public class Crear extends JFrame {
         crearTaulerManualmentButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                CrearUsuari cu = new CrearUsuari(actual,usr);
+                setVisible(false);
             }
         });
         enrereButton.addActionListener(new ActionListener() {

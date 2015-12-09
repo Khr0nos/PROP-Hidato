@@ -8,6 +8,21 @@ public class TaulerHidato implements Cloneable {
     private int height;
     private String autor;
 
+    public TaulerHidato(int n, int m, String a, ArrayList<Integer> t){
+        this.height = n;
+        this.width = m;
+        this.autor = a;
+        tauler = new Cella[n][m];
+        Cella c;
+        for (int i = 0; i < n; ++i){
+            for (int j = 0; j < m; ++j) {
+                c = new Cella(i,j);
+                c.setNumero(t.get(i*m+j));
+                this.tauler[i][j] = c;
+            }
+        }
+    }
+
     public TaulerHidato(int n, int m) {
         this.height = n;
         this.width = m;
