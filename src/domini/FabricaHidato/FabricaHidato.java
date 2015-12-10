@@ -1,5 +1,6 @@
 package domini.FabricaHidato;
 
+import domini.CtrlDomini;
 import domini.JocHidato.tipoDificultad;
 import domini.TaulerHidato.Cella;
 import domini.TaulerHidato.CtrlTauler;
@@ -87,8 +88,9 @@ public class FabricaHidato {
 
     copia(G, t);
     CtrlTauler.guardaTauler(t,id);
+    CtrlDomini.guardaReferenciaTauler(id);
 
-    ++num;  // identificador per a la solució i tauler inicial seguents
+    //++num;  // identificador per a la solució i tauler inicial seguents
   }
 
   private static void copia(Graf G, TaulerHidato t) {

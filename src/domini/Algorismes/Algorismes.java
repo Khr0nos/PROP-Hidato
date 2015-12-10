@@ -80,15 +80,14 @@ public class Algorismes {
         for (int i = 0; i < f; ++i){
             fixades[i] = list.get(i);
         }
-        boolean s = resolver(r,c,1,0);
-        return s;
+        return resolver(r,c,1,0);
     }
 
     public static TaulerHidato solve(TaulerHidato t){
         n = t.getAlto();
         m = t.getAncho();
 
-        tauler = new TaulerHidato(m,n);
+        tauler = new TaulerHidato(t.getAlto(), t.getAncho(), "maquina", t.getTauler());
 
         List<Integer> list = new ArrayList<Integer>(); //Llista amb el numeros fixes
         //creem una copia del tauler que es passa com a parametre
@@ -115,6 +114,7 @@ public class Algorismes {
         for (int i = 0; i < f; ++i){
             fixades[i] = list.get(i);
         }
+
         resolver(r,c,1,0);
         return tauler;
     }

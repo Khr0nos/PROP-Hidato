@@ -1,11 +1,8 @@
 package domini.Algorismes;
-import domini.TaulerHidato.CtrlTauler;
-import domini.TaulerHidato.TaulerHidato;
 
-import java.util.Scanner;
 public class DriverAlgorismes {
     public static void main(String[] args) {
-        try {
+        /*try {
             System.out.println("Introdueix l'identificador de tauler existent als jocs de proves (nom de fitxer que no posi solucio):");
             Scanner sc = new Scanner(System.in);
             String id = sc.nextLine();
@@ -24,6 +21,6 @@ public class DriverAlgorismes {
             }
         } catch (Exception e) {
                 e.printStackTrace();
-        }
+        }*/
     }
 }

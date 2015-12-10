@@ -4,6 +4,7 @@ import domini.CtrlDomini;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -12,90 +13,192 @@ import java.util.ArrayList;
  * Created by MAX on 08/12/2015.
  */
 public class CrearMaquina extends JFrame {
-    private JPanel C;
-    private JTextField Fils;
-    private JTextField Cols;
-    private JTextField Idtau;
-    private JComboBox TriaDiff;
-    private JButton generaElTaulerButton;
-    private JButton guardarButton;
-    private JButton descartaButton;
-    private JTable Resultat;
-    private String id = null;
+  private JPanel C;
+  private JTextField Fils;
+  private JTextField Cols;
+  private JTextField Idtau;
+  private JComboBox TriaDiff;
+  private JButton generaElTaulerButton;
+  private JButton guardarButton;
+  private JButton descartaButton;
+  private JTable Resultat;
+  private String id = null;
 
-    public CrearMaquina(Crear ant) {
-        setContentPane(C);
-        pack();
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setVisible(true);
-        setLocationRelativeTo(null);
-        generaElTaulerButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    String f = Fils.getText();
-                    String c = Cols.getText();
-                    String diff = "facil";
-                    int x = TriaDiff.getSelectedIndex();
-                    id = Idtau.getText();
-                    if (f.equals("")) {
-                        JOptionPane.showMessageDialog(Fils, "Entra el nombre de files!", "Error", JOptionPane.WARNING_MESSAGE);
-                    } else if (c.equals("")) {
-                        JOptionPane.showMessageDialog(Cols, "Entra el nombre de columnes!", "Error", JOptionPane.WARNING_MESSAGE);
-                    } else if (id.equals("")) {
-                        JOptionPane.showMessageDialog(Cols, "Entra el nom del tauler!", "Error", JOptionPane.WARNING_MESSAGE);
-                    } else if (x == 0) {
-                        JOptionPane.showMessageDialog(TriaDiff, "Selecciona una dificultat!", "Error", JOptionPane.WARNING_MESSAGE);
-                    } else {
-                        if (x == 1) diff = "facil";
-                        else if (x == 2) diff = "medio";
-                        else if (x == 3) diff = "dificl";
-                        id = Idtau.getText();
-                        int n = Integer.parseInt(f);
-                        int m = Integer.parseInt(c);
-                        CtrlDomini.generarHidato(n, m, diff, id);
-                        ArrayList<Integer> th = CtrlDomini.getTaulerHid(id);
-                        DefaultTableModel model = new DefaultTableModel(n,m) {
-                            @Override
-                            public boolean isCellEditable(int row, int column) {
-                                return false;
-                            }
-                        };
-                        for (int i = 0; i < n; ++i) {
-                            for (int j = 0; j < m; ++j) {
-                                model.setValueAt(th.get(i * m + j), i, j);
-                            }
-                        }
-                        Resultat.setModel(model);
-                        /*for (int i = 0; i < Integer.parseInt(f); i++) {
-                            for (int j = 0; j < Integer.parseInt(c); j++) {
-                                //Resultat.prepareRenderer(Resultat.getCellRenderer(i,j), i, j);
-                                Resultat.getCellRenderer(i,j).getTableCellRendererComponent(Resultat,"",false,false,i,j);
-                                if (Resultat.getModel().getValueAt(i,j).equals("0")) Resultat.getModel().setValueAt("", i, j);
-                            }
-                        }*/
-                    }
+  public CrearMaquina(Crear ant) {
+    setContentPane(C);
+    pack();
+    setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    setVisible(true);
+    setLocationRelativeTo(null);
+    generaElTaulerButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        try {
+          String f = Fils.getText();
+          String c = Cols.getText();
+          String diff = "facil";
+          int x = TriaDiff.getSelectedIndex();
+          id = Idtau.getText();
+          if (Integer.parseInt(f) < 3) {
+            JOptionPane.showMessageDialog(Fils, "Mínim nombre de files: 3", "Nombre files incorrecte", JOptionPane.WARNING_MESSAGE);
+          } else if (Integer.parseInt(c) < 3) {
+            JOptionPane.showMessageDialog(Cols, "Mínim nombre de columnes: 3", "Nombre columnes incorrecte", JOptionPane.WARNING_MESSAGE);
+          } else if (Integer.parseInt(f) > 20) {
+            JOptionPane.showMessageDialog(Fils, "Màxim nombre de files: 20", "Nombre files incorrecte", JOptionPane.WARNING_MESSAGE);
+          } else if (Integer.parseInt(c) > 20) {
+            JOptionPane.showMessageDialog(Fils, "Màxim nombre de columnes: 3", "Nombre columnes incorrecte", JOptionPane.WARNING_MESSAGE);
+          } else if (CtrlDomini.checkIdtauler(id)) {
+            JOptionPane.showMessageDialog(Fils, "Nom de tauler ja existent", "Identificador incorrecte", JOptionPane.WARNING_MESSAGE);
+          } else if (f.equals("")) {
+            JOptionPane.showMessageDialog(Fils, "Entra el nombre de files!", "Error", JOptionPane.ERROR_MESSAGE);
+          } else if (c.equals("")) {
+            JOptionPane.showMessageDialog(Cols, "Entra el nombre de columnes!", "Error", JOptionPane.ERROR_MESSAGE);
+          } else if (id.equals("")) {
+            JOptionPane.showMessageDialog(Cols, "Entra el nom del tauler!", "Error", JOptionPane.ERROR_MESSAGE);
+          } else if (x == 0) {
+            JOptionPane.showMessageDialog(TriaDiff, "Selecciona una dificultat!", "Error", JOptionPane.ERROR_MESSAGE);
+          } else {
+            if (x == 1) diff = "facil";
+            else if (x == 2) diff = "medio";
+            else if (x == 3) diff = "dificl";
+            id = Idtau.getText();
+            int n = Integer.parseInt(f);
+            int m = Integer.parseInt(c);
+            CtrlDomini.generarHidato(n, m, diff, id);
+            ArrayList<Integer> th = CtrlDomini.getTaulerHid(id);
+            DefaultTableModel model = new DefaultTableModel(n, m) {
+              @Override
+              public boolean isCellEditable(int row, int column) {
+                return false;
+              }
+            };
+            for (int i = 0; i < n; ++i) {
+              for (int j = 0; j < m; ++j) {
+                model.setValueAt(th.get(i * m + j), i, j);
+              }
+            }
+            Resultat.setModel(model);
+            /*for (int i = 0; i < Integer.parseInt(f); i++) {
+                for (int j = 0; j < Integer.parseInt(c); j++) {
+                    //Resultat.prepareRenderer(Resultat.getCellRenderer(i,j), i, j);
+                    Resultat.getCellRenderer(i,j).getTableCellRendererComponent(Resultat,"",false,false,i,j);
+                    if (Resultat.getModel().getValueAt(i,j).equals("0")) Resultat.getModel().setValueAt("", i, j);
                 }
-                catch (Exception ex){
-                    ex.printStackTrace();
-                }
+            }*/
+          }
+        } catch (Exception ex) {
+          ex.printStackTrace();
+        }
 
-            }
-        });
-        descartaButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                CtrlDomini.esborraTauler(id);
-                setVisible(false);
-                ant.setVisible(true);
-            }
-        });
-        guardarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-                ant.setVisible(true);
-            }
-        });
-    }
+      }
+    });
+    descartaButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        if (id != null) {
+          CtrlDomini.esborraTauler(id);
+          CtrlDomini.esborraReferenciaTauler(id);
+        }
+        setVisible(false);
+        ant.setVisible(true);
+      }
+    });
+    guardarButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        setVisible(false);
+        ant.setVisible(true);
+      }
+    });
+  }
+
+  {
+// GUI initializer generated by IntelliJ IDEA GUI Designer
+// >>> IMPORTANT!! <<<
+// DO NOT EDIT OR ADD ANY CODE HERE!
+    $$$setupUI$$$();
+  }
+
+  /**
+   * Method generated by IntelliJ IDEA GUI Designer
+   * >>> IMPORTANT!! <<<
+   * DO NOT edit this method OR call it in your code!
+   *
+   * @noinspection ALL
+   */
+  private void $$$setupUI$$$() {
+    C = new JPanel();
+    C.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(12, 7, new Insets(0, 0, 0, 0), -1, -1));
+    final com.intellij.uiDesigner.core.Spacer spacer1 = new com.intellij.uiDesigner.core.Spacer();
+    C.add(spacer1, new com.intellij.uiDesigner.core.GridConstraints(0, 2, 1, 3, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, new Dimension(14, 38), null, 0, false));
+    final com.intellij.uiDesigner.core.Spacer spacer2 = new com.intellij.uiDesigner.core.Spacer();
+    C.add(spacer2, new com.intellij.uiDesigner.core.GridConstraints(8, 2, 1, 3, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+    final JLabel label1 = new JLabel();
+    label1.setText("Numero de columnes del tauler:");
+    C.add(label1, new com.intellij.uiDesigner.core.GridConstraints(2, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(170, 29), null, 0, false));
+    final JLabel label2 = new JLabel();
+    label2.setText("Dificultat:");
+    C.add(label2, new com.intellij.uiDesigner.core.GridConstraints(4, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+    TriaDiff = new JComboBox();
+    final DefaultComboBoxModel defaultComboBoxModel1 = new DefaultComboBoxModel();
+    defaultComboBoxModel1.addElement("Tria una dificultat...");
+    defaultComboBoxModel1.addElement("Fàcil");
+    defaultComboBoxModel1.addElement("Mitja");
+    defaultComboBoxModel1.addElement("Difícil");
+    TriaDiff.setModel(defaultComboBoxModel1);
+    C.add(TriaDiff, new com.intellij.uiDesigner.core.GridConstraints(4, 4, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+    generaElTaulerButton = new JButton();
+    generaElTaulerButton.setText("Generar el tauler");
+    C.add(generaElTaulerButton, new com.intellij.uiDesigner.core.GridConstraints(5, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+    final com.intellij.uiDesigner.core.Spacer spacer3 = new com.intellij.uiDesigner.core.Spacer();
+    C.add(spacer3, new com.intellij.uiDesigner.core.GridConstraints(6, 2, 1, 3, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+    Cols = new JTextField();
+    C.add(Cols, new com.intellij.uiDesigner.core.GridConstraints(2, 4, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+    Idtau = new JTextField();
+    C.add(Idtau, new com.intellij.uiDesigner.core.GridConstraints(3, 4, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+    final JLabel label3 = new JLabel();
+    label3.setText("Nom del tauler:");
+    C.add(label3, new com.intellij.uiDesigner.core.GridConstraints(3, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+    final JLabel label4 = new JLabel();
+    label4.setText("Numero de files del tauler:");
+    C.add(label4, new com.intellij.uiDesigner.core.GridConstraints(1, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+    Fils = new JTextField();
+    C.add(Fils, new com.intellij.uiDesigner.core.GridConstraints(1, 4, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+    final com.intellij.uiDesigner.core.Spacer spacer4 = new com.intellij.uiDesigner.core.Spacer();
+    C.add(spacer4, new com.intellij.uiDesigner.core.GridConstraints(9, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+    final com.intellij.uiDesigner.core.Spacer spacer5 = new com.intellij.uiDesigner.core.Spacer();
+    C.add(spacer5, new com.intellij.uiDesigner.core.GridConstraints(0, 5, 10, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, 1, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+    final com.intellij.uiDesigner.core.Spacer spacer6 = new com.intellij.uiDesigner.core.Spacer();
+    C.add(spacer6, new com.intellij.uiDesigner.core.GridConstraints(0, 1, 10, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, 1, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+    final com.intellij.uiDesigner.core.Spacer spacer7 = new com.intellij.uiDesigner.core.Spacer();
+    C.add(spacer7, new com.intellij.uiDesigner.core.GridConstraints(10, 2, 1, 3, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+    guardarButton = new JButton();
+    guardarButton.setText("Guardar");
+    C.add(guardarButton, new com.intellij.uiDesigner.core.GridConstraints(9, 4, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+    descartaButton = new JButton();
+    descartaButton.setText("Descartar");
+    C.add(descartaButton, new com.intellij.uiDesigner.core.GridConstraints(9, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+    final com.intellij.uiDesigner.core.Spacer spacer8 = new com.intellij.uiDesigner.core.Spacer();
+    C.add(spacer8, new com.intellij.uiDesigner.core.GridConstraints(10, 5, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, 1, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+    final com.intellij.uiDesigner.core.Spacer spacer9 = new com.intellij.uiDesigner.core.Spacer();
+    C.add(spacer9, new com.intellij.uiDesigner.core.GridConstraints(10, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, 1, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+    final com.intellij.uiDesigner.core.Spacer spacer10 = new com.intellij.uiDesigner.core.Spacer();
+    C.add(spacer10, new com.intellij.uiDesigner.core.GridConstraints(5, 6, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+    final com.intellij.uiDesigner.core.Spacer spacer11 = new com.intellij.uiDesigner.core.Spacer();
+    C.add(spacer11, new com.intellij.uiDesigner.core.GridConstraints(5, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+    final com.intellij.uiDesigner.core.Spacer spacer12 = new com.intellij.uiDesigner.core.Spacer();
+    C.add(spacer12, new com.intellij.uiDesigner.core.GridConstraints(11, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, 1, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+    Resultat = new JTable();
+    Resultat.setAutoResizeMode(2);
+    Resultat.setFocusable(false);
+    Resultat.setRowSelectionAllowed(false);
+    C.add(Resultat, new com.intellij.uiDesigner.core.GridConstraints(7, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
+  }
+
+  /**
+   * @noinspection ALL
+   */
+  public JComponent $$$getRootComponent$$$() {
+    return C;
+  }
 }
