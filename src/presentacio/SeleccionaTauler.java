@@ -31,9 +31,6 @@ public class SeleccionaTauler extends JFrame{
             data.addElement(taulers.get(j));
         }
         list1.setModel(data);
-        list1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        SP = new JScrollPane(list1);
-        add(SP);
         enrereButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
