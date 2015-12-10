@@ -22,6 +22,7 @@ public class CtrlDomini {
   private static RankingPersonal RP;
   private static RankingPerTipus RT;
   private static ArrayList<String> taulersAutor;
+  private static  TaulerHidato Tauler;
   //private static CtrlTauler CT;
   //private static Algorismes A;
 
@@ -89,13 +90,22 @@ public class CtrlDomini {
   }
 
   public static boolean generarHidatoUser(int m, int n, String a, ArrayList<Integer> t, String id){
-    TaulerHidato th = new TaulerHidato(m,n,a,t);
+    TaulerHidato th = new TaulerHidato(m, n, a, t);
     boolean b = Algorismes.hasSol(th);
-    if (b) {
-      CtrlTauler.guardaTauler(th,id);
-      TaulerHidato aux = new TaulerHidato(m,n,a,t);
-      TaulerHidato sol = Algorismes.solve(aux);
-      CtrlTauler.guardaTauler(sol,"solucio" + id);
+    try {
+      if (b) {
+        CtrlTauler.guardaTauler(th, id);
+        TaulerHidato aux = new TaulerHidato(m, n, a, t);
+        TaulerHidato sol = Algorismes.solve(aux);
+        CtrlTauler.guardaTauler(sol, "solucio" + id);
+        ArrayList<ArrayList<String>> jocs = CtrlPersistencia.loadTable("src/JocsProva/Jocs.txt");
+        ArrayList<String> line = new ArrayList<>();
+        line.add("src/JocsProva/" + id + ".txt");
+        jocs.add(line);
+        CtrlPersistencia.storeTable("src/JocsProva/Jocs.txt",jocs);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
     }
     return b;
   }
@@ -105,9 +115,30 @@ public class CtrlDomini {
     return t.getTauler();
   }
 
+  public static void carregaTaulerHid(String id){
+    Tauler = CtrlTauler.carregaTauler(id);
+  }
+
+  public static int getFiles() { return Tauler.getAlto(); }
+
+  public static int getColumnes() { return Tauler.getAncho(); }
+
+  public static int getValorAt(int i, int j) { return Tauler.getNumero(i,j); }
+
   public static void esborraTauler(String id){
-    CtrlPersistencia.deleteFile("src/JocsProva/"+ id +".txt");
-    CtrlPersistencia.deleteFile("src/JocsProva/solucio"+ id +".txt");
+    try {
+      CtrlPersistencia.deleteFile("src/JocsProva/" + id + ".txt");
+      CtrlPersistencia.deleteFile("src/JocsProva/solucio" + id + ".txt");
+      ArrayList<ArrayList<String>> aux = CtrlPersistencia.loadTable("src/JocsProva/Jocs.txt");
+      ArrayList<ArrayList<String>> n = new ArrayList<ArrayList<String>>();
+      for (int i = 0; i < aux.size(); ++i) {
+        if (!aux.get(i).get(0).contains(id)) n.add(aux.get(i));
+      }
+      CtrlPersistencia.storeTable("src/JocsProva/Jocs.txt",n);
+    }
+    catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
   public static void esborraPartides(String usr) {
