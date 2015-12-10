@@ -14,7 +14,7 @@ public class GestioTaulers extends JFrame {
   private JButton modificarTaulerButton;
   private JButton Crear;
   private JPanel Taulers;
-  GestioTaulers actual;
+  private GestioTaulers actual;
 
   public GestioTaulers(Options ant, String usr) {
     setContentPane(Taulers);
@@ -41,14 +41,14 @@ public class GestioTaulers extends JFrame {
     modificarTaulerButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        SeleccionaTauler st = new SeleccionaTauler(actual, usr, 0);
+        SeleccionaTauler st = new SeleccionaTauler(actual, usr, 1);
         setVisible(false);
       }
     });
     esborrarTaulerButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        SeleccionaTauler st = new SeleccionaTauler(actual, usr, 1);
+        SeleccionaTauler st = new SeleccionaTauler(actual, usr, 0);
         setVisible(false);
       }
     });

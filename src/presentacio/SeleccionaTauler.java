@@ -18,6 +18,15 @@ public class SeleccionaTauler extends JFrame{
     private JButton okButton;
     private SeleccionaTauler actual;
 
+    public void ActualitzaList(String usr) {
+        ArrayList<String> taulers = CtrlDomini.taulersAutor(usr);
+        DefaultListModel<String> data = new DefaultListModel<>();
+        for (int j = 0; j < taulers.size(); ++j) {
+            data.addElement(taulers.get(j));
+        }
+        list1.setModel(data);
+    }
+
     public SeleccionaTauler(GestioTaulers ant, String usr, int i) {
         setContentPane(ST);
         pack();
@@ -25,12 +34,7 @@ public class SeleccionaTauler extends JFrame{
         setVisible(true);
         setLocationRelativeTo(null);
         actual = this;
-        ArrayList<String> taulers = CtrlDomini.taulersAutor(usr);
-        DefaultListModel<String> data = new DefaultListModel<>();
-        for (int j = 0; j < taulers.size(); ++j) {
-            data.addElement(taulers.get(j));
-        }
-        list1.setModel(data);
+        ActualitzaList(usr);
         enrereButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -43,12 +47,21 @@ public class SeleccionaTauler extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 if (i == 0) {
                     //ESBORRA
+                    String[] opcions = {"Si", "No"};
+                    int n = JOptionPane.showOptionDialog(actual,
+                            "ATENCIÓ!\n" + "Estas segur que vols esborrar " + list1.getSelectedValue().toString() +"?",
+                            "Esborra Tauler", JOptionPane.YES_NO_OPTION,
+                            JOptionPane.QUESTION_MESSAGE, null, opcions, opcions[0]);
+                    if (n == JOptionPane.YES_OPTION) {
+                        CtrlDomini.esborraTauler(list1.getSelectedValue().toString());
+                        ActualitzaList(usr);
+                    }
                 }
-                if (i == 1) {
+                else if (i == 1) {
                     //MODIFICA
-                    //ModificaTauler m = new ModificaTauler(actual,);
+                    CrearUsuari c = new CrearUsuari(actual,usr,list1.getSelectedValue().toString());
+                    setVisible(false);
                 }
-                setVisible(false);
             }
         });
     }
