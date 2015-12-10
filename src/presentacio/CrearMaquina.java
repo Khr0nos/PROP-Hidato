@@ -1,7 +1,6 @@
 package presentacio;
 
 import domini.CtrlDomini;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -39,17 +38,7 @@ public class CrearMaquina extends JFrame {
           String diff = "facil";
           int x = TriaDiff.getSelectedIndex();
           id = Idtau.getText();
-          if (Integer.parseInt(f) < 3) {
-            JOptionPane.showMessageDialog(Fils, "Mínim nombre de files: 3", "Nombre files incorrecte", JOptionPane.WARNING_MESSAGE);
-          } else if (Integer.parseInt(c) < 3) {
-            JOptionPane.showMessageDialog(Cols, "Mínim nombre de columnes: 3", "Nombre columnes incorrecte", JOptionPane.WARNING_MESSAGE);
-          } else if (Integer.parseInt(f) > 20) {
-            JOptionPane.showMessageDialog(Fils, "Màxim nombre de files: 20", "Nombre files incorrecte", JOptionPane.WARNING_MESSAGE);
-          } else if (Integer.parseInt(c) > 20) {
-            JOptionPane.showMessageDialog(Fils, "Màxim nombre de columnes: 3", "Nombre columnes incorrecte", JOptionPane.WARNING_MESSAGE);
-          } else if (CtrlDomini.checkIdtauler(id)) {
-            JOptionPane.showMessageDialog(Fils, "Nom de tauler ja existent", "Identificador incorrecte", JOptionPane.WARNING_MESSAGE);
-          } else if (f.equals("")) {
+          if (f.equals("")) {
             JOptionPane.showMessageDialog(Fils, "Entra el nombre de files!", "Error", JOptionPane.ERROR_MESSAGE);
           } else if (c.equals("")) {
             JOptionPane.showMessageDialog(Cols, "Entra el nombre de columnes!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -57,27 +46,35 @@ public class CrearMaquina extends JFrame {
             JOptionPane.showMessageDialog(Cols, "Entra el nom del tauler!", "Error", JOptionPane.ERROR_MESSAGE);
           } else if (x == 0) {
             JOptionPane.showMessageDialog(TriaDiff, "Selecciona una dificultat!", "Error", JOptionPane.ERROR_MESSAGE);
+          } else if (Integer.parseInt(f) < 3) {
+            JOptionPane.showMessageDialog(Fils, "Mínim nombre de files: 3", "Nombre files incorrecte", JOptionPane.WARNING_MESSAGE);
+          } else if (Integer.parseInt(c) < 3) {
+            JOptionPane.showMessageDialog(Cols, "Mínim nombre de columnes: 3", "Nombre columnes incorrecte", JOptionPane.WARNING_MESSAGE);
+          } else if (Integer.parseInt(f) > 20) {
+            JOptionPane.showMessageDialog(Fils, "Màxim nombre de files: 20", "Nombre files incorrecte", JOptionPane.WARNING_MESSAGE);
+          } else if (Integer.parseInt(c) > 20) {
+            JOptionPane.showMessageDialog(Fils, "Màxim nombre de columnes: 3", "Nombre columnes incorrecte", JOptionPane.WARNING_MESSAGE);
           } else {
-            if (x == 1) diff = "facil";
-            else if (x == 2) diff = "medio";
-            else if (x == 3) diff = "dificl";
-            id = Idtau.getText();
-            int n = Integer.parseInt(f);
-            int m = Integer.parseInt(c);
-            CtrlDomini.generarHidato(n, m, diff, id);
-            ArrayList<Integer> th = CtrlDomini.getTaulerHid(id);
-            DefaultTableModel model = new DefaultTableModel(n, m) {
-              @Override
-              public boolean isCellEditable(int row, int column) {
-                return false;
+            if (!CtrlDomini.checkIdtauler(id)) {
+              if (x == 1) diff = "facil";
+              else if (x == 2) diff = "medio";
+              else if (x == 3) diff = "dificl";
+              int n = Integer.parseInt(f);
+              int m = Integer.parseInt(c);
+              CtrlDomini.generarHidato(n, m, diff, id);
+              ArrayList<Integer> th = CtrlDomini.getTaulerHid(id);
+              DefaultTableModel model = new DefaultTableModel(n, m) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                  return false;
+                }
+              };
+              for (int i = 0; i < n; ++i) {
+                for (int j = 0; j < m; ++j) {
+                  model.setValueAt(th.get(i * m + j), i, j);
+                }
               }
-            };
-            for (int i = 0; i < n; ++i) {
-              for (int j = 0; j < m; ++j) {
-                model.setValueAt(th.get(i * m + j), i, j);
-              }
-            }
-            Resultat.setModel(model);
+              Resultat.setModel(model);
             /*for (int i = 0; i < Integer.parseInt(f); i++) {
                 for (int j = 0; j < Integer.parseInt(c); j++) {
                     //Resultat.prepareRenderer(Resultat.getCellRenderer(i,j), i, j);
@@ -85,20 +82,17 @@ public class CrearMaquina extends JFrame {
                     if (Resultat.getModel().getValueAt(i,j).equals("0")) Resultat.getModel().setValueAt("", i, j);
                 }
             }*/
+            } else JOptionPane.showMessageDialog(Idtau, "Nom de tauler ja existent", "Identificador incorrecte", JOptionPane.WARNING_MESSAGE);
           }
         } catch (Exception ex) {
           ex.printStackTrace();
         }
-
       }
     });
     descartaButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        if (id != null) {
-          CtrlDomini.esborraTauler(id);
-          CtrlDomini.esborraReferenciaTauler(id);
-        }
+        if (id != null) CtrlDomini.esborraTauler(id);
         setVisible(false);
         ant.setVisible(true);
       }
@@ -106,6 +100,7 @@ public class CrearMaquina extends JFrame {
     guardarButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
+        if (id != null) CtrlDomini.guardaReferenciaTauler(id);
         setVisible(false);
         ant.setVisible(true);
       }

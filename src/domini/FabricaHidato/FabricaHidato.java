@@ -88,7 +88,6 @@ public class FabricaHidato {
 
     copia(G, t);
     CtrlTauler.guardaTauler(t,id);
-    CtrlDomini.guardaReferenciaTauler(id);
 
     //++num;  // identificador per a la solució i tauler inicial seguents
   }

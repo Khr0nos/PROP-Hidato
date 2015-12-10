@@ -115,7 +115,8 @@ public class Algorismes {
             fixades[i] = list.get(i);
         }
 
-        resolver(r,c,1,0);
-        return tauler;
+        boolean b = resolver(r, c, 1, 0);
+        if (b) return tauler;
+        else return null;
     }
 }

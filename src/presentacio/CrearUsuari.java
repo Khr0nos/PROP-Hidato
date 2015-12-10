@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Vector;
 
 /**
  * Created by MAX on 09/12/2015.
@@ -25,7 +26,7 @@ public class CrearUsuari extends JFrame {
   private JButton generarElTaulerButton;
   private String f = "0";
   private String c = "0";
-  private String id;
+  private String id = null;
   private DefaultTableModel model;
 
   public CrearUsuari(Crear ant, String usr) {
@@ -42,22 +43,22 @@ public class CrearUsuari extends JFrame {
           f = Fils.getText();
           c = Cols.getText();
           id = Idtau.getText();
-          if (Integer.parseInt(f) < 3) {
+          if (id.equals("")) {
+            JOptionPane.showMessageDialog(Cols, "Entra el nom del tauler!", "Error", JOptionPane.ERROR_MESSAGE);
+          } else if (CtrlDomini.checkIdtauler(id)) {
+            JOptionPane.showMessageDialog(Idtau, "Nom de tauler ja existent", "Identificador incorrecte", JOptionPane.WARNING_MESSAGE);
+          } else if (f.equals("")) {
+            JOptionPane.showMessageDialog(Fils, "Entra el nombre de files!", "Error", JOptionPane.ERROR_MESSAGE);
+          } else if (c.equals("")) {
+            JOptionPane.showMessageDialog(Cols, "Entra el nombre de columnes!", "Error", JOptionPane.ERROR_MESSAGE);
+          } else if (Integer.parseInt(f) < 3) {
             JOptionPane.showMessageDialog(Fils, "Mínim nombre de files: 3", "Nombre files incorrecte", JOptionPane.WARNING_MESSAGE);
           } else if (Integer.parseInt(c) < 3) {
             JOptionPane.showMessageDialog(Cols, "Mínim nombre de columnes: 3", "Nombre columnes incorrecte", JOptionPane.WARNING_MESSAGE);
           } else if (Integer.parseInt(f) > 20) {
             JOptionPane.showMessageDialog(Fils, "Màxim nombre de files: 20", "Nombre files incorrecte", JOptionPane.WARNING_MESSAGE);
           } else if (Integer.parseInt(c) > 20) {
-            JOptionPane.showMessageDialog(Fils, "Màxim nombre de columnes: 3", "Nombre columnes incorrecte", JOptionPane.WARNING_MESSAGE);
-          } else if (CtrlDomini.checkIdtauler(id)) {
-            JOptionPane.showMessageDialog(Fils, "Nom de tauler ja existent", "Identificador incorrecte", JOptionPane.WARNING_MESSAGE);
-          } else if (f.equals("")) {
-            JOptionPane.showMessageDialog(Fils, "Entra el nombre de files!", "Error", JOptionPane.ERROR_MESSAGE);
-          } else if (c.equals("")) {
-            JOptionPane.showMessageDialog(Cols, "Entra el nombre de columnes!", "Error", JOptionPane.ERROR_MESSAGE);
-          } else if (id.equals("")) {
-            JOptionPane.showMessageDialog(Cols, "Entra el nom del tauler!", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(Fils, "Màxim nombre de columnes: 20", "Nombre columnes incorrecte", JOptionPane.WARNING_MESSAGE);
           } else {
             int n = Integer.parseInt(f);
             int m = Integer.parseInt(c);
@@ -77,7 +78,7 @@ public class CrearUsuari extends JFrame {
     generarElTaulerButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        if (!Objects.equals(f, "0") && !Objects.equals(c, "0")) {
+        if (!Objects.equals(f, "0") && !Objects.equals(c, "0") && teValors(model)) {
           int n = Integer.parseInt(f);
           int m = Integer.parseInt(c);
           ArrayList<Integer> t = new ArrayList<Integer>();
@@ -97,8 +98,9 @@ public class CrearUsuari extends JFrame {
     descartarButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        CtrlDomini.esborraTauler(id);
-        CtrlDomini.esborraReferenciaTauler(id);
+        if (id != null) {
+          CtrlDomini.esborraTauler(id);
+        }
         setVisible(false);
         ant.setVisible(true);
       }
@@ -106,10 +108,20 @@ public class CrearUsuari extends JFrame {
     guardarButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
+        if (id != null) CtrlDomini.guardaReferenciaTauler(id);
         setVisible(false);
         ant.setVisible(true);
       }
     });
+  }
+
+  private boolean teValors(DefaultTableModel model) {
+    for (int i = 0; i < model.getRowCount(); i++) {
+      for (int j = 0; j < model.getColumnCount(); j++) {
+        if (((Vector)model.getDataVector().elementAt(i)).elementAt(j).equals("1")) return true;
+      }
+    }
+    return false;
   }
 
   {

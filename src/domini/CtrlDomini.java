@@ -93,9 +93,7 @@ public class CtrlDomini {
     boolean b = Algorismes.hasSol(th);
     if (b) {
       CtrlTauler.guardaTauler(th,id);
-      TaulerHidato aux = new TaulerHidato(m,n,a,t);
-      TaulerHidato sol = Algorismes.solve(aux);
-      CtrlTauler.guardaTauler(sol,"solucio" + id);
+      CtrlTauler.guardaTauler(Algorismes.solve(th),"solucio" + id);
     }
     return b;
   }
@@ -108,6 +106,7 @@ public class CtrlDomini {
   public static void esborraTauler(String id){
     CtrlPersistencia.deleteFile("src/JocsProva/"+ id +".txt");
     CtrlPersistencia.deleteFile("src/JocsProva/solucio"+ id +".txt");
+    CtrlDomini.esborraReferenciaTauler(id);
   }
 
   public static void esborraPartides(String usr) {
@@ -143,12 +142,14 @@ public class CtrlDomini {
   }
   public static void esborraReferenciaTauler(String id) {
     try {
+      CtrlPersistencia.setSeparator("");
       ArrayList<ArrayList<String>> Taulers = CtrlPersistencia.loadTable("src/JocsProva/Jocs.txt");
       for (int i = Taulers.size() - 1; i >= 0; i--) {
         ArrayList<String> fila = Taulers.get(i);
         if (fila.get(0).equals("src/JocsProva/" + id + ".txt")) Taulers.remove(i);
       }
       CtrlPersistencia.storeTable("src/JocsProva/Jocs.txt", Taulers);
+      CtrlPersistencia.setSeparator(" ");
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -156,28 +157,30 @@ public class CtrlDomini {
   //PRE: cal haver comprovat id amb checkIdtauler
   public static void guardaReferenciaTauler(String id) {
     try {
+      CtrlPersistencia.setSeparator("");
       ArrayList<ArrayList<String>> Taulers = CtrlPersistencia.loadTable("src/JocsProva/Jocs.txt");
       ArrayList<String> tauler = new ArrayList<String>();
       tauler.add("src/JocsProva/" + id + ".txt");
       Taulers.add(tauler);
       CtrlPersistencia.storeTable("src/JocsProva/Jocs.txt", Taulers);
+      CtrlPersistencia.setSeparator(" ");
     } catch (IOException e) {
       e.printStackTrace();
     }
   }
 
   public static boolean checkIdtauler(String id) {
-    boolean ret = false;
     try {
+      CtrlPersistencia.setSeparator("");
       ArrayList<ArrayList<String>> Taulers = CtrlPersistencia.loadTable("src/JocsProva/Jocs.txt");
+      CtrlPersistencia.setSeparator(" ");
       for (int i = 0; i < Taulers.size(); i++) {
         ArrayList<String> tauler = Taulers.get(i);
-        //String idTauler = tauler.substring(14,(tauler.length()-4));
-        ret = (tauler.get(0).equals("src/JocsProva/" + id + ".txt"));        //true si el id de tauler ja existeix
+        if (tauler.get(0).equals("src/JocsProva/" + id + ".txt")) return true;        //true si el id de tauler ja existeix
       }
     } catch (IOException e) {
       e.printStackTrace();
     }
-    return ret;
+    return false;
   }
 }
