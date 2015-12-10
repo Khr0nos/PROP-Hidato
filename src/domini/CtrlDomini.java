@@ -21,6 +21,7 @@ public class CtrlDomini {
   private static RankingGeneral RG;
   private static RankingPersonal RP;
   private static RankingPerTipus RT;
+  private static ArrayList<String> taulersAutor;
   //private static CtrlTauler CT;
   //private static Algorismes A;
 
@@ -92,9 +93,9 @@ public class CtrlDomini {
     boolean b = Algorismes.hasSol(th);
     if (b) {
       CtrlTauler.guardaTauler(th,id);
-      CtrlDomini.guardaReferenciaTauler(id);
       TaulerHidato aux = new TaulerHidato(m,n,a,t);
-      CtrlTauler.guardaTauler(Algorismes.solve(aux),"solucio" + id);
+      TaulerHidato sol = Algorismes.solve(aux);
+      CtrlTauler.guardaTauler(sol,"solucio" + id);
     }
     return b;
   }
@@ -125,7 +126,21 @@ public class CtrlDomini {
       e.printStackTrace();
     }
   }
-
+  public static ArrayList<String> taulersAutor(String usr) {
+    try {
+      taulersAutor = new ArrayList<String>(0);
+      ArrayList<ArrayList<String>> taulers = CtrlPersistencia.loadTable("src/JocsProva/Jocs.txt");
+      for (int i = 0; i < taulers.size(); ++i) {
+        ArrayList<ArrayList<String>> t = CtrlPersistencia.loadTable(taulers.get(i).get(0));
+        String id = taulers.get(i).get(0).substring(14, taulers.get(i).get(0).length()-4);
+        if (t.get(0).get(2).equals(usr)) taulersAutor.add(id);
+      }
+    }
+    catch (Exception e) {
+      e.printStackTrace();
+    }
+    return taulersAutor;
+  }
   public static void esborraReferenciaTauler(String id) {
     try {
       ArrayList<ArrayList<String>> Taulers = CtrlPersistencia.loadTable("src/JocsProva/Jocs.txt");
@@ -138,7 +153,6 @@ public class CtrlDomini {
       e.printStackTrace();
     }
   }
-
   //PRE: cal haver comprovat id amb checkIdtauler
   public static void guardaReferenciaTauler(String id) {
     try {
