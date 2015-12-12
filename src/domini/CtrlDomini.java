@@ -23,8 +23,6 @@ public class CtrlDomini {
   private static RankingPerTipus RT;
   private static ArrayList<String> taulersAutor;
   private static  TaulerHidato Tauler;
-  //private static CtrlTauler CT;
-  //private static Algorismes A;
 
   public static String getPassword(String usr) {
     new CtrlUser();
@@ -89,20 +87,13 @@ public class CtrlDomini {
     else FabricaHidato.genera_hidato(m,n,tipoDificultad.facil,id);
   }
 
-  public static boolean generarHidatoUser(int m, int n, String a, ArrayList<Integer> t, String id){
-    TaulerHidato th = new TaulerHidato(m, n, a, t);
-    boolean b = Algorismes.hasSol(th);
+  public static boolean guardarHidato(String id) {
+    boolean b = Algorismes.hasSol(Tauler);
     try {
       if (b) {
-        CtrlTauler.guardaTauler(th, id);
-        TaulerHidato aux = new TaulerHidato(m, n, a, t);
-        TaulerHidato sol = Algorismes.solve(aux);
+        CtrlTauler.guardaTauler(Tauler, id);
+        TaulerHidato sol = Algorismes.solve(Tauler);
         CtrlTauler.guardaTauler(sol, "solucio" + id);
-        ArrayList<ArrayList<String>> jocs = CtrlPersistencia.loadTable("src/JocsProva/Jocs.txt");
-        ArrayList<String> line = new ArrayList<>();
-        line.add("src/JocsProva/" + id + ".txt");
-        jocs.add(line);
-        CtrlPersistencia.storeTable("src/JocsProva/Jocs.txt",jocs);
       }
     } catch (Exception e) {
       e.printStackTrace();
@@ -115,7 +106,9 @@ public class CtrlDomini {
     return t.getTauler();
   }
 
-  public static void carregaTaulerHid(String id){
+  public static void iniTaulerHidato(int n, int m, String usr) { Tauler = new TaulerHidato(n,m,usr); }
+
+  public static void carregaTaulerHidato(String id){
     Tauler = CtrlTauler.carregaTauler(id);
   }
 
@@ -124,6 +117,10 @@ public class CtrlDomini {
   public static int getColumnes() { return Tauler.getAncho(); }
 
   public static int getValorAt(int i, int j) { return Tauler.getNumero(i,j); }
+
+  public static void setValorAt(int i, int j, int val) { Tauler.setNumero(i,j,val); }
+
+  public static void setFixedAt(int i, int j) { Tauler.setFixed(i,j);}
 
   public static void esborraTauler(String id){
     try {
@@ -203,7 +200,6 @@ public class CtrlDomini {
       ArrayList<ArrayList<String>> Taulers = CtrlPersistencia.loadTable("src/JocsProva/Jocs.txt");
       for (int i = 0; i < Taulers.size(); i++) {
         ArrayList<String> tauler = Taulers.get(i);
-        //String idTauler = tauler.substring(14,(tauler.length()-4));
         ret = (tauler.get(0).equals("src/JocsProva/" + id + ".txt"));        //true si el id de tauler ja existeix
       }
     } catch (IOException e) {
