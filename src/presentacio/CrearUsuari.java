@@ -34,7 +34,7 @@ public class CrearUsuari extends JFrame {
     setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     setVisible(true);
     setLocationRelativeTo(null);
-
+    Tauler.putClientProperty("terminateEditOnFocusLost",Boolean.TRUE);
     generarPlantillaButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
@@ -77,6 +77,7 @@ public class CrearUsuari extends JFrame {
     guardarButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
+        Tauler.clearSelection();
         if (!Objects.equals(f, "0") && !Objects.equals(c, "0") && teValors(model)) {
           int n = Integer.parseInt(f);
           int m = Integer.parseInt(c);
@@ -142,8 +143,8 @@ public class CrearUsuari extends JFrame {
         model.setValueAt(String.valueOf(CtrlDomini.getValorAt(i,j)), i, j);
       }
     }
+    Tauler.putClientProperty("terminateEditOnFocusLost",Boolean.TRUE);
     Tauler.setModel(model);
-
     generarPlantillaButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
@@ -183,6 +184,7 @@ public class CrearUsuari extends JFrame {
       @Override
       public void actionPerformed(ActionEvent e) {
         if (!Objects.equals(f, "0") && !Objects.equals(c, "0") && teValors(model)) {
+          Tauler.clearSelection();
           int n = Integer.parseInt(f);
           int m = Integer.parseInt(c);
           //ArrayList<Integer> t = new ArrayList<Integer>();
