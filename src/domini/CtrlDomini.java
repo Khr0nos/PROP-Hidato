@@ -158,10 +158,18 @@ public class CtrlDomini {
     try {
       taulersAutor = new ArrayList<String>(0);
       ArrayList<ArrayList<String>> taulers = CtrlPersistencia.loadTable("src/JocsProva/Jocs.txt");
+      ArrayList<ArrayList<String>> partides = CtrlPersistencia.loadTable("src/JocsProva/Partides.txt");
       for (int i = 0; i < taulers.size(); ++i) {
         ArrayList<ArrayList<String>> t = CtrlPersistencia.loadTable(taulers.get(i).get(0));
         String id = taulers.get(i).get(0).substring(14, taulers.get(i).get(0).length()-4);
-        if (t.get(0).get(2).equals(usr)) taulersAutor.add(id);
+        if (t.get(0).get(2).equals(usr)){
+          boolean b = true;
+          for (int j = 0; j < partides.size(); ++j){
+            String idp = partides.get(j).get(1);
+            if (id.equals(idp)) b = false;
+          }
+          if (b) taulersAutor.add(id);
+        }
       }
     }
     catch (Exception e) {
