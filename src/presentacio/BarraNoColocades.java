@@ -59,7 +59,7 @@ public class BarraNoColocades extends JPanel{
         seg.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (pos != ultim)++pos;
+                if (pos != t.size()-1)++pos;
                 Num.setText(Integer.toString(t.get(pos)));
                 add(Num,BorderLayout.CENTER);
                 Tauler.setNum(Integer.parseInt(Num.getText()));
