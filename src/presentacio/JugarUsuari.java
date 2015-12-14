@@ -10,6 +10,7 @@ public class JugarUsuari extends JFrame {
 
     private JPanel JU;
     private Tauler T;
+    private BarraNoColocades BNC;
 
     public JugarUsuari(SeleccionaTauler ant,String usr,String idtau ){
         setContentPane(JU);
@@ -19,6 +20,7 @@ public class JugarUsuari extends JFrame {
         setSize(500,500);
         setLocationRelativeTo(null);
         T = new Tauler(idtau);
+        BNC = new BarraNoColocades(idtau);
         setVisible(false);
     }
 }

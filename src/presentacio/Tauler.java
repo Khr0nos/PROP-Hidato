@@ -17,6 +17,11 @@ public class Tauler extends JFrame implements  MouseListener{
     private JLabel tauler[][];
     private JPanel PT;
     private int ultim;
+    private static int num;
+
+    public static void setNum(int n){
+        num = n;
+    }
 
     public void mouseEntered(MouseEvent ev){
 
@@ -35,7 +40,7 @@ public class Tauler extends JFrame implements  MouseListener{
         int y = ev.getX();
         int i = x*altura/400;
         int j = y*amplada/400;
-        tauler[i][j].setText("CLICK");
+        tauler[i][j].setText(Integer.toString(num));
     }
 
     public Tauler(String idtau){

@@ -126,7 +126,6 @@ public class CtrlDomini {
     }
     return max;
   }
-
   public static int getValorAt(int i, int j) { return Tauler.getNumero(i,j); }
 
   public static void setValorAt(int i, int j, int val) { Tauler.setNumero(i,j,val); }
