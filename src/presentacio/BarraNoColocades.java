@@ -10,8 +10,7 @@ import java.awt.event.MouseListener;
 /**
  * Created by MAX on 14/12/2015.
  */
-public class BarraNoColocades extends JFrame implements MouseListener {
-    private JPanel BNC;
+public class BarraNoColocades extends JPanel implements MouseListener {
     private JLabel barra[];
     private int ultim;
 
@@ -37,14 +36,10 @@ public class BarraNoColocades extends JFrame implements MouseListener {
     public BarraNoColocades(String idtau){
         CtrlDomini.carregaTaulerHidato(idtau);
         ultim = CtrlDomini.getUltim();
-        BNC = new JPanel(new GridLayout(ultim,1));
-        setContentPane(BNC);
+        setLayout(new GridLayout(ultim,1));
         addMouseListener(this);
-        pack();
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
         setSize(50,400);
-        setLocationRelativeTo(null);
         barra = new JLabel[ultim];
         for (int i = 0; i < ultim; ++i){
             barra[i] = new JLabel();
@@ -52,7 +47,7 @@ public class BarraNoColocades extends JFrame implements MouseListener {
             barra[i].setOpaque(true);
             barra[i].setBorder(BorderFactory.createLineBorder(Color.BLACK));
             barra[i].setText(Integer.toString(i+1));
-            BNC.add(barra[i]);
+            add(barra[i]);
         }
     }
 }

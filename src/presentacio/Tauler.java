@@ -11,11 +11,11 @@ import java.util.ArrayList;
 /**
  * Created by MAX on 14/12/2015.
  */
-public class Tauler extends JFrame implements  MouseListener{
+public class Tauler extends JPanel implements  MouseListener{
     private int altura;
     private int amplada;
     private JLabel tauler[][];
-    private JPanel PT;
+    //private JPanel PT;
     private int ultim;
     private static int num;
 
@@ -49,14 +49,10 @@ public class Tauler extends JFrame implements  MouseListener{
         altura = CtrlDomini.getFiles();
         amplada = CtrlDomini.getColumnes();
         ArrayList<Integer> tau = CtrlDomini.getTaulerHid(idtau);
-        PT = new JPanel(new GridLayout(altura,amplada));
-        setContentPane(PT);
+        setLayout(new GridLayout(altura,amplada));
         addMouseListener(this);
-        pack();
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
         setSize(400,400);
-        setLocationRelativeTo(null);
         tauler = new JLabel[altura][amplada];
         for (int i = 0; i < altura; ++i ){
             for (int j = 0; j < amplada; ++j){
@@ -81,7 +77,7 @@ public class Tauler extends JFrame implements  MouseListener{
                         tauler[i][j].setForeground(Color.WHITE);
                     }
                 }
-                PT.add(tauler[i][j]);
+                add(tauler[i][j]);
             }
         }
     }
