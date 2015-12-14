@@ -11,48 +11,37 @@ import java.util.ArrayList;
 /**
  * Created by MAX on 14/12/2015.
  */
-public class Tauler extends JPanel implements  MouseListener{
+public class Tauler extends JPanel implements MouseListener{
+
     private int altura;
     private int amplada;
     private JLabel tauler[][];
-    //private JPanel PT;
     private int ultim;
     private static int num;
 
-    public static void setNum(int n){
-        num = n;
-    }
-
-    public void mouseEntered(MouseEvent ev){
-
-    }
-    public void mouseExited(MouseEvent ev){
-
-    }
-    public void mousePressed(MouseEvent ev){
-
-    }
-    public void mouseReleased(MouseEvent ev){
-
-    }
-    public void mouseClicked(MouseEvent ev){
-        int x = ev.getY();
-        int y = ev.getX();
-        int i = x*altura/400;
-        int j = y*amplada/400;
+    public static void setNum(int n){num = n;}
+    public void mousePressed(MouseEvent event){}
+    public void mouseExited(MouseEvent event) {}
+    public void mouseReleased(MouseEvent event) {}
+    public void mouseClicked(MouseEvent event) {
+        int x = event.getY();
+        int y = event.getX();
+        int i = x*altura/getHeight();
+        int j = y*amplada/getWidth();
         tauler[i][j].setText(Integer.toString(num));
+
     }
+    public void mouseEntered(MouseEvent event) {};
 
     public Tauler(String idtau){
+        addMouseListener(this);
         CtrlDomini.carregaTaulerHidato(idtau);
         ultim = CtrlDomini.getUltim();
         altura = CtrlDomini.getFiles();
         amplada = CtrlDomini.getColumnes();
         ArrayList<Integer> tau = CtrlDomini.getTaulerHid(idtau);
         setLayout(new GridLayout(altura,amplada));
-        addMouseListener(this);
         setVisible(true);
-        setSize(400,400);
         tauler = new JLabel[altura][amplada];
         for (int i = 0; i < altura; ++i ){
             for (int j = 0; j < amplada; ++j){

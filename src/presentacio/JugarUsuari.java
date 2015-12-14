@@ -13,7 +13,7 @@ public class JugarUsuari extends JFrame {
     private BarraNoColocades BNC;
 
     public JugarUsuari(SeleccionaTauler ant,String usr,String idtau ){
-        JU = new JPanel(new BorderLayout());
+        JU = new JPanel(new GridLayout(2,1));
         setContentPane(JU);
         pack();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -21,8 +21,8 @@ public class JugarUsuari extends JFrame {
         setSize(500,500);
         setLocationRelativeTo(null);
         T = new Tauler(idtau);
-        add(T,BorderLayout.CENTER);
+        add(T);
         BNC = new BarraNoColocades(idtau);
-        add(BNC,BorderLayout.CENTER);
+        add(BNC);
     }
 }

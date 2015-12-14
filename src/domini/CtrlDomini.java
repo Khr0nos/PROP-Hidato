@@ -14,8 +14,8 @@ import domini.Usuari.CtrlUser;
 import persistencia.CtrlPersistencia;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Objects;
+import java.io.InterruptedIOException;
+import java.util.*;
 
 //Controlador per a comunicar la capa de domini amb la capa de presentació: CtrlDomini <---> Vista de la presentació
 public class CtrlDomini {
@@ -23,7 +23,7 @@ public class CtrlDomini {
   private static RankingPersonal RP;
   private static RankingPerTipus RT;
   private static ArrayList<String> taulersAutor;
-  private static  TaulerHidato Tauler;
+  private static TaulerHidato Tauler;
 
   public static String getPassword(String usr) {
     new CtrlUser();
@@ -38,7 +38,9 @@ public class CtrlDomini {
     RP = new RankingPersonal(usr);
   }
 
-  public static void inicialitzaRankingTipus(String d, int n) { RT = new RankingPerTipus(d,n); }
+  public static void inicialitzaRankingTipus(String d, int n) {
+    RT = new RankingPerTipus(d, n);
+  }
 
   public static int getnUsuaris() {
     return RG.getnUsuaris();
@@ -68,24 +70,29 @@ public class CtrlDomini {
     return RP.getBestTime(facil);
   }
 
-  public static int getNEntrades() { return RT.getTempsJugador().size(); }
+  public static int getNEntrades() {
+    return RT.getTempsJugador().size();
+  }
 
   public static double getEntradaTemps(int i) {
     ArrayList<Tupla> a = RT.getTempsJugador();
     return a.get(i).getTemps();
   }
+
   public static String getEntradaUsuari(int i) {
     ArrayList<Tupla> a = RT.getTempsJugador();
     return a.get(i).getUser();
   }
+
   public static String getIDtauler(int i) {
     ArrayList<Tupla> a = RT.getTempsJugador();
     return a.get(i).getId();
   }
-  public static void generarHidato(int m,int n, String diff, String id) throws Exception{
-    if (Objects.equals(diff, "facil")) FabricaHidato.genera_hidato(m,n,tipoDificultad.facil,id);
-    else if (Objects.equals(diff, "medio")) FabricaHidato.genera_hidato(m,n,tipoDificultad.medio,id);
-    else FabricaHidato.genera_hidato(m,n,tipoDificultad.facil,id);
+
+  public static void generarHidato(int m, int n, String diff, String id) throws Exception {
+    if (Objects.equals(diff, "facil")) FabricaHidato.genera_hidato(m, n, tipoDificultad.facil, id);
+    else if (Objects.equals(diff, "medio")) FabricaHidato.genera_hidato(m, n, tipoDificultad.medio, id);
+    else FabricaHidato.genera_hidato(m, n, tipoDificultad.facil, id);
   }
 
   public static boolean guardarHidato(String id) {
@@ -102,9 +109,37 @@ public class CtrlDomini {
     return b;
   }
 
-  public static ArrayList<Integer> getTaulerHid(String id){
+  public static ArrayList<Integer> getTaulerHid(String id) {
     TaulerHidato t = CtrlTauler.carregaTauler(id);
     return t.getTauler();
+  }
+
+  public static ArrayList<Integer> perColocar(String id) {
+    List<Integer> fixades;
+    ArrayList<Integer> falten;
+    TaulerHidato t = CtrlTauler.carregaTauler(id);
+    int h = t.getAlto();
+    int w = t.getAncho();
+    fixades = new ArrayList<>();
+    for (int i = 0; i < h; ++i){
+      for (int j = 0; j < w; ++j){
+        if (t.estaFija(i,j)) fixades.add(t.getNumero(i,j));
+      }
+    }
+    Collections.sort(fixades);
+    falten = new ArrayList<>();
+    boolean b = true;
+    for (int i = 1; i <= getUltim(); ++i){
+      b = true;
+      for (int j = 0; j < fixades.size() && b; ++j){
+        if (fixades.get(j).equals(i)) b = false;
+        if (!fixades.get(j).equals(i) && fixades.get(j) > i){
+          falten.add(i);
+          b = false;
+        }
+      }
+    }
+    return falten;
   }
 
   public static void iniTaulerHidato(int n, int m, String usr) { Tauler = new TaulerHidato(n,m,usr); }
