@@ -6,3 +6,5 @@ src/JocsProva/tauler5.txt
 src/JocsProva/tauler4.txt 
 src/JocsProva/tauler5.txt 
 src/JocsProva/taulerGran.txt 
+src/JocsProva/tauler6.txt 
+src/JocsProva/tauler7.txt 

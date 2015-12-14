@@ -3,6 +3,7 @@ package domini;
 import domini.Algorismes.Algorismes;
 import domini.FabricaHidato.FabricaHidato;
 import domini.JocHidato.tipoDificultad;
+import domini.Partida.Partida;
 import domini.Ranking.RankingGeneral;
 import domini.Ranking.RankingPerTipus;
 import domini.Ranking.RankingPersonal;
@@ -116,6 +117,16 @@ public class CtrlDomini {
 
   public static int getColumnes() { return Tauler.getAncho(); }
 
+  public static int getUltim(){
+    int max = 0;
+    for (int i = 0; i < getFiles(); ++i){
+      for (int j = 0; j < getColumnes(); ++j){
+        if (Tauler.getNumero(i,j) > max ) max = Tauler.getNumero(i,j);
+      }
+    }
+    return max;
+  }
+
   public static int getValorAt(int i, int j) { return Tauler.getNumero(i,j); }
 
   public static void setValorAt(int i, int j, int val) { Tauler.setNumero(i,j,val); }
@@ -185,14 +196,7 @@ public class CtrlDomini {
       for (int i = 0; i < taulers.size(); ++i) {
         ArrayList<ArrayList<String>> t = CtrlPersistencia.loadTable(taulers.get(i).get(0));
         String id = taulers.get(i).get(0).substring(14, taulers.get(i).get(0).length()-4);
-        if (t.get(0).get(2).equals(usr) || t.get(0).get(2).equals("maquina")){
-          boolean b = true;
-          for (int j = 0; j < partides.size(); ++j){
-            String idp = partides.get(j).get(1);
-            if (id.equals(idp)) b = false;
-          }
-          if (b) taulersAutor.add(id);
-        }
+        taulersAutor.add(id);
       }
     }
     catch (Exception e) {
@@ -237,5 +241,9 @@ public class CtrlDomini {
       e.printStackTrace();
     }
     return ret;
+  }
+
+  public static void crear_Partida(String idu,String idtau) {
+
   }
 }

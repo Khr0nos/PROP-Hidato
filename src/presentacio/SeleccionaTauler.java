@@ -94,6 +94,8 @@ public class SeleccionaTauler extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 if (i == 2) {
                     //PARTIDA NORMAL
+                    JugarUsuari ju = new JugarUsuari(actual,usr,list1.getSelectedValue().toString());
+                    setVisible(false);
                 } else if (i == 3) {
                     //PARTIDA MAQUINA
                 }

@@ -36,7 +36,7 @@ public class Partida {
 
         original = joc.getTauler();
         modificat = original.clone();
-        solucio = Algorismes.solve(original);
+        //solucio = Algorismes.solve(original);
     }
 
     // Constructor usat per ctrlPartida
