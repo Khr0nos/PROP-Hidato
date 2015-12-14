@@ -24,6 +24,14 @@ public class MenuPrincipal extends JFrame {
     setVisible(true);
     setLocationRelativeTo(null);
     actual = this;
+    playButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        PlayMenu p = new PlayMenu(actual,usr);
+        p.setVisible(true);
+        setVisible(false);
+      }
+    });
     exitButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {

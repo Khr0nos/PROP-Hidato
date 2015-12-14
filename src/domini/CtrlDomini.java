@@ -177,6 +177,29 @@ public class CtrlDomini {
     }
     return taulersAutor;
   }
+  public static ArrayList<String> taulersAutorMaquina(String usr) {
+    try {
+      taulersAutor = new ArrayList<String>(0);
+      ArrayList<ArrayList<String>> taulers = CtrlPersistencia.loadTable("src/JocsProva/Jocs.txt");
+      ArrayList<ArrayList<String>> partides = CtrlPersistencia.loadTable("src/JocsProva/Partides.txt");
+      for (int i = 0; i < taulers.size(); ++i) {
+        ArrayList<ArrayList<String>> t = CtrlPersistencia.loadTable(taulers.get(i).get(0));
+        String id = taulers.get(i).get(0).substring(14, taulers.get(i).get(0).length()-4);
+        if (t.get(0).get(2).equals(usr) || t.get(0).get(2).equals("maquina")){
+          boolean b = true;
+          for (int j = 0; j < partides.size(); ++j){
+            String idp = partides.get(j).get(1);
+            if (id.equals(idp)) b = false;
+          }
+          if (b) taulersAutor.add(id);
+        }
+      }
+    }
+    catch (Exception e) {
+      e.printStackTrace();
+    }
+    return taulersAutor;
+  }
   public static void esborraReferenciaTauler(String id) {
     try {
       ArrayList<ArrayList<String>> Taulers = CtrlPersistencia.loadTable("src/JocsProva/Jocs.txt");

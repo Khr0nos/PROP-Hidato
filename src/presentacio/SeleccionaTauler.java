@@ -18,8 +18,17 @@ public class SeleccionaTauler extends JFrame{
     private JButton okButton;
     private SeleccionaTauler actual;
 
-    public void ActualitzaList(String usr) {
+    private void ActualitzaList(String usr) {
         ArrayList<String> taulers = CtrlDomini.taulersAutor(usr);
+        DefaultListModel<String> data = new DefaultListModel<>();
+        for (int j = 0; j < taulers.size(); ++j) {
+            data.addElement(taulers.get(j));
+        }
+        list1.setModel(data);
+    }
+
+    private void ActualitzaListAmbMaquina(String usr) {
+        ArrayList<String> taulers = CtrlDomini.taulersAutorMaquina(usr);
         DefaultListModel<String> data = new DefaultListModel<>();
         for (int j = 0; j < taulers.size(); ++j) {
             data.addElement(taulers.get(j));
@@ -61,6 +70,32 @@ public class SeleccionaTauler extends JFrame{
                     //MODIFICA
                     CrearUsuari c = new CrearUsuari(actual,usr,list1.getSelectedValue().toString());
                     setVisible(false);
+                }
+            }
+        });
+    }
+    public SeleccionaTauler(PlayMenu ant, String usr, int i) {
+        setContentPane(ST);
+        pack();
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setVisible(true);
+        setLocationRelativeTo(null);
+        actual = this;
+        ActualitzaListAmbMaquina(usr);
+        enrereButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ant.setVisible(true);
+                setVisible(false);
+            }
+        });
+        okButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (i == 2) {
+                    //PARTIDA NORMAL
+                } else if (i == 3) {
+                    //PARTIDA MAQUINA
                 }
             }
         });
