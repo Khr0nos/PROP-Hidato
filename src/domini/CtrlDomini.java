@@ -72,7 +72,28 @@ public class CtrlDomini {
     Partida = CtrlPartida.carregarPartida(usr);
   }
 
+  public static void esborraUltimaPartida(String usr, String id) {
+    try {
+      ArrayList<ArrayList<String>> partides = CtrlPersistencia.loadTable("src/JocsProva/Partides.txt");
+      boolean b = false;
+      for (int i = partides.size() - 1; i >= 0 && !b; i--) {
+        ArrayList<String> fila = partides.get(i);
+        if (Objects.equals(fila.get(0), usr) && Objects.equals(fila.get(1), id)) {
+          partides.remove(fila);
+          b = true;
+        }
+      }
+      CtrlPersistencia.storeTable("src/JocsProva/Partides.txt", partides);
+      CtrlPersistencia.deleteFile("src/JocsProva/original." + usr + ".partida");
+      CtrlPersistencia.deleteFile("src/JocsProva/modificat." + usr + ".partida");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
   public static double getTemps() { return Partida.getTime(); }
+
+  public static String getIdTaulerPartida() { return Partida.getJoc().getId(); }
 
   public static int getNPistes() { return Partida.getPistes(); }
 

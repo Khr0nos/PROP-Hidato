@@ -58,8 +58,11 @@ public class CtrlPartida {
     try {
       TaulerHidato orig = CtrlTauler.carregaTauler("original." + path);
       TaulerHidato mod = CtrlTauler.carregaTauler("modificat." + path);
-      ArrayList<ArrayList<String>> partida = CtrlPersistencia.loadTable("src/JocsProva/" + path);
-      ArrayList<String> header = partida.get(0);
+      ArrayList<ArrayList<String>> partida = CtrlPersistencia.loadTable("src/JocsProva/Partides.txt");
+      ArrayList<String> header = new ArrayList<>();
+      for (int i = 0; i < partida.size(); ++i) {
+        if (partida.get(i).get(0).equals(u)) header = partida.get(i);
+      }
       String joc = header.get(1);
       String dif = header.get(2);
       tipoDificultad td;
@@ -78,15 +81,6 @@ public class CtrlPartida {
       int hints = Integer.valueOf(header.get(4));
       JocHidato j = new JocHidato(joc,orig,td);
       p = new Partida(u,j,mod,time,hints);
-      ArrayList<ArrayList<String>> aux = new ArrayList<>();
-      for (int i = 0; i < partida.size(); ++i) {
-        if (!(partida.get(i).get(0).contains(u) && partida.get(i).get(1).contains(p.getJoc().getId()))) {
-          aux.add(partida.get(i));
-        }
-      }
-      CtrlPersistencia.storeTable("src/JocsProva/Partides.txt",aux);
-      CtrlPersistencia.deleteFile("src/JocsProva/modificat." + u + ".partida.txt");
-      CtrlPersistencia.deleteFile("src/JocsProva/original." + u + ".partida.txt");
     } catch (IOException e) {
       e.printStackTrace();
     }

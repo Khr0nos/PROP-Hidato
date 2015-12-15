@@ -33,9 +33,9 @@ public class PlayMenu extends JFrame{
         continuarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                /*JugarUsuari ju = new JugarUsuari(actual,usr)
-                s.setVisible(true);
-                setVisible(false);*/
+                JugarUsuari ju = new JugarUsuari(actual,usr);
+                ju.setVisible(true);
+                setVisible(false);
             }
         });
         partidaMàquinaButton.addActionListener(new ActionListener() {

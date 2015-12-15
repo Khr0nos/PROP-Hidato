@@ -16,6 +16,7 @@ public class Tauler extends JPanel implements MouseListener{
     private int altura;
     private int amplada;
     private JLabel tauler[][];
+
     private int ultim;
     private static int num;
 

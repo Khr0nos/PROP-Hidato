@@ -57,7 +57,10 @@ public class JugarUsuari extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 CtrlDomini.guardarPartida();
-                JOptionPane.showConfirmDialog(guardar,"Partida guardada");
+                String[] opcions = {"Ok"};
+                int n = JOptionPane.showOptionDialog(guardar,
+                        "Partida Guardada", "Guardar", JOptionPane.YES_OPTION,
+                        JOptionPane.QUESTION_MESSAGE, null, opcions, opcions[0]);
             }
         });
         exit.addActionListener(new ActionListener() {
@@ -67,6 +70,64 @@ public class JugarUsuari extends JFrame {
                 int n = JOptionPane.showOptionDialog(exit,
                         "ATENCIÓ!\n" + "Estas apunt de sortir.\n" +
                         "El teu progrés es perdrà, estas segur que vols continuar?",
+                        "Esborra Usuari", JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE, null, opcions, opcions[0]);
+                if (n == JOptionPane.YES_OPTION) {
+                    ant.setVisible(true);
+                    setVisible(false);
+                }
+            }
+        });
+    }
+    public JugarUsuari(PlayMenu ant,String usr){ //CONTINUAR
+        JU = new JPanel(new GridLayout(3,1));
+        setContentPane(JU);
+        pack();
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setVisible(true);
+        setSize(500,500);
+        setLocationRelativeTo(null);
+        CtrlDomini.carregaPartida(usr);
+        String idtau = CtrlDomini.getIdTaulerPartida();
+        T = new Tauler("modificat." + usr + ".partida");
+        add(T);
+        BNC = new BarraNoColocades(idtau);
+        add(BNC);
+        JPanel aux = new JPanel(new GridLayout(1,2));
+        JPanel aux1 = new JPanel(new GridLayout(3,1));
+        JPanel aux2 = new JPanel(new GridLayout(2,1));
+        pista = new JButton("Pista"); aux1.add(pista);
+        guardar = new JButton("Guardar"); aux1.add(guardar);
+        exit = new JButton("Exit"); aux1.add(exit);
+        jl = new JList<>();
+        sc = new JScrollPane(jl); aux2.add(sc);
+        timer = new JLabel(); aux2.add(timer);
+        aux.add(aux1);
+        aux.add(aux2);
+        add(aux);
+        CtrlDomini.esborraUltimaPartida(usr,idtau);
+        pista.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+        guardar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CtrlDomini.guardarPartida();
+                String[] opcions = {"Ok"};
+                int n = JOptionPane.showOptionDialog(guardar,
+                        "Partida Guardada", "Guardar", JOptionPane.YES_OPTION,
+                        JOptionPane.QUESTION_MESSAGE, null, opcions, opcions[0]);
+            }
+        });
+        exit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String[] opcions = {"Si", "No"};
+                int n = JOptionPane.showOptionDialog(exit,
+                        "ATENCIÓ!\n" + "Estas apunt de sortir.\n" +
+                                "El teu progrés es perdrà, estas segur que vols continuar?",
                         "Esborra Usuari", JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE, null, opcions, opcions[0]);
                 if (n == JOptionPane.YES_OPTION) {
