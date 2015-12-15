@@ -30,9 +30,10 @@ public class FabricaHidato {
     G = new Graf(n,m);
 
     // Generació de solució d'Hidato
-    ArrayList<Cella> cami = new ArrayList<Cella>();
+    ArrayList<Cella> cami;
     int k;
     do {
+      cami = new ArrayList<Cella>();
       int aux = rng.nextInt(N);
       G.setValor(aux,1);
       ArrayList<Cella> adj;
