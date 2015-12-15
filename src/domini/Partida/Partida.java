@@ -14,7 +14,7 @@ public class Partida {
 
     //private TaulerHidato original;
     private TaulerHidato modificat;
-    //private TaulerHidato solucio = null;
+    private TaulerHidato solucio = null;
 
     private boolean solucionat = false;
 
@@ -36,7 +36,7 @@ public class Partida {
 
         //original = joc.getTauler();
         modificat = joc.getTauler();
-        //solucio = Algorismes.solve(original);
+        solucio = Algorismes.solve(modificat);
     }
 
     // Constructor usat per ctrlPartida
@@ -49,7 +49,7 @@ public class Partida {
 
         //original = joc.getTauler();
         modificat = joc.getTauler();
-        //solucio = Algorismes.solve(original);
+        solucio = Algorismes.solve(modificat);
     }
 
     public void nouValor(int i, int j, int valor)
