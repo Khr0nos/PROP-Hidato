@@ -59,7 +59,7 @@ public class Partida {
 
         modificat.setNumero(i,j,valor);
 
-        solucionat = (modificat.equals(solucio));
+        solucionat = (modificat.getTauler().equals(solucio.getTauler()));
 
         if (solucionat)
         {
