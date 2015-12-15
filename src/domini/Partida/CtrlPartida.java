@@ -14,13 +14,13 @@ public class CtrlPartida {
 
   static public void guardarPartida(Partida p)
   {
-    String path = p.getUser().getUsername() + ".partida";
+    String path = p.getUser() + ".partida";
     try {
       p.atura();
-      ArrayList<ArrayList<String>> partida = new ArrayList<ArrayList<String>>();
-
+      //ArrayList<ArrayList<String>> partida = new ArrayList<ArrayList<String>>();
+      ArrayList<ArrayList<String>> partida = CtrlPersistencia.loadTable("src/JocsProva/Partides.txt");
       ArrayList<String> header = new ArrayList<String>();
-      header.add(p.getUser().getUsername());
+      header.add(p.getUser());
       header.add(p.getJoc().getId());
       tipoDificultad dif = p.getJoc().getDificultad();
       String td;
@@ -51,10 +51,10 @@ public class CtrlPartida {
     }
   }
 
-  static public Partida carregarPartida(User u)
+  static public Partida carregarPartida(String u)
   {
     Partida p = null;
-    String path = u.getUsername() + ".partida";
+    String path = u + ".partida";
     try {
       TaulerHidato orig = CtrlTauler.carregaTauler("original." + path);
       TaulerHidato mod = CtrlTauler.carregaTauler("modificat." + path);
@@ -78,6 +78,15 @@ public class CtrlPartida {
       int hints = Integer.valueOf(header.get(4));
       JocHidato j = new JocHidato(joc,orig,td);
       p = new Partida(u,j,mod,time,hints);
+      ArrayList<ArrayList<String>> aux = new ArrayList<>();
+      for (int i = 0; i < partida.size(); ++i) {
+        if (!(partida.get(i).get(0).contains(u) && partida.get(i).get(1).contains(p.getJoc().getId()))) {
+          aux.add(partida.get(i));
+        }
+      }
+      CtrlPersistencia.storeTable("src/JocsProva/Partides.txt",aux);
+      CtrlPersistencia.deleteFile("src/JocsProva/modificat." + u + ".partida.txt");
+      CtrlPersistencia.deleteFile("src/JocsProva/original." + u + ".partida.txt");
     } catch (IOException e) {
       e.printStackTrace();
     }

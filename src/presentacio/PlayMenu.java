@@ -12,6 +12,7 @@ public class PlayMenu extends JFrame{
     private JButton partidaMàquinaButton;
     private JButton enrereButton;
     private JPanel PM;
+    private JButton continuarButton;
     private PlayMenu actual;
 
     public PlayMenu(MenuPrincipal ant, String usr) {
@@ -27,6 +28,14 @@ public class PlayMenu extends JFrame{
                 SeleccionaTauler s = new SeleccionaTauler(actual,usr,2);
                 s.setVisible(true);
                 setVisible(false);
+            }
+        });
+        continuarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                /*JugarUsuari ju = new JugarUsuari(actual,usr)
+                s.setVisible(true);
+                setVisible(false);*/
             }
         });
         partidaMàquinaButton.addActionListener(new ActionListener() {

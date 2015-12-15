@@ -68,4 +68,7 @@ public class BarraNoColocades extends JPanel{
 
 
     }
+    public void incPos() {
+        ++pos;
+    }
 }

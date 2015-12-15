@@ -1,4 +1,5 @@
-max tauler1 facil 0.002294356 0
-josep tauler6 facil 4.44 0
-fabio tauler3 facil 0.002294356 0
-xavi tauler4 facil 4.44 0
+max tauler1 facil 0.002294356 0 
+josep tauler6 facil 4.44 0 
+fabio tauler3 facil 0.002294356 0 
+xavi tauler4 facil 4.44 0 
+josep tauler0 dificil 6.54733193 0 

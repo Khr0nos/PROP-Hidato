@@ -28,7 +28,11 @@ public class Tauler extends JPanel implements MouseListener{
         int y = event.getX();
         int i = x*altura/getHeight();
         int j = y*amplada/getWidth();
+        //COMPROVAR SI MOVIMENT ES LEGAL
         tauler[i][j].setText(Integer.toString(num));
+        boolean b = CtrlDomini.moviment(i,j,num);
+        //if (b) completat();
+
 
     }
     public void mouseEntered(MouseEvent event) {};

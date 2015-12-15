@@ -31,9 +31,9 @@ public class DriverPartida {
         } else if (op == 2) {
           System.out.println("Escriu el username:");
           System.out.println("Escriu el password:");
-          String nom = sc.next();
-          String pwd = sc.next();
-          User u = new User(nom,pwd);
+          //String nom = sc.next();
+          //String pwd = sc.next();
+          //User u = new User(nom,pwd);
           System.out.println("Entra l'identificador del Tauler (tauler dels jocs de proves)");
           System.out.println("Entra l'identificador de la partida (nom que vulguis)");
           System.out.println("Entra dificultat (facil, medio o dificil)");
@@ -54,7 +54,7 @@ public class DriverPartida {
           }
           TaulerHidato t = CtrlTauler.carregaTauler(s);
           JocHidato j = new JocHidato(m,t,dif);
-          p = new Partida(u,j);
+          //p = new Partida(u,j);
           if (t != null) {
             System.out.println("Partida amb tauler:");
             t.printTauler();

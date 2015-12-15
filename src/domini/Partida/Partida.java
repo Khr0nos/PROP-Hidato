@@ -7,7 +7,7 @@ import domini.TaulerHidato.TaulerHidato;
 import domini.Usuari.User;
 
 public class Partida {
-    private User user;
+    private String user;
     private JocHidato joc;
     private Time time;
     private int pistes;
@@ -26,7 +26,7 @@ public class Partida {
         pistes = 0;
     }
 
-    public Partida(User u, JocHidato j)
+    public Partida(String u, JocHidato j)
     {
         user = u;
         joc = j;
@@ -40,7 +40,7 @@ public class Partida {
     }
 
     // Constructor usat per ctrlPartida
-    public Partida(User u, JocHidato j, TaulerHidato m, double pre_time, int hints) {
+    public Partida(String u, JocHidato j, TaulerHidato m, double pre_time, int hints) {
         user = u;
         joc = j;
         pistes = hints;
@@ -52,10 +52,12 @@ public class Partida {
         solucio = Algorismes.solve(original);
     }
 
-    public void nouValor(int x, int y, int valor)
+    public void nouValor(int i, int j, int valor)
     {
-        Cella c = modificat.getCella(x, y);
-        c.setNumero(valor);
+        //Cella c = modificat.getCella(x, y);
+        //c.setNumero(valor);
+
+        modificat.setNumero(i,j,valor);
 
         solucionat = (modificat.equals(solucio));
 
@@ -75,7 +77,7 @@ public class Partida {
     }
 
     // Mètodes per al controlador de Partida
-    public User getUser() {
+    public String getUser() {
       return user;
     }
 

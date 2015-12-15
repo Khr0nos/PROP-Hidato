@@ -9,7 +9,7 @@ import domini.Usuari.User;
 import java.util.Scanner;
 
 public class DriverCtrlPartida {
-  public static void main(String args[]) {
+  /*public static void main(String args[]) {
     Scanner n = new Scanner(System.in);
     System.out.println("Per acabar introdueix 0");
     System.out.println("Introdueix opció:");
@@ -63,5 +63,5 @@ public class DriverCtrlPartida {
       System.out.println("intodueix 0 si vols acabar");
       op = n.nextInt();
     }
-  }
+  }*/
 }

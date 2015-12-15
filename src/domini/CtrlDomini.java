@@ -2,7 +2,9 @@ package domini;
 
 import domini.Algorismes.Algorismes;
 import domini.FabricaHidato.FabricaHidato;
+import domini.JocHidato.JocHidato;
 import domini.JocHidato.tipoDificultad;
+import domini.Partida.CtrlPartida;
 import domini.Partida.Partida;
 import domini.Ranking.RankingGeneral;
 import domini.Ranking.RankingPerTipus;
@@ -14,7 +16,6 @@ import domini.Usuari.CtrlUser;
 import persistencia.CtrlPersistencia;
 
 import java.io.IOException;
-import java.io.InterruptedIOException;
 import java.util.*;
 
 //Controlador per a comunicar la capa de domini amb la capa de presentació: CtrlDomini <---> Vista de la presentació
@@ -24,6 +25,8 @@ public class CtrlDomini {
   private static RankingPerTipus RT;
   private static ArrayList<String> taulersAutor;
   private static TaulerHidato Tauler;
+  private static JocHidato Joc;
+  private static Partida Partida;
 
   public static String getPassword(String usr) {
     new CtrlUser();
@@ -41,6 +44,39 @@ public class CtrlDomini {
   public static void inicialitzaRankingTipus(String d, int n) {
     RT = new RankingPerTipus(d, n);
   }
+
+  public static void inicialitzaPartida(String idtau, String dif, String usr) {
+    carregaTaulerHidato(idtau);
+    tipoDificultad diff;
+    if (dif.equals("fàcil")) diff = tipoDificultad.facil;
+    else if (dif.equals("mitjà")) diff = tipoDificultad.medio;
+    else diff = tipoDificultad.dificil;
+    Joc = new JocHidato(idtau,Tauler,diff);
+    Partida = new Partida(usr,Joc);
+  }
+
+  public static boolean moviment(int i, int j, int val) {
+    Partida.nouValor(i,j,val);
+    if (Partida.completat()) {
+      guardarPartida();
+      return true;
+    }
+    else return false;
+  }
+
+  public static void guardarPartida() {
+    CtrlPartida.guardarPartida(Partida);
+  }
+
+  public static void carregaPartida(String usr) {
+    Partida = CtrlPartida.carregarPartida(usr);
+  }
+
+  public static double getTemps() { return Partida.getTime(); }
+
+  public static int getNPistes() { return Partida.getPistes(); }
+
+  public static void incPistes() { Partida.addPista(); }
 
   public static int getnUsuaris() {
     return RG.getnUsuaris();
