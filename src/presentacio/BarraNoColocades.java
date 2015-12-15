@@ -22,6 +22,7 @@ public class BarraNoColocades extends JPanel{
     private int ultim;
     private static int pos;
 
+
     public BarraNoColocades(String idtau) {
         pos = 0;
         CtrlDomini.carregaTaulerHidato(idtau);

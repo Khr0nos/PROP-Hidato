@@ -220,6 +220,20 @@ public class CtrlDomini {
   }
   public static int getValorAt(int i, int j) { return Tauler.getNumero(i,j); }
 
+  public static boolean getBloqAt(int i, int j){return Tauler.estaBloqueada(i,j);}
+
+  public static boolean getFixedAt(int i, int j){return Tauler.estaFija(i,j);}
+
+  public static boolean esPossible(int i, int j, int n){
+    for (int k = max(i-1,0); k <= min(i+1,Tauler.getAlto()-1); ++k){
+      for (int l = max(j-1,0); l <= min(j+1,Tauler.getAncho()-1);++l){
+        if (Tauler.getNumero(k,l) == n-1) return true;
+        if (Tauler.getNumero(k,l) == n+1) return true;
+      }
+    }
+    return false;
+  }
+
   public static void setValorAt(int i, int j, int val) { Tauler.setNumero(i,j,val); }
 
   public static void setFixedAt(int i, int j) { Tauler.setFixed(i,j);}
@@ -333,8 +347,12 @@ public class CtrlDomini {
     }
     return ret;
   }
-
-  public static void crear_Partida(String idu,String idtau) {
-
+  private static int max(int a, int b){
+    if (a > b) return a;
+    else return b;
+  }
+  private static int min(int a, int b){
+    if (a < b) return a;
+    else return b;
   }
 }
