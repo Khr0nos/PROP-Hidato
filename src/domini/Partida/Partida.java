@@ -49,7 +49,7 @@ public class Partida {
 
         original = joc.getTauler();
         modificat = m;
-        solucio = Algorismes.solve(original);
+        //solucio = Algorismes.solve(original);
     }
 
     public void nouValor(int i, int j, int valor)
