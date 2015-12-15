@@ -1,11 +1,3 @@
-max tauler1 facil 0.002294356 0 
 fabio tauler3 facil 0.002294356 0 
 xavi tauler4 facil 4.44 0 
-max tauler1 dificil 9.421259196 0 
-max tauler1 dificil 4.871418575 0 
-max tauler1 dificil 2.912412192 0 
-max tauler0 dificil 21.523588822 0 
-max tauler1 dificil 5.006467792 0 
-max tauler1 dificil 2.335532519 0 
-max tauler3 dificil 22.521968993 0 
-max tauler5 dificil 10.887881072 0 
+max tauler1 facil 4.081561763 0 
