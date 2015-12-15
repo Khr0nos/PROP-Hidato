@@ -182,6 +182,10 @@ public class CtrlDomini {
     }
     return  result;
   }
+  public  static ArrayList<Integer> getModificat(String usr){
+    TaulerHidato t = CtrlTauler.carregaTauler("modificat."+usr+".partida");
+    return t.getTauler();
+  }
 
   public static ArrayList<Integer> perColocar(String id) {
     List<Integer> fixades;

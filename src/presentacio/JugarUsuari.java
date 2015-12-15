@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.NoRouteToHostException;
 
 /**
  * Created by MAX on 14/12/2015.
@@ -15,9 +16,9 @@ public class JugarUsuari extends JFrame {
     private JPanel JU;
     private Tauler T;
     private BarraNoColocades BNC;
-    private JLabel timer;
-    private JScrollPane sc;
-    private JList<String> jl;
+    //private JLabel timer;
+    //private JScrollPane sc;
+    //private JList<String> jl;
     private JButton pista;
     private JButton guardar;
     private JButton exit;
@@ -36,15 +37,15 @@ public class JugarUsuari extends JFrame {
         add(BNC);
         JPanel aux = new JPanel(new GridLayout(1,2));
         JPanel aux1 = new JPanel(new GridLayout(3,1));
-        JPanel aux2 = new JPanel(new GridLayout(2,1));
+        //JPanel aux2 = new JPanel(new GridLayout(2,1));
         pista = new JButton("Pista"); aux1.add(pista);
         guardar = new JButton("Guardar"); aux1.add(guardar);
         exit = new JButton("Exit"); aux1.add(exit);
-        jl = new JList<>();
+        /*jl = new JList<>();
         sc = new JScrollPane(jl); aux2.add(sc);
-        timer = new JLabel(); aux2.add(timer);
+        timer = new JLabel(); aux2.add(timer);*/
         aux.add(aux1);
-        aux.add(aux2);
+        //aux.add(aux2);
         add(aux);
         CtrlDomini.inicialitzaPartida(idtau,"fàcil",usr); //Substituir facil per una dificultat
 
@@ -90,21 +91,22 @@ public class JugarUsuari extends JFrame {
         setLocationRelativeTo(null);
         CtrlDomini.carregaPartida(usr);
         String idtau = CtrlDomini.getIdTaulerPartida();
-        T = new Tauler("modificat." + usr + ".partida");
+        T = new Tauler(idtau);
         add(T);
+        T.completaTauler(usr);
         BNC = new BarraNoColocades(idtau);
         add(BNC);
         JPanel aux = new JPanel(new GridLayout(1,2));
         JPanel aux1 = new JPanel(new GridLayout(3,1));
-        JPanel aux2 = new JPanel(new GridLayout(2,1));
+        //JPanel aux2 = new JPanel(new GridLayout(2,1));
         pista = new JButton("Pista"); aux1.add(pista);
         guardar = new JButton("Guardar"); aux1.add(guardar);
         exit = new JButton("Exit"); aux1.add(exit);
-        jl = new JList<>();
+        /*jl = new JList<>();
         sc = new JScrollPane(jl); aux2.add(sc);
-        timer = new JLabel(); aux2.add(timer);
+        timer = new JLabel(); aux2.add(timer);*/
         aux.add(aux1);
-        aux.add(aux2);
+        //aux.add(aux2);
         add(aux);
         CtrlDomini.esborraUltimaPartida(usr,idtau);
         pista.addActionListener(new ActionListener() {
