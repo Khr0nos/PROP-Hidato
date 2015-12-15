@@ -12,9 +12,9 @@ public class Partida {
     private Time time;
     private int pistes;
 
-    private TaulerHidato original;
+    //private TaulerHidato original;
     private TaulerHidato modificat;
-    private TaulerHidato solucio = null;
+    //private TaulerHidato solucio = null;
 
     private boolean solucionat = false;
 
@@ -34,8 +34,8 @@ public class Partida {
         time = new Time();
         time.start();
 
-        original = joc.getTauler();
-        modificat = original.clone();
+        //original = joc.getTauler();
+        modificat = joc.getTauler();
         //solucio = Algorismes.solve(original);
     }
 
@@ -47,8 +47,8 @@ public class Partida {
         time = new Time(pre_time);
         time.start();
 
-        original = joc.getTauler();
-        modificat = m;
+        //original = joc.getTauler();
+        modificat = joc.getTauler();
         //solucio = Algorismes.solve(original);
     }
 
@@ -85,9 +85,9 @@ public class Partida {
       return joc;
     }
 
-    public TaulerHidato getOriginal() {
+    /*public TaulerHidato getOriginal() {
       return original;
-    }
+    }*/
 
     public TaulerHidato getModificat() {
       return modificat;
