@@ -6,4 +6,6 @@ max tauler1 dificil 4.871418575 0
 max tauler1 dificil 2.912412192 0 
 max tauler0 dificil 21.523588822 0 
 max tauler1 dificil 5.006467792 0 
-max tauler1 dificil 4.709664286 0 
+max tauler1 dificil 2.335532519 0 
+max tauler3 dificil 22.521968993 0 
+max tauler5 dificil 10.887881072 0 

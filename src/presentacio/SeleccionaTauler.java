@@ -16,7 +16,9 @@ public class SeleccionaTauler extends JFrame{
     private JScrollPane SP;
     private JButton enrereButton;
     private JButton okButton;
+    private JComboBox TriaDiff;
     private SeleccionaTauler actual;
+    private String diff = "fàcil";
 
     private void ActualitzaList(String usr) {
         ArrayList<String> taulers = CtrlDomini.taulersAutor(usr);
@@ -27,8 +29,8 @@ public class SeleccionaTauler extends JFrame{
         list1.setModel(data);
     }
 
-    private void ActualitzaListAmbMaquina(String usr) {
-        ArrayList<String> taulers = CtrlDomini.taulersAutorMaquina(usr);
+    private void ActualitzaListAmbMaquina(String usr, String diff) {
+        ArrayList<String> taulers = CtrlDomini.taulersAutorMaquina(usr,diff);
         DefaultListModel<String> data = new DefaultListModel<>();
         for (int j = 0; j < taulers.size(); ++j) {
             data.addElement(taulers.get(j));
@@ -37,6 +39,7 @@ public class SeleccionaTauler extends JFrame{
     }
 
     public SeleccionaTauler(GestioTaulers ant, String usr, int i) {
+        TriaDiff.setVisible(false);
         setContentPane(ST);
         pack();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -81,7 +84,16 @@ public class SeleccionaTauler extends JFrame{
         setVisible(true);
         setLocationRelativeTo(null);
         actual = this;
-        ActualitzaListAmbMaquina(usr);
+        ActualitzaListAmbMaquina(usr,diff);
+        TriaDiff.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int j = TriaDiff.getSelectedIndex();
+                if (j == 1) diff = "facil";
+                else if (j == 2) diff = "medio";
+                else if (j == 3) diff = "dificil";
+            }
+        });
         enrereButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -98,6 +110,8 @@ public class SeleccionaTauler extends JFrame{
                     setVisible(false);
                 } else if (i == 3) {
                     //PARTIDA MAQUINA
+                    JugarMaquina jm = new JugarMaquina(actual,list1.getSelectedValue().toString());
+                    setVisible(false);
                 }
             }
         });

@@ -46,11 +46,12 @@ public class JugarUsuari extends JFrame {
         aux.add(aux1);
         aux.add(aux2);
         add(aux);
-        CtrlDomini.inicialitzaPartida(idtau,"facil",usr); //Substituir facil per una dificultat
+        CtrlDomini.inicialitzaPartida(idtau,"fàcil",usr); //Substituir facil per una dificultat
 
         pista.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
             }
         });
         guardar.addActionListener(new ActionListener() {

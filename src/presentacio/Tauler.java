@@ -13,14 +13,23 @@ import java.util.ArrayList;
  */
 public class Tauler extends JPanel implements MouseListener{
 
-    private int altura;
-    private int amplada;
-    private JLabel tauler[][];
+    private static int altura;
+    private static int amplada;
+    private static JLabel tauler[][];
 
     private int ultim;
     private static int num;
 
     public static void setNum(int n){num = n;}
+
+    public static void resolTauler(String idtau){
+        ArrayList<Integer> sol = CtrlDomini.getSolucio(idtau);
+        for (int i = 0; i < altura; ++i){
+            for (int j = 0; j < amplada;++j){
+                if (!sol.get(i*amplada+j).equals(-1)) tauler[i][j].setText(Integer.toString(sol.get(i*amplada+j)));
+            }
+        }
+    }
 
     public void mousePressed(MouseEvent event){}
     public void mouseExited(MouseEvent event) {}

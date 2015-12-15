@@ -171,6 +171,18 @@ public class CtrlDomini {
     return t.getTauler();
   }
 
+  public static ArrayList<Integer> getSolucio(String id){
+    TaulerHidato t = CtrlTauler.carregaTauler(id);
+    t = Algorismes.solve(t);
+    ArrayList<Integer> result = new ArrayList<>();
+    for (int i = 0; i < t.getAlto(); ++i){
+      for (int j = 0; j < t.getAncho(); ++j){
+        result.add(t.getNumero(i,j));
+      }
+    }
+    return  result;
+  }
+
   public static ArrayList<Integer> perColocar(String id) {
     List<Integer> fixades;
     ArrayList<Integer> falten;
@@ -293,7 +305,7 @@ public class CtrlDomini {
     }
     return taulersAutor;
   }
-  public static ArrayList<String> taulersAutorMaquina(String usr) {
+  public static ArrayList<String> taulersAutorMaquina(String usr,String dif) {
     try {
       taulersAutor = new ArrayList<String>(0);
       ArrayList<ArrayList<String>> taulers = CtrlPersistencia.loadTable("src/JocsProva/Jocs.txt");
