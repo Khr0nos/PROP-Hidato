@@ -44,7 +44,7 @@ public class CtrlPartida {
       partida.add(header);
       CtrlPersistencia.storeTable("src/JocsProva/Partides.txt",partida);
 
-      CtrlTauler.guardaTauler(p.getOriginal(), "original." + path);
+      //CtrlTauler.guardaTauler(p.getOriginal(), "original." + path);
       CtrlTauler.guardaTauler(p.getModificat(), "modificat." + path);
     } catch (Exception e) {
       e.printStackTrace();
@@ -56,7 +56,7 @@ public class CtrlPartida {
     Partida p = null;
     String path = u + ".partida";
     try {
-      TaulerHidato orig = CtrlTauler.carregaTauler("original." + path);
+      //TaulerHidato orig = CtrlTauler.carregaTauler("original." + path);
       TaulerHidato mod = CtrlTauler.carregaTauler("modificat." + path);
       ArrayList<ArrayList<String>> partida = CtrlPersistencia.loadTable("src/JocsProva/Partides.txt");
       ArrayList<String> header = new ArrayList<>();
@@ -79,7 +79,7 @@ public class CtrlPartida {
       }
       Double time = Double.valueOf(header.get(3));
       int hints = Integer.valueOf(header.get(4));
-      JocHidato j = new JocHidato(joc,orig,td);
+      JocHidato j = new JocHidato(joc,mod,td);
       p = new Partida(u,j,mod,time,hints);
     } catch (IOException e) {
       e.printStackTrace();
