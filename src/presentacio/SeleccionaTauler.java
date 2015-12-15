@@ -3,6 +3,7 @@ package presentacio;
 import domini.CtrlDomini;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -10,110 +11,166 @@ import java.util.ArrayList;
 /**
  * Created by josep on 12/10/15.
  */
-public class SeleccionaTauler extends JFrame{
-    private JPanel ST;
-    private JList list1;
-    private JScrollPane SP;
-    private JButton enrereButton;
-    private JButton okButton;
-    private JComboBox TriaDiff;
-    private SeleccionaTauler actual;
-    private String diff = "fàcil";
+public class SeleccionaTauler extends JFrame {
+  private JPanel ST;
+  private JList list1;
+  private JScrollPane SP;
+  private JButton enrereButton;
+  private JButton okButton;
+  private JComboBox TriaDiff;
+  private SeleccionaTauler actual;
+  private String diff = "fàcil";
 
-    private void ActualitzaList(String usr) {
-        ArrayList<String> taulers = CtrlDomini.taulersAutor(usr);
-        DefaultListModel<String> data = new DefaultListModel<>();
-        for (int j = 0; j < taulers.size(); ++j) {
-            data.addElement(taulers.get(j));
+  private void ActualitzaList(String usr) {
+    ArrayList<String> taulers = CtrlDomini.taulersAutor(usr);
+    DefaultListModel<String> data = new DefaultListModel<>();
+    for (int j = 0; j < taulers.size(); ++j) {
+      data.addElement(taulers.get(j));
+    }
+    list1.setModel(data);
+  }
+
+  private void ActualitzaListAmbMaquina(String usr, String diff) {
+    ArrayList<String> taulers = CtrlDomini.taulersAutorMaquina(usr, diff);
+    DefaultListModel<String> data = new DefaultListModel<>();
+    for (int j = 0; j < taulers.size(); ++j) {
+      data.addElement(taulers.get(j));
+    }
+    list1.setModel(data);
+  }
+
+  public SeleccionaTauler(GestioTaulers ant, String usr, int i) {
+    TriaDiff.setVisible(false);
+    setContentPane(ST);
+    pack();
+    setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    setVisible(true);
+    setLocationRelativeTo(null);
+    actual = this;
+    ActualitzaList(usr);
+    enrereButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        ant.setVisible(true);
+        setVisible(false);
+      }
+    });
+    okButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        if (i == 0) {
+          //ESBORRA
+          String[] opcions = {"Si", "No"};
+          int n = JOptionPane.showOptionDialog(actual,
+                  "ATENCIÓ!\n" + "Estas segur que vols esborrar " + list1.getSelectedValue().toString() + "?",
+                  "Esborra Tauler", JOptionPane.YES_NO_OPTION,
+                  JOptionPane.QUESTION_MESSAGE, null, opcions, opcions[0]);
+          if (n == JOptionPane.YES_OPTION) {
+            CtrlDomini.esborraTauler(list1.getSelectedValue().toString());
+            ActualitzaList(usr);
+          }
+        } else if (i == 1) {
+          //MODIFICA
+          CrearUsuari c = new CrearUsuari(actual, usr, list1.getSelectedValue().toString());
+          setVisible(false);
         }
-        list1.setModel(data);
-    }
+      }
+    });
+  }
 
-    private void ActualitzaListAmbMaquina(String usr, String diff) {
-        ArrayList<String> taulers = CtrlDomini.taulersAutorMaquina(usr,diff);
-        DefaultListModel<String> data = new DefaultListModel<>();
-        for (int j = 0; j < taulers.size(); ++j) {
-            data.addElement(taulers.get(j));
+  public SeleccionaTauler(PlayMenu ant, String usr, int i) {
+    setContentPane(ST);
+    pack();
+    setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    setVisible(true);
+    setLocationRelativeTo(null);
+    actual = this;
+    ActualitzaListAmbMaquina(usr, diff);
+    TriaDiff.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        int j = TriaDiff.getSelectedIndex();
+        if (j == 1) diff = "facil";
+        else if (j == 2) diff = "medio";
+        else if (j == 3) diff = "dificil";
+      }
+    });
+    enrereButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        ant.setVisible(true);
+        setVisible(false);
+      }
+    });
+    okButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        if (i == 2) {
+          //PARTIDA NORMAL
+          JugarUsuari ju = new JugarUsuari(actual, usr, list1.getSelectedValue().toString());
+          setVisible(false);
+        } else if (i == 3) {
+          //PARTIDA MAQUINA
+          JugarMaquina jm = new JugarMaquina(actual, list1.getSelectedValue().toString());
+          setVisible(false);
         }
-        list1.setModel(data);
-    }
+      }
+    });
+  }
 
-    public SeleccionaTauler(GestioTaulers ant, String usr, int i) {
-        TriaDiff.setVisible(false);
-        setContentPane(ST);
-        pack();
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setVisible(true);
-        setLocationRelativeTo(null);
-        actual = this;
-        ActualitzaList(usr);
-        enrereButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ant.setVisible(true);
-                setVisible(false);
-            }
-        });
-        okButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (i == 0) {
-                    //ESBORRA
-                    String[] opcions = {"Si", "No"};
-                    int n = JOptionPane.showOptionDialog(actual,
-                            "ATENCIÓ!\n" + "Estas segur que vols esborrar " + list1.getSelectedValue().toString() +"?",
-                            "Esborra Tauler", JOptionPane.YES_NO_OPTION,
-                            JOptionPane.QUESTION_MESSAGE, null, opcions, opcions[0]);
-                    if (n == JOptionPane.YES_OPTION) {
-                        CtrlDomini.esborraTauler(list1.getSelectedValue().toString());
-                        ActualitzaList(usr);
-                    }
-                }
-                else if (i == 1) {
-                    //MODIFICA
-                    CrearUsuari c = new CrearUsuari(actual,usr,list1.getSelectedValue().toString());
-                    setVisible(false);
-                }
-            }
-        });
-    }
-    public SeleccionaTauler(PlayMenu ant, String usr, int i) {
-        setContentPane(ST);
-        pack();
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setVisible(true);
-        setLocationRelativeTo(null);
-        actual = this;
-        ActualitzaListAmbMaquina(usr,diff);
-        TriaDiff.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int j = TriaDiff.getSelectedIndex();
-                if (j == 1) diff = "facil";
-                else if (j == 2) diff = "medio";
-                else if (j == 3) diff = "dificil";
-            }
-        });
-        enrereButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ant.setVisible(true);
-                setVisible(false);
-            }
-        });
-        okButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (i == 2) {
-                    //PARTIDA NORMAL
-                    JugarUsuari ju = new JugarUsuari(actual,usr,list1.getSelectedValue().toString());
-                    setVisible(false);
-                } else if (i == 3) {
-                    //PARTIDA MAQUINA
-                    JugarMaquina jm = new JugarMaquina(actual,list1.getSelectedValue().toString());
-                    setVisible(false);
-                }
-            }
-        });
-    }
+  {
+// GUI initializer generated by IntelliJ IDEA GUI Designer
+// >>> IMPORTANT!! <<<
+// DO NOT EDIT OR ADD ANY CODE HERE!
+    $$$setupUI$$$();
+  }
+
+  /**
+   * Method generated by IntelliJ IDEA GUI Designer
+   * >>> IMPORTANT!! <<<
+   * DO NOT edit this method OR call it in your code!
+   *
+   * @noinspection ALL
+   */
+  private void $$$setupUI$$$() {
+    ST = new JPanel();
+    ST.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(6, 7, new Insets(0, 0, 0, 0), -1, -1));
+    final com.intellij.uiDesigner.core.Spacer spacer1 = new com.intellij.uiDesigner.core.Spacer();
+    ST.add(spacer1, new com.intellij.uiDesigner.core.GridConstraints(3, 0, 2, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, 1, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+    final com.intellij.uiDesigner.core.Spacer spacer2 = new com.intellij.uiDesigner.core.Spacer();
+    ST.add(spacer2, new com.intellij.uiDesigner.core.GridConstraints(1, 2, 1, 4, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+    final com.intellij.uiDesigner.core.Spacer spacer3 = new com.intellij.uiDesigner.core.Spacer();
+    ST.add(spacer3, new com.intellij.uiDesigner.core.GridConstraints(1, 6, 4, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_VERTICAL, 1, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+    enrereButton = new JButton();
+    enrereButton.setText("Enrere");
+    ST.add(enrereButton, new com.intellij.uiDesigner.core.GridConstraints(4, 5, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+    final com.intellij.uiDesigner.core.Spacer spacer4 = new com.intellij.uiDesigner.core.Spacer();
+    ST.add(spacer4, new com.intellij.uiDesigner.core.GridConstraints(5, 0, 1, 7, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+    final com.intellij.uiDesigner.core.Spacer spacer5 = new com.intellij.uiDesigner.core.Spacer();
+    ST.add(spacer5, new com.intellij.uiDesigner.core.GridConstraints(4, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+    final com.intellij.uiDesigner.core.Spacer spacer6 = new com.intellij.uiDesigner.core.Spacer();
+    ST.add(spacer6, new com.intellij.uiDesigner.core.GridConstraints(4, 1, 1, 2, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+    okButton = new JButton();
+    okButton.setText("Ok");
+    ST.add(okButton, new com.intellij.uiDesigner.core.GridConstraints(4, 4, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+    SP = new JScrollPane();
+    ST.add(SP, new com.intellij.uiDesigner.core.GridConstraints(2, 1, 2, 5, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_BOTH, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+    list1 = new JList();
+    SP.setViewportView(list1);
+    TriaDiff = new JComboBox();
+    final DefaultComboBoxModel defaultComboBoxModel1 = new DefaultComboBoxModel();
+    defaultComboBoxModel1.addElement("Tria una dificultat...");
+    defaultComboBoxModel1.addElement("Fàcil");
+    defaultComboBoxModel1.addElement("Mitjà");
+    defaultComboBoxModel1.addElement("Dificil");
+    TriaDiff.setModel(defaultComboBoxModel1);
+    ST.add(TriaDiff, new com.intellij.uiDesigner.core.GridConstraints(0, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+  }
+
+  /**
+   * @noinspection ALL
+   */
+  public JComponent $$$getRootComponent$$$() {
+    return ST;
+  }
 }

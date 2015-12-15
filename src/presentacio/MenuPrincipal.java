@@ -27,7 +27,7 @@ public class MenuPrincipal extends JFrame {
     playButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        PlayMenu p = new PlayMenu(actual,usr);
+        PlayMenu p = new PlayMenu(actual, usr);
         p.setVisible(true);
         setVisible(false);
       }

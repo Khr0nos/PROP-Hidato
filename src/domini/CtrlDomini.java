@@ -16,7 +16,10 @@ import domini.Usuari.CtrlUser;
 import persistencia.CtrlPersistencia;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 
 //Controlador per a comunicar la capa de domini amb la capa de presentació: CtrlDomini <---> Vista de la presentació
 public class CtrlDomini {
@@ -70,6 +73,15 @@ public class CtrlDomini {
 
   public static void carregaPartida(String usr) {
     Partida = CtrlPartida.carregarPartida(usr);
+  }
+
+  public static boolean tePartida(String usr) {
+    try {
+      CtrlTauler.carregaTauler("modificat." + usr + ".partida.txt");
+    } catch (Exception e) {
+      return false;
+    }
+    return true;
   }
 
   public static void esborraUltimaPartida(String usr, String id) {
