@@ -2,9 +2,7 @@ package domini.Partida;
 
 import domini.Algorismes.Algorismes;
 import domini.JocHidato.JocHidato;
-import domini.TaulerHidato.Cella;
 import domini.TaulerHidato.TaulerHidato;
-import domini.Usuari.User;
 
 public class Partida {
     private String user;

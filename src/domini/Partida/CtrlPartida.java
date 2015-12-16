@@ -4,7 +4,6 @@ import domini.JocHidato.JocHidato;
 import domini.JocHidato.tipoDificultad;
 import domini.TaulerHidato.CtrlTauler;
 import domini.TaulerHidato.TaulerHidato;
-import domini.Usuari.User;
 import persistencia.CtrlPersistencia;
 
 import java.io.IOException;

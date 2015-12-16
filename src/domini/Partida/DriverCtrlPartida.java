@@ -1,13 +1,5 @@
 package domini.Partida;
 
-import domini.JocHidato.JocHidato;
-import domini.JocHidato.tipoDificultad;
-import domini.TaulerHidato.CtrlTauler;
-import domini.TaulerHidato.TaulerHidato;
-import domini.Usuari.User;
-
-import java.util.Scanner;
-
 public class DriverCtrlPartida {
   /*public static void main(String args[]) {
     Scanner n = new Scanner(System.in);
