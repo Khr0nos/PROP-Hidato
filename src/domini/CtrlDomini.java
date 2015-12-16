@@ -66,6 +66,11 @@ public class CtrlDomini {
     else return false;
   }
 
+  public static String getPosRanking(String usr, String dif, int n){
+    RankingPerTipus r = new RankingPerTipus(dif,n);
+    return "";
+  }
+
   public static void guardarPartida() {
     CtrlPartida.guardarPartida(Partida);
   }

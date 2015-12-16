@@ -57,10 +57,6 @@ public class Cella {
 			System.out.println(e.getMessage());
 		}
 	}
-
-	public void Nofijar(){
-		fija = false;
-	}
 	
 	// comprobar
 	public void liberar() {

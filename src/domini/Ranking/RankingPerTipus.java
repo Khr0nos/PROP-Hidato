@@ -8,7 +8,6 @@ public class RankingPerTipus extends Ranking{
 	private int nEntrades; //Nombre d'entrades
 	private static ArrayList<Tupla> tempsJugador; //ArrayList de Tupla<Jugador,Temps>
 
-	
 	public class CustomComparator implements Comparator<Tupla>{ //Comparador per ordenar de major a menor (per invertir l'ordre invertir el compare)
 		public int compare(Tupla t1,Tupla t2){
 			return t1.getTemps().compareTo(t2.getTemps());
