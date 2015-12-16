@@ -8,7 +8,7 @@ import javax.swing.*;
 public class Main {
     public static void main(String arg[]) {
         Music m = new Music();
-        m.play();
+        Music.play();
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {

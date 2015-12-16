@@ -19,7 +19,7 @@ public class SeleccionaTauler extends JFrame {
   private JButton okButton;
   private JComboBox TriaDiff;
   private SeleccionaTauler actual;
-  private String diff = "fàcil";
+  private String diff;
 
   private void ActualitzaList(String usr) {
     ArrayList<String> taulers = CtrlDomini.taulersAutor(usr);
@@ -30,8 +30,8 @@ public class SeleccionaTauler extends JFrame {
     list1.setModel(data);
   }
 
-  private void ActualitzaListAmbMaquina(String usr, String diff) {
-    ArrayList<String> taulers = CtrlDomini.taulersAutorMaquina(usr, diff);
+  private void ActualitzaListAmbMaquina(String diff) {
+    ArrayList<String> taulers = CtrlDomini.taulersAutorMaquina(diff);
     DefaultListModel<String> data = new DefaultListModel<>();
     for (int j = 0; j < taulers.size(); ++j) {
       data.addElement(taulers.get(j));
@@ -85,7 +85,8 @@ public class SeleccionaTauler extends JFrame {
     setVisible(true);
     setLocationRelativeTo(null);
     actual = this;
-    ActualitzaListAmbMaquina(usr, diff);
+    diff = "facil";
+    ActualitzaListAmbMaquina(diff);
     TriaDiff.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
@@ -93,6 +94,7 @@ public class SeleccionaTauler extends JFrame {
         if (j == 1) diff = "facil";
         else if (j == 2) diff = "medio";
         else if (j == 3) diff = "dificil";
+        ActualitzaListAmbMaquina(diff);
       }
     });
     enrereButton.addActionListener(new ActionListener() {

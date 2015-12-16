@@ -13,6 +13,7 @@ public class Options extends JFrame {
   private JButton Taulers;
   private JButton Usuaris;
   private JButton Enrere;
+  private JButton músicaButton;
   private Options actual;
 
   public Options(String usr, MenuPrincipal ant) {
@@ -34,6 +35,14 @@ public class Options extends JFrame {
       public void actionPerformed(ActionEvent e) {
         GestioUsuaris GU = new GestioUsuaris(actual, usr);
         setVisible(false);
+      }
+    });
+
+    músicaButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        if (Music.getOn()) Music.stop();
+        else Music.play();
       }
     });
 
