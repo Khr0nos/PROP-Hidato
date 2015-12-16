@@ -50,7 +50,10 @@ public class Tauler extends JPanel implements MouseListener{
             Fi f = new Fi(p,t);
         }
         else{
-            BarraNoColocades.incrementaPos();
+            int pos = BarraNoColocades.getPos(num);
+            BarraNoColocades.borranumero(num);
+            num = BarraNoColocades.getNum(pos);
+            BarraNoColocades.escriunum(num);
         }
     }
 
@@ -88,17 +91,28 @@ public class Tauler extends JPanel implements MouseListener{
         int j = y*amplada/getWidth();
         //COMPROVAR SI MOVIMENT ES LEGAL
         if (!CtrlDomini.getFixedAt(i,j) && !CtrlDomini.getBloqAt(i,j) /*&& CtrlDomini.esPossible(i,j,num)*/){
+            if (tauler[i][j].getText().equals("")) {
                 last = num;
                 tauler[i][j].setText(Integer.toString(num));
                 boolean b = CtrlDomini.moviment(i, j, num);
-                if (b){
+                if (b) {
                     double p = CtrlDomini.getNPistes();
                     double t = CtrlDomini.getTemps();
-                    Fi f = new Fi(p,t);
+                    Fi f = new Fi(p, t);
+                } else {
+                    //BarraNoColocades.incrementaPos();
+                    int pos = BarraNoColocades.getPos(num);
+                    BarraNoColocades.borranumero(num);
+                    num = BarraNoColocades.getNum(pos);
+                    BarraNoColocades.escriunum(num);
                 }
-                else{
-                   BarraNoColocades.incrementaPos();
-                }
+            }
+            else {
+                int n = Integer.parseInt(tauler[i][j].getText());
+                CtrlDomini.moviment(i,j,0);
+                BarraNoColocades.afageixnum(n);
+                tauler[i][j].setText("");
+            }
         }
 
 

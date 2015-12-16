@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by MAX on 14/12/2015.
@@ -24,6 +25,18 @@ public class BarraNoColocades extends JPanel{
         Num.setText(Integer.toString(t.get(pos)));
         //add(Num,BorderLayout.CENTER);
         Tauler.setNum(Integer.parseInt(Num.getText()));
+    }
+
+    public static void escriunum(int num){
+        Num.setText(Integer.toString(num));
+    }
+    public static void borranumero(int n){
+        int p = getPos(n);
+        t.remove(p);
+    }
+    public static void afageixnum(int n){
+        t.add(n);
+        Collections.sort(t);
     }
 
     public static int getPos(int n){
