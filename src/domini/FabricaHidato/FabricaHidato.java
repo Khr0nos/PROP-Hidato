@@ -1,6 +1,5 @@
 package domini.FabricaHidato;
 
-import domini.CtrlDomini;
 import domini.JocHidato.tipoDificultad;
 import domini.TaulerHidato.Cella;
 import domini.TaulerHidato.CtrlTauler;
