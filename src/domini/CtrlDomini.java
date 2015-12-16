@@ -61,7 +61,6 @@ public class CtrlDomini {
   public static boolean moviment(int i, int j, int val) {
     Partida.nouValor(i,j,val);
     if (Partida.completat()) {
-      guardarPartida();
       return true;
     }
     else return false;
