@@ -1,3 +1,4 @@
 fabio tauler3 facil 0.002294356 0 
 xavi tauler4 facil 4.44 0 
-max tauler1 facil 4.081561763 0
+max tauler1 facil 4.081561763 0 
+xavi tauler0 dificil 17.614614875 2 

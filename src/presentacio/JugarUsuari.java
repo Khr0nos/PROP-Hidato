@@ -22,7 +22,7 @@ public class JugarUsuari extends JFrame {
   private JButton guardar;
   private JButton exit;
 
-  public JugarUsuari(SeleccionaTauler ant, String usr, String idtau) {
+  public JugarUsuari(SeleccionaTauler ant, String usr, String idtau, String diff) {
     JU = new JPanel(new GridLayout(3, 1));
     setContentPane(JU);
     pack();
@@ -49,11 +49,12 @@ public class JugarUsuari extends JFrame {
     aux.add(aux1);
     //aux.add(aux2);
     add(aux);
-    CtrlDomini.inicialitzaPartida(idtau, "fàcil", usr); //Substituir facil per una dificultat
+    CtrlDomini.inicialitzaPartida(idtau, diff, usr); //Substituir facil per una dificultat
 
     pista.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
+        CtrlDomini.incPistes();
 
       }
     });
@@ -120,10 +121,11 @@ public class JugarUsuari extends JFrame {
     aux.add(aux1);
     //aux.add(aux2);
     add(aux);
-    //CtrlDomini.esborraUltimaPartida(usr, idtau);
     pista.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
+        CtrlDomini.incPistes();
+
       }
     });
     guardar.addActionListener(new ActionListener() {
