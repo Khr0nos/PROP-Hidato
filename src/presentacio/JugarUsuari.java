@@ -63,10 +63,7 @@ public class JugarUsuari extends JFrame {
       @Override
       public void actionPerformed(ActionEvent e) {
         CtrlDomini.guardarPartida();
-        String[] opcions = {"Ok"};
-        int n = JOptionPane.showOptionDialog(guardar,
-                "Partida Guardada", "Guardar", JOptionPane.YES_OPTION,
-                JOptionPane.QUESTION_MESSAGE, null, opcions, opcions[0]);
+        JOptionPane.showMessageDialog(guardar, "Partida Guardada", "Guardar", JOptionPane.INFORMATION_MESSAGE);
       }
     });
     exit.addActionListener(new ActionListener() {
@@ -129,10 +126,7 @@ public class JugarUsuari extends JFrame {
       @Override
       public void actionPerformed(ActionEvent e) {
         CtrlDomini.guardarPartida();
-        String[] opcions = {"Ok"};
-        int n = JOptionPane.showOptionDialog(guardar,
-                "Partida Guardada", "Guardar", JOptionPane.YES_OPTION,
-                JOptionPane.QUESTION_MESSAGE, null, opcions, opcions[0]);
+        JOptionPane.showMessageDialog(guardar, "Partida Guardada", "Guardar", JOptionPane.INFORMATION_MESSAGE);
       }
     });
     exit.addActionListener(new ActionListener() {
