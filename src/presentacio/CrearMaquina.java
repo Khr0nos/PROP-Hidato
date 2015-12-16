@@ -17,7 +17,6 @@ public class CrearMaquina extends JFrame {
   private JTextField Fils;
   private JTextField Cols;
   private JTextField Idtau;
-  private JComboBox TriaDiff;
   private JButton generaElTaulerButton;
   private JButton guardarButton;
   private JButton descartaButton;
@@ -37,7 +36,6 @@ public class CrearMaquina extends JFrame {
           String f = Fils.getText();
           String c = Cols.getText();
           String diff = "facil";
-          int x = TriaDiff.getSelectedIndex();
           id = Idtau.getText();
           if (f.equals("")) {
             JOptionPane.showMessageDialog(Fils, "Entra el nombre de files!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -45,8 +43,6 @@ public class CrearMaquina extends JFrame {
             JOptionPane.showMessageDialog(Cols, "Entra el nombre de columnes!", "Error", JOptionPane.ERROR_MESSAGE);
           } else if (id.equals("")) {
             JOptionPane.showMessageDialog(Cols, "Entra el nom del tauler!", "Error", JOptionPane.ERROR_MESSAGE);
-          } else if (x == 0) {
-            JOptionPane.showMessageDialog(TriaDiff, "Selecciona una dificultat!", "Error", JOptionPane.ERROR_MESSAGE);
           } else if (Integer.parseInt(f) < 3) {
             JOptionPane.showMessageDialog(Fils, "Mínim nombre de files: 3", "Nombre files incorrecte", JOptionPane.WARNING_MESSAGE);
           } else if (Integer.parseInt(c) < 3) {
@@ -57,11 +53,11 @@ public class CrearMaquina extends JFrame {
             JOptionPane.showMessageDialog(Fils, "Màxim nombre de columnes: 20", "Nombre columnes incorrecte", JOptionPane.WARNING_MESSAGE);
           } else {
             if (!CtrlDomini.checkIdtauler(id)) {
-              if (x == 1) diff = "facil";
-              else if (x == 2) diff = "medio";
-              else if (x == 3) diff = "dificl";
               int n = Integer.parseInt(f);
               int m = Integer.parseInt(c);
+              if (n >= 3 && n <= 8 && m >= 3 && m <= 8) diff = "facil";
+              else if (n >= 9 && n <= 14 && m >= 9 && m <= 14) diff = "medio";
+              else if (n >= 15 && n <= 20 && m >= 15 && m <= 20) diff = "dificil";
               CtrlDomini.generarHidato(n, m, diff, id);
               ArrayList<Integer> th = CtrlDomini.getTaulerHid(id);
               DefaultTableModel model = new DefaultTableModel(n, m) {
@@ -138,14 +134,6 @@ public class CrearMaquina extends JFrame {
     final JLabel label2 = new JLabel();
     label2.setText("Dificultat:");
     C.add(label2, new com.intellij.uiDesigner.core.GridConstraints(4, 1, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-    TriaDiff = new JComboBox();
-    final DefaultComboBoxModel defaultComboBoxModel1 = new DefaultComboBoxModel();
-    defaultComboBoxModel1.addElement("Tria una dificultat...");
-    defaultComboBoxModel1.addElement("Fàcil");
-    defaultComboBoxModel1.addElement("Mitja");
-    defaultComboBoxModel1.addElement("Difícil");
-    TriaDiff.setModel(defaultComboBoxModel1);
-    C.add(TriaDiff, new com.intellij.uiDesigner.core.GridConstraints(4, 3, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_WEST, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     generaElTaulerButton = new JButton();
     generaElTaulerButton.setText("Generar el tauler");
     C.add(generaElTaulerButton, new com.intellij.uiDesigner.core.GridConstraints(5, 2, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));

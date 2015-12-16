@@ -174,7 +174,7 @@ public class CtrlDomini {
   public static void generarHidato(int m, int n, String diff, String id) throws Exception {
     if (Objects.equals(diff, "facil")) FabricaHidato.genera_hidato(m, n, tipoDificultad.facil, id);
     else if (Objects.equals(diff, "medio")) FabricaHidato.genera_hidato(m, n, tipoDificultad.medio, id);
-    else FabricaHidato.genera_hidato(m, n, tipoDificultad.facil, id);
+    else FabricaHidato.genera_hidato(m, n, tipoDificultad.dificil, id);
   }
 
   public static boolean guardarHidato(String id) {
