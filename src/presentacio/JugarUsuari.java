@@ -60,11 +60,17 @@ public class JugarUsuari extends JFrame {
     guardar.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
+        JOptionPane.showMessageDialog(guardar, "Partida guardada", "Atenció", JOptionPane.INFORMATION_MESSAGE);
         CtrlDomini.guardarPartida();
-        String[] opcions = {"Ok"};
+        String[] ops = {"Si", "No"};
         int n = JOptionPane.showOptionDialog(guardar,
-                "Partida Guardada", "Guardar", JOptionPane.YES_OPTION,
-                JOptionPane.QUESTION_MESSAGE, null, opcions, opcions[0]);
+                "Vols continuar la partida?",
+                "Avís", JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, ops, ops[0]);
+        if (n == JOptionPane.NO_OPTION) {
+          ant.setVisible(true);
+          setVisible(false);
+        }
       }
     });
     exit.addActionListener(new ActionListener() {
@@ -114,7 +120,7 @@ public class JugarUsuari extends JFrame {
     aux.add(aux1);
     //aux.add(aux2);
     add(aux);
-    CtrlDomini.esborraUltimaPartida(usr, idtau);
+    //CtrlDomini.esborraUltimaPartida(usr, idtau);
     pista.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
@@ -123,11 +129,17 @@ public class JugarUsuari extends JFrame {
     guardar.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
+        JOptionPane.showMessageDialog(guardar, "Partida guardada", "Atenció", JOptionPane.INFORMATION_MESSAGE);
         CtrlDomini.guardarPartida();
-        String[] opcions = {"Ok"};
+        String[] ops = {"Si", "No"};
         int n = JOptionPane.showOptionDialog(guardar,
-                "Partida Guardada", "Guardar", JOptionPane.YES_OPTION,
-                JOptionPane.QUESTION_MESSAGE, null, opcions, opcions[0]);
+                "Vols continuar la partida?",
+                "Avís", JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, ops, ops[0]);
+        if (n == JOptionPane.NO_OPTION) {
+          ant.setVisible(true);
+          setVisible(false);
+        }
       }
     });
     exit.addActionListener(new ActionListener() {
