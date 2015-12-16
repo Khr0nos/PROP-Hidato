@@ -54,7 +54,7 @@ public class CrearMaquina extends JFrame {
           } else if (Integer.parseInt(f) > 20) {
             JOptionPane.showMessageDialog(Fils, "Màxim nombre de files: 20", "Nombre files incorrecte", JOptionPane.WARNING_MESSAGE);
           } else if (Integer.parseInt(c) > 20) {
-            JOptionPane.showMessageDialog(Fils, "Màxim nombre de columnes: 3", "Nombre columnes incorrecte", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(Fils, "Màxim nombre de columnes: 20", "Nombre columnes incorrecte", JOptionPane.WARNING_MESSAGE);
           } else {
             if (!CtrlDomini.checkIdtauler(id)) {
               if (x == 1) diff = "facil";
