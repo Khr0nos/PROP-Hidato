@@ -120,6 +120,8 @@ public class TaulerHidato implements Cloneable {
         this.tauler[i][j].fijar();
     }
 
+    public void setNotFixed(int i, int j){this.tauler[i][j].Nofijar();}
+
     public void printTauler() {
         for(int i = 0; i < this.height; ++i) {
             String s = "";

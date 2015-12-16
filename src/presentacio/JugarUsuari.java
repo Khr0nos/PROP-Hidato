@@ -22,7 +22,7 @@ public class JugarUsuari extends JFrame {
   private JButton guardar;
   private JButton exit;
 
-  public JugarUsuari(SeleccionaTauler ant, String usr, String idtau, String diff) {
+  public JugarUsuari(SeleccionaTauler ant, String usr, String idtau,String diff) {
     JU = new JPanel(new GridLayout(3, 1));
     setContentPane(JU);
     pack();
@@ -54,24 +54,19 @@ public class JugarUsuari extends JFrame {
     pista.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
+        T.getNext();
+        T.setPista(idtau);
         CtrlDomini.incPistes();
-
       }
     });
     guardar.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        JOptionPane.showMessageDialog(guardar, "Partida guardada", "Atenció", JOptionPane.INFORMATION_MESSAGE);
         CtrlDomini.guardarPartida();
-        String[] ops = {"Si", "No"};
+        String[] opcions = {"Ok"};
         int n = JOptionPane.showOptionDialog(guardar,
-                "Vols continuar la partida?",
-                "Avís", JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE, null, ops, ops[0]);
-        if (n == JOptionPane.NO_OPTION) {
-          ant.setVisible(true);
-          setVisible(false);
-        }
+                "Partida Guardada", "Guardar", JOptionPane.YES_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, opcions, opcions[0]);
       }
     });
     exit.addActionListener(new ActionListener() {
@@ -121,27 +116,23 @@ public class JugarUsuari extends JFrame {
     aux.add(aux1);
     //aux.add(aux2);
     add(aux);
+    CtrlDomini.esborraUltimaPartida(usr, idtau);
     pista.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
+        T.getNext();
+        T.setPista(idtau);
         CtrlDomini.incPistes();
-
       }
     });
     guardar.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        JOptionPane.showMessageDialog(guardar, "Partida guardada", "Atenció", JOptionPane.INFORMATION_MESSAGE);
         CtrlDomini.guardarPartida();
-        String[] ops = {"Si", "No"};
+        String[] opcions = {"Ok"};
         int n = JOptionPane.showOptionDialog(guardar,
-                "Vols continuar la partida?",
-                "Avís", JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE, null, ops, ops[0]);
-        if (n == JOptionPane.NO_OPTION) {
-          ant.setVisible(true);
-          setVisible(false);
-        }
+                "Partida Guardada", "Guardar", JOptionPane.YES_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, opcions, opcions[0]);
       }
     });
     exit.addActionListener(new ActionListener() {

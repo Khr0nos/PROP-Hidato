@@ -111,6 +111,15 @@ public class CtrlDomini {
 
   public static void incPistes() { Partida.addPista(); }
 
+  public static int getPosPista(int pista, String id){
+    ArrayList<Integer> sol = getSolucio(id);
+    int r = 0;
+    for (int i = 0; i < sol.size(); ++i){
+      if (sol.get(i).equals(pista)) r = i;
+    }
+    return r;
+  }
+
   public static int getnUsuaris() {
     return RG.getnUsuaris();
   }
@@ -208,7 +217,7 @@ public class CtrlDomini {
     fixades = new ArrayList<>();
     for (int i = 0; i < h; ++i){
       for (int j = 0; j < w; ++j){
-        if (t.estaFija(i,j)) fixades.add(t.getNumero(i,j));
+        if (t.estaFija(i,j)) fixades.add(t.getNumero(i, j));
       }
     }
     Collections.sort(fixades);
@@ -251,6 +260,8 @@ public class CtrlDomini {
   public static boolean getBloqAt(int i, int j){return Tauler.estaBloqueada(i,j);}
 
   public static boolean getFixedAt(int i, int j){return Tauler.estaFija(i,j);}
+
+  public static void noFijarAt(int i, int j){Tauler.setNotFixed(i,j);}
 
   public static boolean esPossible(int i, int j, int n){
     for (int k = max(i-1,0); k <= min(i+1,Tauler.getAlto()-1); ++k){
