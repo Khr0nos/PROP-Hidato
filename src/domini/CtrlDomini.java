@@ -77,7 +77,7 @@ public class CtrlDomini {
 
   public static boolean tePartida(String usr) {
     try {
-      CtrlTauler.carregaTauler("modificat." + usr + ".partida.txt");
+      CtrlTauler.carregaTauler("modificat." + usr + ".partida");
     } catch (Exception e) {
       return false;
     }
@@ -96,8 +96,8 @@ public class CtrlDomini {
         }
       }
       CtrlPersistencia.storeTable("src/JocsProva/Partides.txt", partides);
-      CtrlPersistencia.deleteFile("src/JocsProva/original." + usr + ".partida");
-      CtrlPersistencia.deleteFile("src/JocsProva/modificat." + usr + ".partida");
+      //CtrlPersistencia.deleteFile("src/JocsProva/original." + usr + ".partida.txt");
+      CtrlPersistencia.deleteFile("src/JocsProva/modificat." + usr + ".partida.txt");
     } catch (IOException e) {
       e.printStackTrace();
     }
