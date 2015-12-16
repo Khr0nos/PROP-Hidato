@@ -73,7 +73,7 @@ public class JugarUsuari extends JFrame {
         int n = JOptionPane.showOptionDialog(exit,
                 "ATENCIÓ!\n" + "Estas apunt de sortir.\n" +
                         "El teu progrés es perdrà, estas segur que vols continuar?",
-                "Esborra Usuari", JOptionPane.YES_NO_OPTION,
+                "Exit", JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, opcions, opcions[0]);
         if (n == JOptionPane.YES_OPTION) {
           ant.setVisible(true);
@@ -136,7 +136,7 @@ public class JugarUsuari extends JFrame {
         int n = JOptionPane.showOptionDialog(exit,
                 "ATENCIÓ!\n" + "Estas apunt de sortir.\n" +
                         "El teu progrés es perdrà, estas segur que vols continuar?",
-                "Esborra Usuari", JOptionPane.YES_NO_OPTION,
+                "Exit", JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, opcions, opcions[0]);
         if (n == JOptionPane.YES_OPTION) {
           ant.setVisible(true);

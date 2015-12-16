@@ -336,15 +336,25 @@ public class CtrlDomini {
     }
     return taulersAutor;
   }
-  public static ArrayList<String> taulersAutorMaquina(String usr,String dif) {
+  public static ArrayList<String> taulersAutorMaquina(String dif) {
     try {
       taulersAutor = new ArrayList<String>(0);
       ArrayList<ArrayList<String>> taulers = CtrlPersistencia.loadTable("src/JocsProva/Jocs.txt");
-      ArrayList<ArrayList<String>> partides = CtrlPersistencia.loadTable("src/JocsProva/Partides.txt");
       for (int i = 0; i < taulers.size(); ++i) {
-        ArrayList<ArrayList<String>> t = CtrlPersistencia.loadTable(taulers.get(i).get(0));
         String id = taulers.get(i).get(0).substring(14, taulers.get(i).get(0).length()-4);
-        taulersAutor.add(id);
+        ArrayList<ArrayList<String>> t = CtrlPersistencia.loadTable(taulers.get(i).get(0));
+        int files = Integer.parseInt(t.get(0).get(0));
+        int cols = Integer.parseInt(t.get(0).get(1));
+        int x = min(files,cols);
+        if (dif.equals("facil")) {
+          if (x >= 3 && x < 9) taulersAutor.add(id);
+        }
+        if (dif.equals("medio")) {
+          if (x >= 9 && x < 15) taulersAutor.add(id);
+        }
+        if (dif.equals("dificil")) {
+          if (x >= 15 && x <= 20) taulersAutor.add(id);
+        }
       }
     }
     catch (Exception e) {
