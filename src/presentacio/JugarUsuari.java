@@ -30,9 +30,9 @@ public class JugarUsuari extends JFrame {
     setVisible(true);
     setSize(500, 500);
     setLocationRelativeTo(null);
+    BNC = new BarraNoColocades(idtau);
     T = new Tauler(idtau);
     add(T);
-    BNC = new BarraNoColocades(idtau);
     add(BNC);
     JPanel aux = new JPanel(new GridLayout(1, 2));
     JPanel aux1 = new JPanel(new GridLayout(3, 1));
@@ -93,11 +93,11 @@ public class JugarUsuari extends JFrame {
     setLocationRelativeTo(null);
     CtrlDomini.carregaPartida(usr);
     String idtau = CtrlDomini.getIdTaulerPartida();
+    BNC = new BarraNoColocades(idtau);
     T = new Tauler(idtau);
     add(T);
-    T.completaTauler(usr);
-    BNC = new BarraNoColocades(idtau);
     add(BNC);
+    T.completaTauler(usr);
     JPanel aux = new JPanel(new GridLayout(1, 2));
     JPanel aux1 = new JPanel(new GridLayout(3, 1));
     //JPanel aux2 = new JPanel(new GridLayout(2,1));

@@ -50,10 +50,7 @@ public class Tauler extends JPanel implements MouseListener{
             Fi f = new Fi(p,t);
         }
         else{
-            int pos = BarraNoColocades.getPos(num);
-            BarraNoColocades.borranumero(num);
-            num = BarraNoColocades.getNum(pos);
-            BarraNoColocades.escriunum(num);
+           BarraNoColocades.incrementaPos();
         }
     }
 
@@ -100,17 +97,12 @@ public class Tauler extends JPanel implements MouseListener{
                     double t = CtrlDomini.getTemps();
                     Fi f = new Fi(p, t);
                 } else {
-                    //BarraNoColocades.incrementaPos();
-                    int pos = BarraNoColocades.getPos(num);
-                    BarraNoColocades.borranumero(num);
-                    num = BarraNoColocades.getNum(pos);
-                    BarraNoColocades.escriunum(num);
+                    BarraNoColocades.incrementaPos();
                 }
             }
             else {
                 int n = Integer.parseInt(tauler[i][j].getText());
                 CtrlDomini.moviment(i,j,0);
-                BarraNoColocades.afageixnum(n);
                 tauler[i][j].setText("");
             }
         }
