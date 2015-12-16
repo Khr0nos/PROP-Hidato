@@ -47,6 +47,7 @@ public class Tauler extends JPanel implements MouseListener{
         if (b){
             double p = CtrlDomini.getNPistes();
             double t = CtrlDomini.getTemps();
+            if (p != 0) ++p;
             Fi f = new Fi(p,t);
         }
         else{
@@ -95,6 +96,7 @@ public class Tauler extends JPanel implements MouseListener{
                 if (b) {
                     double p = CtrlDomini.getNPistes();
                     double t = CtrlDomini.getTemps();
+                    if (p != 0 ) ++p;
                     Fi f = new Fi(p, t);
                 } else {
                     BarraNoColocades.incrementaPos();
