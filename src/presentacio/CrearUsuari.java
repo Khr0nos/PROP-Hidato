@@ -78,20 +78,19 @@ public class CrearUsuari extends JFrame {
       @Override
       public void actionPerformed(ActionEvent e) {
         Tauler.clearSelection();
-        if (!Objects.equals(f, "0") && !Objects.equals(c, "0") && teValors(model)) {
-          int n = Integer.parseInt(f);
-          int m = Integer.parseInt(c);
-          //ArrayList<Integer> t = new ArrayList<Integer>();
-          CtrlDomini.iniTaulerHidato(n, m, usr);
-          for (int i = 0; i < n; ++i) {
-            for (int j = 0; j < m; ++j) {
-              int x = Integer.parseInt(model.getValueAt(i, j).toString()); //problema amb el model al guardar valors
-              CtrlDomini.setValorAt(i, j, x);
-              if (x > 0) CtrlDomini.setFixedAt(i, j);
+        id = Idtau.getText();
+        if (!CtrlDomini.checkIdtauler(id)) {
+          if (!Objects.equals(f, "0") && !Objects.equals(c, "0") && teValors(model)) {
+            int n = Integer.parseInt(f);
+            int m = Integer.parseInt(c);
+            CtrlDomini.iniTaulerHidato(n, m, usr);
+            for (int i = 0; i < n; ++i) {
+              for (int j = 0; j < m; ++j) {
+                int x = Integer.parseInt(model.getValueAt(i, j).toString());
+                CtrlDomini.setValorAt(i, j, x);
+                if (x > 0) CtrlDomini.setFixedAt(i, j);
+              }
             }
-          }
-          boolean b = CtrlDomini.checkIdtauler(id);
-          if (!b) {
             boolean ret = CtrlDomini.guardarHidato(id);
             if (!ret)
               JOptionPane.showMessageDialog(guardarButton, "Tauler incorrecte!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -101,9 +100,9 @@ public class CrearUsuari extends JFrame {
               setVisible(false);
               ant.setVisible(true);
             }
-          } else
-            JOptionPane.showMessageDialog(guardarButton, "El ID del tauler ja existeix.", "Error", JOptionPane.ERROR_MESSAGE);
+          }
         }
+        else JOptionPane.showMessageDialog(Idtau, "Nom de tauler ja existent", "Identificador incorrecte", JOptionPane.WARNING_MESSAGE);
       }
     });
     enrereButton.addActionListener(new ActionListener() {

@@ -9,8 +9,6 @@ public class Partida {
     private JocHidato joc;
     private Time time;
     private int pistes;
-
-    //private TaulerHidato original;
     private TaulerHidato modificat;
     private TaulerHidato solucio = null;
 
@@ -32,7 +30,6 @@ public class Partida {
         time = new Time();
         time.start();
 
-        //original = joc.getTauler();
         modificat = joc.getTauler();
         solucio = Algorismes.solve(modificat);
     }
@@ -45,25 +42,17 @@ public class Partida {
         time = new Time(pre_time);
         time.start();
 
-        //original = joc.getTauler();
         modificat = joc.getTauler();
         solucio = Algorismes.solve(modificat);
     }
 
     public void nouValor(int i, int j, int valor)
     {
-        //Cella c = modificat.getCella(x, y);
-        //c.setNumero(valor);
 
         modificat.setNumero(i,j,valor);
 
         solucionat = modificat.solved();
-        //System.out.println(solucionat);
-        if (solucionat)
-        {
-            System.out.println("SOLVED");
-            time.stop();
-        }
+        if (solucionat) time.stop();
     }
 
     public boolean completat()
@@ -83,10 +72,6 @@ public class Partida {
     public JocHidato getJoc() {
       return joc;
     }
-
-    /*public TaulerHidato getOriginal() {
-      return original;
-    }*/
 
     public TaulerHidato getModificat() {
       return modificat;

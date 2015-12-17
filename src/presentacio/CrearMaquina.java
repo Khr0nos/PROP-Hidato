@@ -22,6 +22,7 @@ public class CrearMaquina extends JFrame {
   private JButton descartaButton;
   private JTable Resultat;
   private String id = null;
+  private boolean erase;
 
   public CrearMaquina(Crear ant) {
     setContentPane(C);
@@ -29,6 +30,7 @@ public class CrearMaquina extends JFrame {
     setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     setVisible(true);
     setLocationRelativeTo(null);
+    erase = true;
     generaElTaulerButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
@@ -53,6 +55,7 @@ public class CrearMaquina extends JFrame {
             JOptionPane.showMessageDialog(Fils, "Màxim nombre de columnes: 20", "Nombre columnes incorrecte", JOptionPane.WARNING_MESSAGE);
           } else {
             if (!CtrlDomini.checkIdtauler(id)) {
+              erase = true;
               int n = Integer.parseInt(f);
               int m = Integer.parseInt(c);
               if (n >= 3 && n <= 8 && m >= 3 && m <= 8) diff = "facil";
@@ -72,15 +75,10 @@ public class CrearMaquina extends JFrame {
                 }
               }
               Resultat.setModel(model);
-            /*for (int i = 0; i < Integer.parseInt(f); i++) {
-                for (int j = 0; j < Integer.parseInt(c); j++) {
-                    //Resultat.prepareRenderer(Resultat.getCellRenderer(i,j), i, j);
-                    Resultat.getCellRenderer(i,j).getTableCellRendererComponent(Resultat,"",false,false,i,j);
-                    if (Resultat.getModel().getValueAt(i,j).equals("0")) Resultat.getModel().setValueAt("", i, j);
-                }
-            }*/
-            } else
+            } else {
               JOptionPane.showMessageDialog(Idtau, "Nom de tauler ja existent", "Identificador incorrecte", JOptionPane.WARNING_MESSAGE);
+              erase = false;
+            }
           }
         } catch (Exception ex) {
           ex.printStackTrace();
@@ -90,7 +88,9 @@ public class CrearMaquina extends JFrame {
     descartaButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        if (id != null) CtrlDomini.esborraTauler(id);
+        if (erase) {
+          if (id != null) CtrlDomini.esborraTauler(id);
+        }
         setVisible(false);
         ant.setVisible(true);
       }
@@ -98,9 +98,17 @@ public class CrearMaquina extends JFrame {
     guardarButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        if (id != null) CtrlDomini.guardaReferenciaTauler(id);
-        setVisible(false);
-        ant.setVisible(true);
+        id = Idtau.getText();
+        if (!CtrlDomini.checkIdtauler(id)) {
+          erase = true;
+          if (id != null) CtrlDomini.guardaReferenciaTauler(id);
+          setVisible(false);
+          ant.setVisible(true);
+        }
+        else {
+          JOptionPane.showMessageDialog(Idtau, "Nom de tauler ja existent", "Identificador incorrecte", JOptionPane.WARNING_MESSAGE);
+          erase = false;
+        }
       }
     });
   }

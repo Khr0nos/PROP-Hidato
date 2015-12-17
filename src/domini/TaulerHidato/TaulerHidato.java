@@ -198,8 +198,6 @@ public class TaulerHidato implements Cloneable {
             int posy = y + ny[k];
             if (posx >= 0 && posx < width && posy >= 0 && posy < height)
             {
-                //System.out.println(posx);
-                //System.out.println(posy);
                 if (tauler[posy][posx].getNumero() == value-1) return posy;
             }
         }
@@ -211,7 +209,6 @@ public class TaulerHidato implements Cloneable {
         int maxim = 1;
         int posx = 0, posy = 0;
 
-        // Encontrar posicion de la primera celda (estaria guay tener un atributo de la clase que lo tuviera)
         for (int i = 0; i < height; ++i) {
             for (int j = 0; j < width; ++j) {
                 int valor = tauler[i][j].getNumero();
@@ -226,22 +223,13 @@ public class TaulerHidato implements Cloneable {
 
         while (maxim != 1)
         {
-            //System.out.println(maxim);
-
             boolean noAdj = false;
             int valor;
-            //System.out.println(posy);
-
             valor = tauler[posy][posx].getNumero();
-            //System.out.println(valor);
             noAdj = teAdjacent(posx, posy, valor - 1);
             if (!noAdj) return false;
-
             int auxposx = seguentX(posx, posy);
             int auxposy = seguentY(posx, posy);
-            System.out.println("posicio");
-            System.out.println(posx);
-            System.out.println(posy);
             posx = auxposx;
             posy = auxposy;
             --maxim;

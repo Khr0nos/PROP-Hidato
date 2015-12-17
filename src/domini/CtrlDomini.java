@@ -391,7 +391,7 @@ public class CtrlDomini {
     boolean ret = false;
     try {
       ArrayList<ArrayList<String>> Taulers = CtrlPersistencia.loadTable("src/JocsProva/Jocs.txt");
-      for (int i = 0; i < Taulers.size(); i++) {
+      for (int i = 0; i < Taulers.size() && !ret; i++) {
         ArrayList<String> tauler = Taulers.get(i);
         ret = (tauler.get(0).equals("src/JocsProva/" + id + ".txt"));        //true si el id de tauler ja existeix
       }
