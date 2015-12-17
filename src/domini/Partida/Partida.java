@@ -57,10 +57,11 @@ public class Partida {
 
         modificat.setNumero(i,j,valor);
 
-        solucionat = (modificat.getTauler().equals(solucio.getTauler()));
-
+        solucionat = modificat.solved();
+        //System.out.println(solucionat);
         if (solucionat)
         {
+            System.out.println("SOLVED");
             time.stop();
         }
     }

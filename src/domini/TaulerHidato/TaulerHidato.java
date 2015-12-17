@@ -145,4 +145,107 @@ public class TaulerHidato implements Cloneable {
     public void setAlto(int alto) {
       this.height = alto;
     }
+
+    private boolean teAdjacent(int x, int y, int value)
+    {
+        int nx[] = {-1, 0, 1, -1, 1, -1, 0, 1};
+        int ny[] = {-1, -1, -1, 0, 0, 1, 1, 1};
+
+        for (int k = 0; k < 8; ++k)
+        {
+            int posx = x + nx[k];
+            int posy = y + ny[k];
+            if (posx >= 0 && posx < width && posy >= 0 && posy < height)
+            {
+
+                if (tauler[posy][posx].getNumero() == value) return true;
+            }
+        }
+
+        return false;
+    }
+
+    private int seguentX(int x, int y)
+    {
+        int value = tauler[y][x].getNumero();
+
+        int nx[] = {-1, 0, 1, -1, 1, -1, 0, 1};
+        int ny[] = {-1, -1, -1, 0, 0, 1, 1, 1};
+
+        for (int k = 0; k < 8; ++k)
+        {
+            int posx = x + nx[k];
+            int posy = y + ny[k];
+            if (posx >= 0 && posx < width && posy >= 0 && posy < height)
+            {
+                if (tauler[posy][posx].getNumero() == value-1) return posx;
+            }
+        }
+
+        return -1;
+    }
+
+    private int seguentY(int x, int y)
+    {
+        int value = tauler[y][x].getNumero();
+
+        int nx[] = {-1, 0, 1, -1, 1, -1, 0, 1};
+        int ny[] = {-1, -1, -1, 0, 0, 1, 1, 1};
+
+        for (int k = 0; k < 8; ++k)
+        {
+            int posx = x + nx[k];
+            int posy = y + ny[k];
+            if (posx >= 0 && posx < width && posy >= 0 && posy < height)
+            {
+                //System.out.println(posx);
+                //System.out.println(posy);
+                if (tauler[posy][posx].getNumero() == value-1) return posy;
+            }
+        }
+
+        return -1;
+    }
+
+    public boolean solved() {
+        int maxim = 1;
+        int posx = 0, posy = 0;
+
+        // Encontrar posicion de la primera celda (estaria guay tener un atributo de la clase que lo tuviera)
+        for (int i = 0; i < height; ++i) {
+            for (int j = 0; j < width; ++j) {
+                int valor = tauler[i][j].getNumero();
+                if (valor > maxim)
+                {
+                    maxim = valor;
+                    posx = j;
+                    posy = i;
+                }
+            }
+        }
+
+        while (maxim != 1)
+        {
+            //System.out.println(maxim);
+
+            boolean noAdj = false;
+            int valor;
+            //System.out.println(posy);
+
+            valor = tauler[posy][posx].getNumero();
+            //System.out.println(valor);
+            noAdj = teAdjacent(posx, posy, valor - 1);
+            if (!noAdj) return false;
+
+            int auxposx = seguentX(posx, posy);
+            int auxposy = seguentY(posx, posy);
+            System.out.println("posicio");
+            System.out.println(posx);
+            System.out.println(posy);
+            posx = auxposx;
+            posy = auxposy;
+            --maxim;
+        }
+        return true;
+    }
 }
